@@ -1,0 +1,49 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "ToDo",
+      "tasks": [
+        { "id": 1, "title": "Task 1", "description": "Description for Task 1", "assignee": "John Doe", "endDate": "2023-09-20" },
+        { "id": 2, "title": "Task 2", "description": "Description for Task 2", "assignee": "Jane Smith", "endDate": "2023-09-22" },
+        { "id": 3, "title": "Task 3", "description": "Description for Task 3", "assignee": "Bob Johnson", "endDate": "2023-09-25" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Development",
+      "tasks": [
+        { "id": 4, "title": "Task 4", "description": "Description for Task 4", "assignee": "Alice Brown", "endDate": "2023-09-28" },
+        { "id": 5, "title": "Task 5", "description": "Description for Task 5", "assignee": "Charlie Wilson", "endDate": "2023-09-30" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Dev Complete",
+      "tasks": [
+        { "id": 6, "title": "Task 6", "description": "Description for Task 6", "assignee": "David Lee", "endDate": "2023-10-02" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "QA",
+      "tasks": [
+        { "id": 7, "title": "Task 7", "description": "Description for Task 7", "assignee": "Eva Green", "endDate": "2023-10-05" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Completed",
+      "tasks": [
+        { "id": 8, "title": "Task 8", "description": "Description for Task 8", "assignee": "Frank White", "endDate": "2023-10-08" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Additional Column",
+      "tasks": [
+        { "id": 9, "title": "Task 9", "description": "Description for Task 9", "assignee": "Grace Taylor", "endDate": "2023-10-10" }
+      ]
+    }
+  ]
+}

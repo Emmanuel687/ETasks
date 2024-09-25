@@ -1,0 +1,83 @@
+/**
+ * Colors
+ */
+$primary: #4263eb;
+$secondary: #868E96;
+$danger: #ff0000;
+$white: #ffffff;
+
+// *** BORDERS AND OUTLINES COLORS ***
+$outline: #e2e7f1;
+$outline-dark: #ced6e3;
+$box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);
+
+/**
+ * Typography
+ */
+// *** FONTS COLORS ***
+$text: #000027;
+$text-light: #fff;
+$subtext: #8d98a9;
+$hint: #b3bccb;
+
+/**
+ * Buttons
+ */
+$btn-padding: 8px 12px;
+$btn-padding-sm: 4px 10px;
+$btn-border: 0.5px solid #e2e7f1;
+$btn-border-radius: 10px;
+// SHORT BUTTON
+$btn-short-font-size: 14px;
+$btn-short-font-weight: 400;
+$btn-short-height: 30px;
+/**
+ * end Buttons
+ */
+
+/**
+ * Cards
+ */
+$card-border: 0.5px solid #e2e7f1;
+$card-border-radius: 10px;
+$card-padding: 20px;
+$card-margin: 12px;
+$card-bg: #ffffff;
+$card-shadow: 0px 3px 6px #0a2c4f0d;
+$card-title-margin-bottom: 40px;
+
+// SMALL CARD
+$small-card-min-height: 90px;
+$small-card-min-weight: 250px;
+/**
+ * end Cards
+ */
+
+/**
+ * borders
+ */
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+
+/**
+ * end borders
+ */
+
+/**
+ * Inputs
+ */
+$input-padding: 8px 12px;
+$input-padding-sm: 4px 6px;
+$input-outline: 1px solid #ddd;
+$input-error-outline: 1px solid #ff0000;
+$input-font-size: 12px;
+/**
+ * end Inputs
+ */
+
+/**
+ * transitions
+ */
+$transition-fast: all 0.3s ease-in-out;
+$transition-medium: all 0.5s ease-in-out;
+$transition-slow: all 0.8s ease-in-out;

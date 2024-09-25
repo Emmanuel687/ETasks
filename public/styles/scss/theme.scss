@@ -1,0 +1,43 @@
+@import './variables.scss';
+
+/**
+ * mixins
+ */
+@import 'mixins/buttons';
+
+/**
+ * components
+ */
+@import 'components/buttons';
+@import 'components/form';
+@import 'components/lists';
+@import 'components/paginator';
+@import 'components/tables';
+
+/**
+ * layouts
+ */
+// @import 'layouts/loginLayout';
+// @import 'layouts/sidebar';
+// @import 'layouts/topbar';
+
+/**
+* pages
+*/
+@import 'pages/dashboard';
+@import 'pages/reports';
+
+/**
+* utils
+*/
+
+
+/**
+* plugins
+*/
+// @import 'plugins/vue-pdf-embed';
+@import 'primeicons/primeicons.css';
+
+/**
+ * other styles
+ */

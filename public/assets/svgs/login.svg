@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="516.203" height="385.5" viewBox="0 0 516.203 385.5">
+  <defs>
+    <filter id="Rectangle_6937" x="197.203" y="98.5" width="319" height="287" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_6937-2" x="0" y="0" width="350.5" height="321.5" filterUnits="userSpaceOnUse">
+      <feOffset dx="30" dy="33" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3.5" result="blur-2"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <path id="Path_8776" data-name="Path 8776" d="M73.524,126.248V52.457L21.459,0H0V126.248Z" transform="translate(0 0)" fill="#0a94ff"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_8777" data-name="Path 8777" d="M55.883,73.791,0,17.845,4.077,0H83.724Z" transform="translate(0)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_8778" data-name="Path 8778" d="M0,25.221,74.745,0V60.951Z" transform="translate(0 0)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <path id="Path_8779" data-name="Path 8779" d="M.013,0,73.579,32.651V73.884H0Z" transform="translate(0 0)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path id="Path_11186" data-name="Path 11186" d="M.013,0l52.27,65.4-7.164,8.483H0Z" transform="translate(0 0)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-6">
+      <path id="Path_11188" data-name="Path 11188" d="M.013,0,26.366,73.884H0Z" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_476237" data-name="Group 476237" transform="translate(12594 2890)">
+    <g id="Group_476236" data-name="Group 476236" transform="translate(-12392.297 -2790)">
+      <g id="Group_475997" data-name="Group 475997" transform="translate(0 0)">
+        <g id="Group_475995" data-name="Group 475995" transform="translate(0)">
+          <rect id="Rectangle_6941" data-name="Rectangle 6941" width="284" height="45" transform="translate(12 39)" fill="#8d98a9" opacity="0.002"/>
+          <g transform="matrix(1, 0, 0, 1, -201.7, -100)" filter="url(#Rectangle_6937)">
+            <rect id="Rectangle_6937-3" data-name="Rectangle 6937" width="310" height="278" rx="8" transform="translate(201.7 100)" fill="#fff"/>
+          </g>
+          <text id="Total_Fixed_Salary_Payout" data-name="Total Fixed Salary Payout" transform="translate(12 25)" font-size="11" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Total Fixed Salary Payout</tspan></text>
+          <text id="_2022" data-name="2022" transform="translate(267.297 25)" font-size="11" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">2022</tspan></text>
+        </g>
+        <line id="Line_1301" data-name="Line 1301" x2="268.883" transform="translate(36.168 242.446)" fill="none" stroke="rgba(141,152,169,0.2)" stroke-width="1"/>
+        <line id="Line_1302" data-name="Line 1302" y1="192.232" transform="translate(35.755 50.268)" fill="none" stroke="rgba(141,152,169,0.2)" stroke-width="1"/>
+        <text id="_140" data-name="140" transform="translate(11.011 57.268)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">140</tspan></text>
+        <text id="_120" data-name="120" transform="translate(11.836 83.662)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">120</tspan></text>
+        <text id="_100" data-name="100" transform="translate(11.011 107.227)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">100</tspan></text>
+        <text id="_80" data-name="80" transform="translate(14.311 132.207)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">80</tspan></text>
+        <text id="_60" data-name="60" transform="translate(15.135 157.187)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">60</tspan></text>
+        <text id="_40" data-name="40" transform="translate(14.311 182.166)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">40</tspan></text>
+        <text id="_20" data-name="20" transform="translate(15.135 205.732)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">20</tspan></text>
+        <text id="_0" data-name="0" transform="translate(20.084 231.125)" fill="#8d98a9" font-size="6" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">0</tspan></text>
+        <g id="Group_476017" data-name="Group 476017" transform="translate(39.879 170)">
+          <text id="Jan" transform="translate(5.44 92.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Jan</tspan></text>
+          <path id="Rectangle_6949" data-name="Rectangle 6949" d="M2,0H9a2,2,0,0,1,2,2V72a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(3.121)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-2" data-name="Group 476017" transform="translate(62.149 189)">
+          <text id="Feb" transform="translate(5.44 73.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Feb</tspan></text>
+          <path id="Rectangle_6949-2" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V53a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(1.852)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-3" data-name="Group 476017" transform="translate(83.596 189)">
+          <text id="Mar" transform="translate(5.44 73.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Mar</tspan></text>
+          <path id="Rectangle_6949-3" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V53a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.404)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-4" data-name="Group 476017" transform="translate(105.458 207)">
+          <text id="Apr" transform="translate(5.44 55.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Apr</tspan></text>
+          <path id="Rectangle_6949-4" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V35a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.542)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-5" data-name="Group 476017" transform="translate(127.306 190)">
+          <text id="May" transform="translate(5.44 72.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">May</tspan></text>
+          <path id="Rectangle_6949-5" data-name="Rectangle 6949" d="M2,0H9a2,2,0,0,1,2,2V52a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.694)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-6" data-name="Group 476017" transform="translate(149.176 193)">
+          <text id="Jun" transform="translate(5.44 69.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Jun</tspan></text>
+          <path id="Rectangle_6949-6" data-name="Rectangle 6949" d="M2,0H9a2,2,0,0,1,2,2V49a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.824)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-7" data-name="Group 476017" transform="translate(171.051 203)">
+          <text id="Jul" transform="translate(5.44 59.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Jul</tspan></text>
+          <path id="Rectangle_6949-7" data-name="Rectangle 6949" d="M2,0H9a2,2,0,0,1,2,2V39a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.949)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-8" data-name="Group 476017" transform="translate(192.883 155)">
+          <text id="Aug" transform="translate(5.44 107.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Aug</tspan></text>
+          <rect id="Rectangle_6949-8" data-name="Rectangle 6949" width="12" height="43" transform="translate(2.117 44)" fill="#0a94ff"/>
+          <path id="Rectangle_6962" data-name="Rectangle 6962" d="M2,0h8a2,2,0,0,1,2,2V44a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.117)" fill="#895bf1"/>
+        </g>
+        <g id="Group_476017-9" data-name="Group 476017" transform="translate(214.741 175)">
+          <text id="Sep" transform="translate(5.44 87.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Sep</tspan></text>
+          <path id="Rectangle_6949-9" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V67a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.26)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-10" data-name="Group 476017" transform="translate(236.606 184)">
+          <text id="Oct" transform="translate(5.44 78.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Oct</tspan></text>
+          <path id="Rectangle_6949-10" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V58a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.394)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-11" data-name="Group 476017" transform="translate(258.044 161)">
+          <text id="Nov" transform="translate(5.44 101.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Nov</tspan></text>
+          <path id="Rectangle_6949-11" data-name="Rectangle 6949" d="M2,0H9a2,2,0,0,1,2,2V81a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.956)" fill="#0a94ff"/>
+        </g>
+        <g id="Group_476017-12" data-name="Group 476017" transform="translate(280.314 161)">
+          <text id="Dec" transform="translate(5.44 101.468) rotate(-51)" fill="#8d98a9" font-size="7" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Dec</tspan></text>
+          <path id="Rectangle_6949-12" data-name="Rectangle 6949" d="M2,0h8a2,2,0,0,1,2,2V81a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(2.687)" fill="#0a94ff"/>
+        </g>
+        <path id="Rectangle_6950" data-name="Rectangle 6950" d="M2,0H9a2,2,0,0,1,2,2V54a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(43 120)" fill="#895bf1"/>
+        <path id="Rectangle_6951" data-name="Rectangle 6951" d="M2,0h8a2,2,0,0,1,2,2V29a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(64 180)" fill="#895bf1"/>
+        <path id="Rectangle_6952" data-name="Rectangle 6952" d="M2,0h8a2,2,0,0,1,2,2V47a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(86 162)" fill="#895bf1"/>
+        <path id="Rectangle_6953" data-name="Rectangle 6953" d="M2,0h8a2,2,0,0,1,2,2V45a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(108 164)" fill="#895bf1"/>
+        <path id="Rectangle_6954" data-name="Rectangle 6954" d="M2,0H9a2,2,0,0,1,2,2V48a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(130 145)" fill="#895bf1"/>
+        <path id="Rectangle_6955" data-name="Rectangle 6955" d="M2,0H9a2,2,0,0,1,2,2V37a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(152 159)" fill="#895bf1"/>
+        <path id="Rectangle_6956" data-name="Rectangle 6956" d="M2,0H9a2,2,0,0,1,2,2V54a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(174 152)" fill="#895bf1"/>
+        <path id="Rectangle_6958" data-name="Rectangle 6958" d="M2,0h8a2,2,0,0,1,2,2V24a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(217 155)" fill="#f3654a"/>
+        <path id="Rectangle_6959" data-name="Rectangle 6959" d="M2,0h8a2,2,0,0,1,2,2V59a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(239 130)" fill="#f3654a"/>
+        <path id="Rectangle_6960" data-name="Rectangle 6960" d="M2,0H9a2,2,0,0,1,2,2V81a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(261 128)" fill="#895bf1"/>
+        <path id="Rectangle_6961" data-name="Rectangle 6961" d="M2,0h8a2,2,0,0,1,2,2V81a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(283 128)" fill="#895bf1"/>
+        <path id="Rectangle_6963" data-name="Rectangle 6963" d="M2,0h8a2,2,0,0,1,2,2V17a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(195 142)" fill="#f3654a"/>
+        <path id="Rectangle_6964" data-name="Rectangle 6964" d="M2,0H9a2,2,0,0,1,2,2V39a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(43 85)" fill="#f3654a"/>
+        <path id="Rectangle_6965" data-name="Rectangle 6965" d="M2,0h8a2,2,0,0,1,2,2V29a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(64 153)" fill="#f3654a"/>
+        <path id="Rectangle_6966" data-name="Rectangle 6966" d="M2,0h8a2,2,0,0,1,2,2V21a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(86 143)" fill="#f3654a"/>
+        <path id="Rectangle_6967" data-name="Rectangle 6967" d="M2,0h8a2,2,0,0,1,2,2V36a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(108 135)" fill="#f3654a"/>
+        <path id="Rectangle_6968" data-name="Rectangle 6968" d="M2,0H9a2,2,0,0,1,2,2V18a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(130 129)" fill="#f3654a"/>
+        <path id="Rectangle_6969" data-name="Rectangle 6969" d="M2,0H9a2,2,0,0,1,2,2V33a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(152 128)" fill="#f3654a"/>
+        <path id="Rectangle_6970" data-name="Rectangle 6970" d="M2,0H9a2,2,0,0,1,2,2V33a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(174 120)" fill="#f3654a"/>
+        <path id="Rectangle_6971" data-name="Rectangle 6971" d="M0,0H12a0,0,0,0,1,0,0V0a0,0,0,0,1,0,0H0A0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z" transform="translate(217 87)" fill="#895bf1"/>
+        <path id="Rectangle_6972" data-name="Rectangle 6972" d="M0,0H12a0,0,0,0,1,0,0V0a0,0,0,0,1,0,0H0A0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z" transform="translate(239 82)" fill="#895bf1"/>
+        <path id="Rectangle_6973" data-name="Rectangle 6973" d="M2,0H9a2,2,0,0,1,2,2V18a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(261 111)" fill="#f3654a"/>
+        <path id="Rectangle_6974" data-name="Rectangle 6974" d="M2,0h8a2,2,0,0,1,2,2V29a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(283 100)" fill="#f3654a"/>
+      </g>
+      <g id="Group_476022" data-name="Group 476022" transform="translate(-501.014 47)">
+        <g id="Group_476019" data-name="Group 476019" transform="translate(306.984 0)">
+          <text id="Deductions" transform="translate(441.327 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Regular, Figtree"><tspan x="0" y="0">Deductions</tspan></text>
+          <rect id="Rectangle_6943" data-name="Rectangle 6943" width="3" height="9" rx="1.5" transform="translate(434.327 1)" fill="#f3654a"/>
+        </g>
+        <g id="Group_476020" data-name="Group 476020" transform="translate(242.571 0)">
+          <text id="Additions" transform="translate(441.74 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Regular, Figtree"><tspan x="0" y="0">Additions</tspan></text>
+          <rect id="Rectangle_6944" data-name="Rectangle 6944" width="3" height="9" rx="1.5" transform="translate(434.74 1)" fill="#895bf1"/>
+        </g>
+        <g id="Group_476021" data-name="Group 476021" transform="translate(196.301 0)">
+          <text id="Fixed" transform="translate(442.01 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Regular, Figtree"><tspan x="0" y="0">Fixed</tspan></text>
+          <rect id="Rectangle_6944-2" data-name="Rectangle 6944" width="3" height="9" rx="1.5" transform="translate(435.01 1)" fill="#0b93fc"/>
+        </g>
+      </g>
+    </g>
+    <g id="Group_476235" data-name="Group 476235" transform="translate(-12594 -2890)">
+      <rect id="Rectangle_6941-2" data-name="Rectangle 6941" width="283" height="46" transform="translate(14 37)" fill="#8d98a9" opacity="0.002"/>
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectangle_6937-2)">
+        <rect id="Rectangle_6937-4" data-name="Rectangle 6937" width="310" height="278" rx="8" fill="#fff"/>
+      </g>
+      <text id="Currency_Breakdown" data-name="Currency Breakdown" transform="translate(14 24)" font-size="11" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">Currency Breakdown</tspan></text>
+      <g id="Group_475979" data-name="Group 475979" transform="translate(24 50.313)">
+        <g id="Group_475979-2" data-name="Group 475979" transform="translate(57.682)">
+          <g id="Group_459384" data-name="Group 459384" transform="translate(0 147.584) rotate(-90)">
+            <path id="Path_11087" data-name="Path 11087" d="M72.862,0c40.241,0,72.862,33.038,72.862,73.792S113.1,147.584,72.862,147.584,0,114.546,0,73.792,32.622,0,72.862,0Z" transform="translate(147.584 1.51) rotate(90)" fill="#0a94ff"/>
+            <g id="Group_459035" data-name="Group 459035" transform="translate(0 147.584) rotate(-90)">
+              <g id="Mask_Group_7" data-name="Mask Group 7" transform="translate(0 21.335)" clip-path="url(#clip-path)">
+                <path id="Path_11183" data-name="Path 11183" d="M73.24,0c40.449,0,73.24,33.038,73.24,73.791s-32.79,73.791-73.24,73.791S0,114.545,0,73.791,32.79,0,73.24,0Z" transform="translate(0.283 -21.335)" fill="#0a94ff"/>
+              </g>
+              <g id="Mask_Group_8" data-name="Mask Group 8" transform="translate(17.381 0)" clip-path="url(#clip-path-2)">
+                <path id="Path_11184" data-name="Path 11184" d="M72.878,0c40.249,0,72.878,33.038,72.878,73.791s-32.628,73.791-72.878,73.791S0,114.545,0,73.791,32.628,0,72.878,0Z" transform="translate(-16.994 0)" fill="#0a94ff"/>
+              </g>
+              <g id="Mask_Group_9" data-name="Mask Group 9" transform="translate(72.838 48.554)" clip-path="url(#clip-path-3)">
+                <path id="Path_8780" data-name="Path 8780" d="M73.24,147.583c40.449,0,73.24-33.038,73.24-73.791S113.689,0,73.24,0,0,33.038,0,73.791,32.79,147.583,73.24,147.583Z" transform="translate(-73.178 -48.904)" fill="#895bf1"/>
+              </g>
+              <g id="Mask_Group_10" data-name="Mask Group 10" transform="translate(72.9 73.699)" clip-path="url(#clip-path-4)">
+                <path id="Path_8807" data-name="Path 8807" d="M73.24,0c40.449,0,73.24,33.038,73.24,73.791s-32.741,74.414-73.19,74.414S0,114.545,0,73.791,32.79,0,73.24,0Z" transform="translate(-73.24 -74.103)" fill="#895bf1"/>
+              </g>
+              <g id="Mask_Group_26" data-name="Mask Group 26" transform="translate(72.9 73.699)" clip-path="url(#clip-path-5)">
+                <path id="Path_11185" data-name="Path 11185" d="M73.24,0c40.449,0,73.24,33.038,73.24,73.791s-32.741,74.414-73.19,74.414S0,114.545,0,73.791,32.79,0,73.24,0Z" transform="translate(-73.239 -74.103)" fill="#895bf1"/>
+              </g>
+              <g id="Mask_Group_27" data-name="Mask Group 27" transform="translate(72.9 73.699)" clip-path="url(#clip-path-6)">
+                <path id="Path_11187" data-name="Path 11187" d="M73.24,0c40.449,0,73.24,33.038,73.24,73.791s-32.741,74.414-73.19,74.414S0,114.545,0,73.791,32.79,0,73.24,0Z" transform="translate(-73.239 -74.103)" fill="#895bf1"/>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Group_475985" data-name="Group 475985" transform="translate(0 194.687)">
+          <g id="Group_463677" data-name="Group 463677" transform="translate(-756.177 0)">
+            <text id="_30_" data-name="30%" transform="translate(805.177 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">30%</tspan></text>
+          </g>
+          <g id="Group_463670" data-name="Group 463670" transform="translate(-804.351 0)">
+            <text id="USD" transform="translate(811.351 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">USD</tspan></text>
+            <rect id="Rectangle_3446" data-name="Rectangle 3446" width="3" height="10" rx="1.5" transform="translate(804.351)" fill="#895bf1"/>
+          </g>
+          <text id="USD_300_334" data-name="USD 300,334" transform="translate(205.001 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">USD 300,334</tspan></text>
+        </g>
+        <g id="Group_475984" data-name="Group 475984" transform="translate(0 169.687)">
+          <g id="Group_463421" data-name="Group 463421" transform="translate(-728.959 0)">
+            <text id="_70_" data-name="70%" transform="translate(777.959 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">70%</tspan></text>
+          </g>
+          <g id="Group_463421-2" data-name="Group 463421" transform="translate(-777.133 0)">
+            <text id="AED_" data-name="AED " transform="translate(784.133 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">AED </tspan></text>
+            <rect id="Rectangle_3446-2" data-name="Rectangle 3446" width="3" height="10" rx="1.5" transform="translate(777.133 1)" fill="#0a94ff"/>
+          </g>
+          <text id="AED_455_334" data-name="AED 455,334" transform="translate(205 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">AED 455,334</tspan></text>
+        </g>
+        <g id="Group_475990" data-name="Group 475990" transform="translate(-708.339 194.687)">
+          <text id="_18_Employees" data-name="18 Employees" transform="translate(805.34 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">18 Employees</tspan></text>
+        </g>
+        <g id="Group_475991" data-name="Group 475991" transform="translate(-681.121 169.687)">
+          <text id="_70_Employees" data-name="70 Employees" transform="translate(778.121 9)" fill="#8d98a9" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500"><tspan x="0" y="0">70 Employees</tspan></text>
+        </g>
+        <text id="AED_2" data-name="AED " transform="translate(151.001 101.688)" fill="#fff" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500" opacity="0.61"><tspan x="0" y="0">AED </tspan></text>
+        <text id="USD-2" data-name="USD" transform="translate(89.001 52.688)" fill="#fff" font-size="9" font-family="Figtree-Medium, Figtree" font-weight="500" opacity="0.61"><tspan x="0" y="0">USD</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
