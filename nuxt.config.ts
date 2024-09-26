@@ -6,7 +6,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: [
-    '@primevue/nuxt-module'
+    '@primevue/nuxt-module',
+    '@nuxtjs/supabase',
+    '@pinia/nuxt',
   ],
   primevue: {
     options: {
@@ -31,5 +33,18 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
+    redirect: false,
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+    },
+  },
+  router: {
+    middleware: ['auth']
   }
 })
