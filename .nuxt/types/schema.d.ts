@@ -122,8 +122,6 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
-   siteUrl: string,
-
    primevue: {
       usePrimeVue: boolean,
 

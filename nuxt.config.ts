@@ -39,12 +39,5 @@ export default defineNuxtConfig({
     key: process.env.SUPABASE_KEY,
     redirect: false,
   },
-  runtimeConfig: {
-    public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-    },
-  },
-  router: {
-    middleware: ['auth']
-  }
+
 })

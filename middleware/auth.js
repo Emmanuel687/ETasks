@@ -1,50 +1,41 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+import { useUserStore } from '~/stores/user'
+
+export default defineNuxtRouteMiddleware(async (to, from) => {
   const user = useSupabaseUser()
   const userStore = useUserStore()
+  const supabase = useSupabaseClient()
 
-  if (user.value) {
-    userStore.setUser(user.value)
+  // Check if the session is still valid
+  const { data: { session }, error } = await supabase.auth.getSession()
+
+  if (error) {
+    console.error('Error checking session:', error)
+    userStore.clearUser()
+    if (to.path.startsWith('/admin') || to.path.startsWith('/dashboard')) {
+      return navigateTo('/login')
+    }
+  }
+
+  if (session?.user) {
+    userStore.setUser(session.user)
+
+    // Check for admin status using user metadata
+    const isAdmin = session.user.user_metadata?.is_admin === true
+    userStore.setIsAdmin(isAdmin)
+
+    // Redirect non-admin users trying to access admin pages
+    if (to.path.startsWith('/admin') && !isAdmin) {
+      return navigateTo('/dashboard')
+    }
   } else {
     userStore.clearUser()
+    if (to.path.startsWith('/admin') || to.path.startsWith('/dashboard')) {
+      return navigateTo('/login')
+    }
   }
 
-  if (!user.value && to.path.startsWith('/admin')) {
-    return navigateTo('/login')
+  // Optional: Redirect logged-in users away from login/signup pages
+  if (session?.user && (to.path === '/login' || to.path === '/signup')) {
+    return navigateTo('/dashboard')
   }
 })
-
-
-// 1.defineNuxtRouteMiddleware((to, from) => { ... }):
-// This is a Nuxt 3 function used to define route middleware.
-// It takes a function as an argument, which receives two parameters:
-// ->to: the route being navigated to
-// ->from: the current route being navigated away from
-
-// 2. const user = useSupabaseUser():
-// This line is using a composable (likely custom-made) to get the current 
-// user from Supabase.
-
-// 3.const userStore = useUserStore():
-// This is using a store, probably created with Pinia
-// to manage user state across the application.
-
-// 4.
-// if (user.value) {
-//   userStore.setUser(user.value)
-// } else {
-//   userStore.clearUser()
-// }
-
-// This checks if there's a user logged in. If so, it updates the
-// user store with the user's data.If not, it clears the user data 
-// from the store. This ensures the store always reflects the current authentication state.
-
-
-// 5.The second if block:
-// if (!user.value && to.path.startsWith('/admin')) {
-//   return navigateTo('/login')
-// }
-
-// This is implementing a route guard. If there's no user logged in (!user.value) and the user is trying
-// to access an admin page (to.path.startsWith('/admin')),
-// it redirects them to the login page using Nuxt's navigateTo function.
