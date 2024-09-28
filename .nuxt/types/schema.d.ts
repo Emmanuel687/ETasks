@@ -7904,7 +7904,7 @@ declare module 'nuxt/schema' {
 
          callback: string,
 
-         exclude: Array<any>,
+         exclude: Array<string>,
 
          cookieRedirect: boolean,
       },

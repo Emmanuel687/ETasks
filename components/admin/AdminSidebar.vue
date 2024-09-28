@@ -14,10 +14,27 @@
       <NuxtLink to="/admin/settings" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
         Settings
       </NuxtLink>
+      <button @click="handleLogout">Logout</button>
+
     </nav>
   </div>
 </template>
 
 <script setup>
-// Add any necessary imports or logic here
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+const supabase = useSupabaseClient()
+
+const isAdminRoute = computed(() => route.path.startsWith('/admin'))
+
+const handleLogout = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (!error) {
+    router.push('/')
+  } else {
+    console.error('Error during logout:', error)
+  }
+}
 </script>

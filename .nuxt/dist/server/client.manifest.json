@@ -1,18 +1,202 @@
 {
-  "@vite/client": {
-    "prefetch": true,
-    "isEntry": true,
-    "file": "@vite/client",
-    "css": [],
-    "module": true,
-    "resourceType": "script"
-  },
-  "/Users/emmanuel/Desktop/TaskManagerV3/node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js": {
+  "_Bewbi9Um.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
+    "file": "Bewbi9Um.js",
+    "name": "browser",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_BxoZlRbv.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BxoZlRbv.js",
+    "name": "nuxt-link",
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_Fib0oig7.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "Fib0oig7.js",
+    "name": "useSupabaseClient",
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "layouts/admin.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CgqYoTdb.js",
+    "name": "admin",
+    "src": "layouts/admin.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_BxoZlRbv.js",
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js",
+      "_Fib0oig7.js"
+    ]
+  },
+  "layouts/default.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "DB0xBOLG.js",
+    "name": "default",
+    "src": "layouts/default.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_BxoZlRbv.js",
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js",
+      "_Fib0oig7.js"
+    ]
+  },
+  "middleware/auth.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "C48PgwoB.js",
+    "name": "auth",
+    "src": "middleware/auth.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "5rNjeqcI.js",
+    "name": "entry",
+    "src": "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js",
     "isEntry": true,
-    "file": "/Users/emmanuel/Desktop/TaskManagerV3/node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    "dynamicImports": [
+      "middleware/auth.js",
+      "_Bewbi9Um.js",
+      "layouts/admin.vue",
+      "layouts/default.vue"
+    ],
+    "_globalCSS": true
+  },
+  "pages/about.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BgZNn_l8.js",
+    "name": "about",
+    "src": "pages/about.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/admin/index.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "wsFWZ5yc.js",
+    "name": "index",
+    "src": "pages/admin/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/admin/settings.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "37TNax_w.js",
+    "name": "settings",
+    "src": "pages/admin/settings.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/admin/users.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CD0726qO.js",
+    "name": "users",
+    "src": "pages/admin/users.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/contact.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BuEnsSEG.js",
+    "name": "contact",
+    "src": "pages/contact.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/index.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "w4KMXh3O.js",
+    "name": "index",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "pages/login.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BzytXdb4.js",
+    "name": "login",
+    "src": "pages/login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js",
+      "_Fib0oig7.js"
+    ]
+  },
+  "pages/signup.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "Dc-oImnR.js",
+    "name": "signup",
+    "src": "pages/signup.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/entry.js",
+      "_Fib0oig7.js"
+    ]
   }
 }

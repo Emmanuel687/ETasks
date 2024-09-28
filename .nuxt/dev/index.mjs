@@ -1,5 +1,4 @@
-import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file:///Users/emmanuel/Desktop/TaskManagerV3/node_modules/.pnpm/node-fetch-native@1.6.4/node_modules/node-fetch-native/dist/polyfill.mjs';
-import { Server } from 'node:http';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { Server } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
@@ -91,6 +90,12 @@ const _inlineRuntimeConfig = {
     "routeRules": {
       "/__nuxt_error": {
         "cache": false
+      },
+      "/confirm": {
+        "ssr": false
+      },
+      "/admin/**": {
+        "middleware": "auth"
       },
       "/_nuxt/builds/meta/**": {
         "headers": {
@@ -6001,11 +6006,13 @@ const _inlineRuntimeConfig = {
     "supabase": {
       "url": "https://gmgxoqdasmwwiecbrrvn.supabase.co",
       "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtZ3hvcWRhc213d2llY2JycnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjczNjA3NzUsImV4cCI6MjA0MjkzNjc3NX0.rYytFJqyjrK3UC4ACTbW26PcrWt2QnqRYC_nBEOvn30",
-      "redirect": false,
+      "redirect": true,
       "redirectOptions": {
         "login": "/login",
         "callback": "/confirm",
-        "exclude": [],
+        "exclude": [
+          "/**"
+        ],
         "cookieRedirect": false
       },
       "cookieName": "sb",

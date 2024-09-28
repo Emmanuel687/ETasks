@@ -21,6 +21,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.1_vite@5.4.8_vue@3.5.8/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.1_vite@5.4.8_vue@3.5.8/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+supabase@1.4.0/node_modules/@nuxtjs/supabase/dist/runtime/plugins/auth-redirect.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@primevue+nuxt-module@4.0.7_vue@3.5.8/node_modules/@primevue/nuxt-module/dist/runtime/plugin.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default>
@@ -29,7 +30,7 @@ declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
 
   interface NuxtAppLiterals {
-    pluginName: 'nuxt:revive-payload:client' | 'nuxt:head' | 'nuxt:router' | 'supabase' | 'supabase' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'nuxt:checkIfPageUnused' | 'nuxt:checkIfLayoutUsed'
+    pluginName: 'nuxt:revive-payload:client' | 'nuxt:head' | 'nuxt:router' | 'supabase' | 'supabase' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'nuxt:checkIfPageUnused' | 'auth-redirect' | 'nuxt:checkIfLayoutUsed'
   }
 }
 

@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Colors: */
+  --unnamed-color-b3bccb: #b3bccb;
+  --unnamed-color-f9fafc: #f9fafc;
+  --unnamed-color-e2e7f1: #e2e7f1;
+  --unnamed-color-ced6e3: #ced6e3;
+  --unnamed-color-f4f5f6: #f4f5f6;
+  --unnamed-color-d1f7ea: #d1f7ea;
+  --unnamed-color-1ad598: #1ad598;
+  --unnamed-color-fff0d6: #fff0d6;
+  --unnamed-color-ffb536: #ffb536;
+  --unnamed-color-fde0db: #fde0db;
+  --unnamed-color-f3654a: #f3654a;
+  --unnamed-color-e7defc: #e7defc;
+  --unnamed-color-895bf1: #895bf1;
+  --unnamed-color-707070: #707070;
+  --unnamed-color-4e4e4e: #4e4e4e;
+  --unnamed-color-ceeaff: #ceeaff;
+  --unnamed-color-8d98a9: #8d98a9;
+  --unnamed-color-000000: #000000;
+  --unnamed-color-0a94ff: #0a94ff;
+  --unnamed-color-ffffff: #ffffff;
+
+  /* Font/text values */
+  --unnamed-font-family-figtree: 'Figtree', sans-serif;
+  --unnamed-font-style-normal: normal;
+  --unnamed-font-weight-600: 600px;
+  --unnamed-font-weight-normal: normal;
+  --unnamed-font-size-12: 12px;
+  --unnamed-font-size-14: 14px;
+  --unnamed-character-spacing-0: 0px;
+  --unnamed-character-spacing-0-6: 0.6px;
+  --unnamed-line-spacing-17: 17px;
+  --unnamed-line-spacing-19: 19px;
+  --unnamed-text-transform-uppercase: uppercase;
+}
+
+/* Character Styles */
+.unnamed-character-style-1 {
+  font-family: var(--unnamed-font-family-figtree);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-14);
+  line-height: var(--unnamed-line-spacing-19);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+}
+
+.unnamed-character-style-2 {
+  font-family: var(--unnamed-font-family-figtree);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-12);
+  line-height: var(--unnamed-line-spacing-17);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-000000);
+}
+
+.unnamed-character-style-3 {
+  font-family: var(--unnamed-font-family-figtree);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-12);
+  line-height: var(--unnamed-line-spacing-17);
+  letter-spacing: var(--unnamed-character-spacing-0-6);
+  color: var(--unnamed-color-000000);
+  text-transform: var(--unnamed-text-transform-uppercase);
+}
+
+.unnamed-character-style-4 {
+  font-family: var(--unnamed-font-family-figtree);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-14);
+  line-height: var(--unnamed-line-spacing-19);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+}
+
+.unnamed-character-style-5 {
+  font-family: var(--unnamed-font-family-figtree);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-14);
+  line-height: var(--unnamed-line-spacing-19);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-f3654a);
+}
+
+.p-card-content,
+.p-card-body {
+  padding: 0px !important;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+}
+.p-button .p-button-label {
+  font-weight: 400;
+}
+.shady-border {
+  border: 1px solid lightgray !important;
+}
+
+.p-tabview-panels {
+  padding: 0% !important;
+  margin: 0% !important;
+}
+
+.gradient-bg{
+  background: transparent linear-gradient(164deg, #E8F5FF 0%, #F1EBFF 100%) 0% 0% no-repeat padding-box;
+}
+.nav_tab_menu .p-tabview-nav-container {
+	position: absolute !important;
+	top: 3px !important;
+  left: 40% ;
+	z-index: 2;
+}
+
+@media screen and (min-width: 1200px) {
+	.nav_tab_menu .p-tabview-nav-container {
+		left: 45%;
+	}
+}
+
+@media screen and (min-width: 1300px) {
+	.nav_tab_menu .p-tabview-nav-container {
+		left: 35%;
+	}
+}
+
+
+
+
+ .switcher {
+  position: fixed;
+	top: 10px !important;
+  left:270px;
+  width: 30% !important;
+} 
+
+.nav_tab_menu .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+	border-bottom: 2px solid #0A94FF !important ;
+  color:#0A94FF !important;
+}
+
+ .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+	border-bottom: 2px solid #0A94FF !important ;
+  color:#0A94FF !important;
+}
+
+#innerTab .p-tabview-nav-container {
+  position: unset !important;
+  top: unset !important;
+  z-index: unset !important;
+  background: unset !important;
+  border-color: unset;
+  border-radius: 20px;
+  font-weight: unset;
+
+}
+
+
+.multiselect {
+  border-radius: 10px !important;
+  min-width: 17rem;
+}
+
+.multiselect-tag {
+  background:#0A94FF !important;
+}
+
+.multiselect-tag-success .multiselect-tag{
+  background:#25C65F !important;
+}
+
+.multiselect-tag-danger .multiselect-tag{
+  background:#ff430a !important;
+}
+
+#innerTab .p-tabview-nav-container .p-tabview-nav {
+  background: #fff;
+  border: 1px solid #e2e7e8;
+  border-width: 0 0 2px 0;
+}
+
+.p-radiobutton.p-highlight .p-radiobutton-box {
+  border-color: #3494FF;
+  background: #ffffff;
+}
+
+.p-radiobutton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  transition-duration: 0.2s;
+  background-color: #3494FF;
+}
+
+.p-inputswitch.p-highlight .p-inputswitch-slider {
+  background: #3494FF;
+}
+
+.progress-red .p-progressbar-value {
+  background: #F3654A !important;
+
+}
+
+.progress-yellow .p-progressbar-value {
+  background: #FFB536 !important;
+}
+
+.progress-green .p-progressbar-value {
+  background: #1AD598 !important;
+}
+
+

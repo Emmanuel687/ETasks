@@ -1,0 +1,1 @@
+import{u as r,c as t,a as s,t as o,b as l,o as u}from"./5rNjeqcI.js";const m={__name:"index",setup(p){const n=r();return(c,e)=>{var a;return u(),t("div",null,[e[0]||(e[0]=s("h1",null,"Admin Dashboard",-1)),s("p",null,"Welcome, "+o((a=l(n))==null?void 0:a.email),1)])}}};export{m as default};

@@ -1,41 +1,22 @@
-import { useUserStore } from '~/stores/user'
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
-  const user = useSupabaseUser()
-  const userStore = useUserStore()
-  const supabase = useSupabaseClient()
+export default defineNuxtRouteMiddleware(async (to) => {
+  const user = await useSupabaseUser()
 
-  // Check if the session is still valid
-  const { data: { session }, error } = await supabase.auth.getSession()
+  console.log('Auth middleware running for path:', to.path)
 
-  if (error) {
-    console.error('Error checking session:', error)
-    userStore.clearUser()
-    if (to.path.startsWith('/admin') || to.path.startsWith('/dashboard')) {
+  // Check for admin routes
+  if (to.path.startsWith('/admin')) {
+    console.log('Checking admin route access')
+
+    // If not logged in, redirect to login page
+    if (!user) {
+      console.log('User not authenticated, redirecting to login')
       return navigateTo('/login')
     }
+
+    console.log('User authenticated, allowing access to admin route')
   }
 
-  if (session?.user) {
-    userStore.setUser(session.user)
-
-    // Check for admin status using user metadata
-    const isAdmin = session.user.user_metadata?.is_admin === true
-    userStore.setIsAdmin(isAdmin)
-
-    // Redirect non-admin users trying to access admin pages
-    if (to.path.startsWith('/admin') && !isAdmin) {
-      return navigateTo('/dashboard')
-    }
-  } else {
-    userStore.clearUser()
-    if (to.path.startsWith('/admin') || to.path.startsWith('/dashboard')) {
-      return navigateTo('/login')
-    }
-  }
-
-  // Optional: Redirect logged-in users away from login/signup pages
-  if (session?.user && (to.path === '/login' || to.path === '/signup')) {
-    return navigateTo('/dashboard')
-  }
+  // For non-admin routes, allow access
+  return
 })

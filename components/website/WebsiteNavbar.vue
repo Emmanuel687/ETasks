@@ -1,24 +1,31 @@
 <template>
-  <nav class="bg-gray-800 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <NuxtLink to="/" class="text-xl font-bold">My Website</NuxtLink>
-      <div class="space-x-4">
-        <NuxtLink to="/" class="hover:text-gray-300">Home</NuxtLink>
-        <NuxtLink to="/about" class="hover:text-gray-300">About</NuxtLink>
-        <NuxtLink to="/contact" class="hover:text-gray-300">Contact</NuxtLink>
-        <template v-if="user">
-          <NuxtLink to="/profile" class="hover:text-gray-300">Profile</NuxtLink>
-          <button @click="logout" class="hover:text-gray-300">Logout</button>
-        </template>
-        <NuxtLink v-else to="/login" class="hover:text-gray-300">Login</NuxtLink>
-      </div>
-    </div>
+  <nav>
+    <NuxtLink to="/">Home</NuxtLink>
+    <NuxtLink to="/about">About</NuxtLink>
+    <NuxtLink to="/contact">Contact</NuxtLink>
+    <NuxtLink v-if="!userState" to="/login">Login</NuxtLink>
+    <NuxtLink v-if="!userState" to="/signup">Sign Up</NuxtLink>
+    <a v-if="userState" @click="handleLogout">Logout</a>
   </nav>
 </template>
 
 <script setup>
-import { useAuth } from '~/composables/useAuth'
+import { computed } from 'vue'
+import { useSupabaseUser, useSupabaseClient, useRouter } from '#imports'
 
 const user = useSupabaseUser()
-const { logout } = useAuth()
+const userState = computed(() => user.value)
+const supabase = useSupabaseClient()
+const router = useRouter()
+
+const handleLogout = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (!error) {
+    router.push('/')
+  } else {
+    console.error('Error during logout:', error)
+  }
+}
+
+console.log('WebsiteNavbar component loaded')
 </script>
