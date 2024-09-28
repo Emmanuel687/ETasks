@@ -91,7 +91,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useSupabaseUser, useSupabaseClient, useRouter } from '#imports'
 
 const user = useSupabaseUser()
 const userState = computed(() => user.value)
