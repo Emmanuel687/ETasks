@@ -35,7 +35,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    preset: 'vercel'
+    preset: 'vercel',
   },
   supabase: {
     url: process.env.SUPABASE_URL,
