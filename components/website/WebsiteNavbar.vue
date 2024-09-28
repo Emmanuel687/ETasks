@@ -5,7 +5,7 @@
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <!-- You can add your logo here -->
-            <span class="text-xl font-bold text-indigo-600">Your Logo</span>
+            <span class="text-xl font-bold text-indigo-600">E Logins</span>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <NuxtLink to="/"
