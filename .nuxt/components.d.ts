@@ -4,6 +4,9 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'AdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'WebsiteNavbar': typeof import("../components/website/WebsiteNavbar.vue")['default']
+    'WebsiteFaq': typeof import("../components/website/faq.vue")['default']
+    'WebsiteFeatures': typeof import("../components/website/features.vue")['default']
+    'WebsiteOverview': typeof import("../components/website/overview.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'NuxtErrorBoundary': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -29,6 +32,9 @@ interface _GlobalComponents {
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyAdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'LazyWebsiteNavbar': typeof import("../components/website/WebsiteNavbar.vue")['default']
+    'LazyWebsiteFaq': typeof import("../components/website/faq.vue")['default']
+    'LazyWebsiteFeatures': typeof import("../components/website/features.vue")['default']
+    'LazyWebsiteOverview': typeof import("../components/website/overview.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'LazyNuxtErrorBoundary': typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -60,6 +66,9 @@ declare module 'vue' {
 
 export const AdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const WebsiteNavbar: typeof import("../components/website/WebsiteNavbar.vue")['default']
+export const WebsiteFaq: typeof import("../components/website/faq.vue")['default']
+export const WebsiteFeatures: typeof import("../components/website/features.vue")['default']
+export const WebsiteOverview: typeof import("../components/website/overview.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
 export const NuxtErrorBoundary: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -85,6 +94,9 @@ export const NuxtIsland: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyAdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const LazyWebsiteNavbar: typeof import("../components/website/WebsiteNavbar.vue")['default']
+export const LazyWebsiteFaq: typeof import("../components/website/faq.vue")['default']
+export const LazyWebsiteFeatures: typeof import("../components/website/features.vue")['default']
+export const LazyWebsiteOverview: typeof import("../components/website/overview.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-layout")['default']
 export const LazyNuxtErrorBoundary: typeof import("../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']

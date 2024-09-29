@@ -1,1 +1,0 @@
-import{_ as e,c as n,o as t}from"./5rNjeqcI.js";const c={},o={class:"text-3xl font-bold underline"};function s(a,r){return t(),n("h1",o," Main landing Page ")}const l=e(c,[["render",s]]);export{l as default};

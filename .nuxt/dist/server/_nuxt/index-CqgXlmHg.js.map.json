@@ -1,1 +1,0 @@
-{"file":"index-CqgXlmHg.js","mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,SAAA,eAAA,MAAA,OAAA,SAGW;;;;;;;;;;","names":[],"sources":["../../../../pages/index.vue"],"sourcesContent":["\n<script setup></script>\n<template>\n  <h1 class=\"text-3xl font-bold underline\">\n    Main landing Page\n  </h1>\n</template>"],"version":3}
