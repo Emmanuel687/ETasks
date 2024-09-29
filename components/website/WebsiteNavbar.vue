@@ -1,100 +1,16 @@
-<template>
-  <nav class="bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex">
-          <div class="flex-shrink-0 flex items-center">
-            <!-- You can add your logo here -->
-            <span class="text-xl font-bold text-indigo-600">E Logins</span>
-          </div>
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <NuxtLink to="/"
-              class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Home
-            </NuxtLink>
-            <NuxtLink to="/about"
-              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              About
-            </NuxtLink>
-            <NuxtLink to="/contact"
-              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Contact
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <NuxtLink v-if="!userState" to="/login"
-            class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-            Login
-          </NuxtLink>
-          <NuxtLink v-if="!userState" to="/signup"
-            class="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-            Sign Up
-          </NuxtLink>
-          <button v-if="userState" @click="handleLogout"
-            class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-            Logout
-          </button>
-        </div>
-        <div class="-mr-2 flex items-center sm:hidden">
-          <!-- Mobile menu button -->
-          <button @click="isOpen = !isOpen" type="button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-            aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <!-- Icon when menu is closed -->
-            <svg v-if="!isOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <!-- Icon when menu is open -->
-            <svg v-if="isOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div v-if="isOpen" class="sm:hidden" id="mobile-menu">
-      <div class="pt-2 pb-3 space-y-1">
-        <NuxtLink to="/"
-          class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          Home
-        </NuxtLink>
-        <NuxtLink to="/about"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          About
-        </NuxtLink>
-        <NuxtLink to="/contact"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          Contact
-        </NuxtLink>
-        <NuxtLink v-if="!userState" to="/login"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          Login
-        </NuxtLink>
-        <NuxtLink v-if="!userState" to="/signup"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          Sign Up
-        </NuxtLink>
-        <button v-if="userState" @click="handleLogout"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium w-full text-left">
-          Logout
-        </button>
-      </div>
-    </div>
-  </nav>
-</template>
-
 <script setup>
 import { ref, computed } from 'vue'
 import { useSupabaseUser, useSupabaseClient, useRouter } from '#imports'
 
+const navLinks = ref([
+  { name: 'Overview', path: '/' },
+  { name: 'Features', path: '/features' },
+  { name: 'FAQ', path: '/faq' },
+  { name: 'Contact Us', path: '/contactUs' },
+]);
+
 const user = useSupabaseUser()
-const userState = computed(() => user.value)
+const isLoggedIn = computed(() => !!user.value)
 const supabase = useSupabaseClient()
 const router = useRouter()
 const isOpen = ref(false)
@@ -103,8 +19,116 @@ const handleLogout = async () => {
   const { error } = await supabase.auth.signOut()
   if (!error) {
     router.push('/')
+    isOpen.value = false
   } else {
     console.error('Error during logout:', error)
   }
 }
+
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+}
 </script>
+
+<template>
+  <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-18">
+        <!-- Logo Section -->
+        <div class="flex-shrink-0">
+          <a href="/" class="flex items-center">
+            <img alt="logo" src="/public/assets/svgs/Icons/BORCELLE STUDIO.png" class="w-[90px] h-auto" />
+          </a>
+        </div>
+
+        <!-- Centered Desktop Navigation Links -->
+        <div class="hidden md:flex flex-1 justify-center">
+          <div class="flex space-x-4">
+            <NuxtLink v-for="link in navLinks" :key="link.path" :to="link.path"
+              class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+              {{ link.name }}
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Desktop Auth Buttons -->
+        <div class="hidden md:block">
+          <div class="flex items-center space-x-4">
+            <template v-if="!isLoggedIn">
+              <NuxtLink to="/login"
+                class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                Login
+              </NuxtLink>
+              <NuxtLink to="/signup"
+                class="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
+                Sign Up
+              </NuxtLink>
+            </template>
+            <button v-else @click="handleLogout"
+              class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button @click="toggleMenu" type="button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            aria-controls="mobile-menu" :aria-expanded="isOpen">
+            <span class="sr-only">Open main menu</span>
+            <svg v-if="!isOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg v-else class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div v-show="isOpen" class="md:hidden fixed inset-0 z-50 bg-gray-800 bg-opacity-50 overflow-y-auto h-full w-full"
+      @click="toggleMenu">
+      <!-- Mobile menu content -->
+      <div class="bg-white w-full max-w-sm p-6 overflow-y-auto h-full transition-all duration-300 ease-in-out"
+        :class="{ 'translate-x-0': isOpen, '-translate-x-full': !isOpen }" @click.stop>
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">Menu</h2>
+          <button @click="toggleMenu" class="text-gray-600 hover:text-gray-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="mb-8">
+          <NuxtLink v-for="link in navLinks" :key="link.path" :to="link.path" @click="toggleMenu"
+            class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md transition duration-150 ease-in-out">
+            {{ link.name }}
+          </NuxtLink>
+        </nav>
+
+        <div class="border-t border-gray-200 pt-6">
+          <template v-if="!isLoggedIn">
+            <NuxtLink to="/login" @click="toggleMenu"
+              class="block w-full text-center py-2 px-4 mb-3 text-gray-800 hover:bg-gray-100 rounded-md transition duration-150 ease-in-out">
+              Login
+            </NuxtLink>
+            <NuxtLink to="/signup" @click="toggleMenu"
+              class="block w-full text-center py-2 px-4 bg-indigo-600 text-white hover:bg-indigo-700 rounded-md transition duration-150 ease-in-out">
+              Sign Up
+            </NuxtLink>
+          </template>
+          <button v-else @click="handleLogout"
+            class="block w-full text-center py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md transition duration-150 ease-in-out">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>
