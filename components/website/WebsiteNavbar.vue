@@ -6,7 +6,7 @@ const navLinks = ref([
   { name: 'Overview', path: '/' },
   { name: 'Features', path: '/features' },
   { name: 'FAQ', path: '/faq' },
-  { name: 'Contact Us', path: '/contactUs' },
+  { name: 'Contact Us', path: '/contact' },
 ]);
 
 const user = useSupabaseUser()
