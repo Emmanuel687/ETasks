@@ -39,4 +39,4 @@ export { useToast } from 'primevue/usetoast';
 export { useDialog } from 'primevue/usedialog';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/.pnpm/@pinia+nuxt@0.5.4_vue@3.5.8/node_modules/@pinia/nuxt/dist/runtime/composables';
 export { useNuxtDevTools } from '../node_modules/.pnpm/@nuxt+devtools@1.5.1_vite@5.4.8_vue@3.5.8/node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
-export { definePageMeta } from '../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/composables';
+export { definePageMeta } from '../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/composables';

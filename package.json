@@ -16,7 +16,8 @@
     "nuxt": "^3.13.0",
     "primevue": "^4.0.7",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@primevue/nuxt-module": "^4.0.7",

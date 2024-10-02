@@ -7,24 +7,24 @@ type IsAny<T> = 0 extends 1 & T ? true : false
 type InjectionType<A extends Plugin> = IsAny<A> extends true ? unknown : A extends Plugin<infer T> ? Decorate<T> : unknown
 
 type NuxtAppInjections = 
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/revive-payload.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/head/runtime/plugins/unhead.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/router.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/revive-payload.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/head/runtime/plugins/unhead.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/router.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+supabase@1.4.0/node_modules/@nuxtjs/supabase/dist/runtime/plugins/supabase.server.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+supabase@1.4.0/node_modules/@nuxtjs/supabase/dist/runtime/plugins/supabase.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/navigation-repaint.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-outdated-build.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/revive-payload.server.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/chunk-reload.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/navigation-repaint.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-outdated-build.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/revive-payload.server.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/chunk-reload.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.5.4_vue@3.5.8/node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.1_vite@5.4.8_vue@3.5.8/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.1_vite@5.4.8_vue@3.5.8/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@nuxtjs+supabase@1.4.0/node_modules/@nuxtjs/supabase/dist/runtime/plugins/auth-redirect.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/@primevue+nuxt-module@4.0.7_vue@3.5.8/node_modules/@primevue/nuxt-module/dist/runtime/plugin.client.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default>
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
+  InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }

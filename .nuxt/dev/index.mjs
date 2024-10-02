@@ -6564,7 +6564,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _rRyrip2XUx = (nitroApp) => {
+const _IkfCjy7Y4u = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -6744,7 +6744,7 @@ const _Y7XrSaTc6m = defineNitroPlugin(async (nitroApp) => {
 
 const plugins = [
   _cUAOAjufOp,
-_rRyrip2XUx,
+_IkfCjy7Y4u,
 _Y7XrSaTc6m
 ];
 
@@ -6808,11 +6808,11 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_thx7ht = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_6j9ViK = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_thx7ht, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_thx7ht, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_6j9ViK, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_6j9ViK, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

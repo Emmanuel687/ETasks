@@ -36,7 +36,7 @@
         "../node_modules/.pnpm/@nuxt+schema@3.13.2/node_modules/@nuxt/schema"
       ],
       "nuxt": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt"
       ],
       "~": [
         ".."
@@ -72,13 +72,13 @@
         "../public/*"
       ],
       "#app": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app"
       ],
       "#app/*": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/*"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/*"
       ],
       "vue-demi": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/app/compat/vue-demi"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#primevue-style": [
         "./primevue-style.mjs"
@@ -152,7 +152,7 @@
   "exclude": [
     "../dist",
     "../node_modules",
-    "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/node_modules",
+    "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/node_modules",
     "../node_modules/.pnpm/@primevue+nuxt-module@4.0.7_vue@3.5.8/node_modules/@primevue/nuxt-module/runtime/server",
     "../node_modules/.pnpm/@primevue+nuxt-module@4.0.7_vue@3.5.8/node_modules/@primevue/nuxt-module/dist/runtime/server",
     "../node_modules/.pnpm/@nuxtjs+supabase@1.4.0/node_modules/@nuxtjs/supabase/runtime/server",

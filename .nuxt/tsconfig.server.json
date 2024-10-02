@@ -66,10 +66,10 @@
         "../node_modules/.pnpm/@nuxt+schema@3.13.2/node_modules/@nuxt/schema"
       ],
       "nuxt": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt"
       ],
       "#internal/nuxt/paths": [
-        "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/dist/core/runtime/nitro/paths"
+        "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/dist/core/runtime/nitro/paths"
       ],
       "~": [
         "./.."
@@ -124,7 +124,7 @@
   ],
   "exclude": [
     "../node_modules",
-    "../node_modules/.pnpm/nuxt@3.13.2_vite@5.4.8/node_modules/nuxt/node_modules",
+    "../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_vite@5.4.8/node_modules/nuxt/node_modules",
     "../dist"
   ]
 }
