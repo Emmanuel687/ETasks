@@ -2,8 +2,15 @@
 definePageMeta({
   layout: 'admin'
 })
-const user = useSupabaseUser()
 
+// Imports Start
+// Imports End
+
+// Reactive Variables Start
+const openCreateTaskDialog = ref(false)
+// Reactive Variables End
+
+// Dummy Data Start
 const tasksDummy = ref([
   {
     "_id": "66f66a345dfcb004ce9dd513",
@@ -101,30 +108,42 @@ const tasksDummy = ref([
     "taskId": "TSK-09/24/0017",
     "__v": 0
   },])
+// Dummy Data End
+
 
 </script>
 
 <template>
   <section class="dashboard rounded-md py-3 bg-white">
-
-    <!-- My Work Header Start -->
-    <div class="flex justify-between items-end border-b-2 pb-1 px-3 mb-3">
-
+    <!-- My Tasks Header Start -->
+    <section class="flex justify-between items-end border-b-2 pb-1 px-3 mb-3">
       <h1 class="text-lg text-[#3494ff] font-semibold">
-        My Work
+        My Tasks
       </h1>
 
       <button class="btn-primary" @click="openCreateTaskDialog = true">
         <i class="pi pi-plus"></i>
         New Task
       </button>
-    </div>
-    <!-- My Work Header End -->
-
+    </section>
+    <!-- My Tasks Header End -->
 
     <!-- Task List Start -->
-    <AdminTasks :tasks="tasksDummy" />
+    <section>
+      <AdminTasks :tasks="tasksDummy" />
+    </section>
     <!-- Task List End -->
+
+    <!-- Create Tasks Dialog Start -->
+    <section>
+      <AdminTasksCreateTask :openCreateTaskDialog="openCreateTaskDialog" @close="() => openCreateTaskDialog = false" />
+    </section>
+    <!-- Create Tasks Dialog End -->
+
+
+
+
+
 
   </section>
 </template>

@@ -67,16 +67,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+// Imports Start
 import { useSupabaseClient, useRouter } from '#imports'
+// Imports End
+
+// Receive Props Start
+// Receive Props End
+
+// Variables Start
+const supabase = useSupabaseClient()
+const router = useRouter()
+// Variables Start
+
+// Reactive Variable Start
 
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const successMessage = ref('')
-const supabase = useSupabaseClient()
-const router = useRouter()
+// Reactive Variable End
 
+
+// Handle Sign Up Start
 const handleSignup = async () => {
   try {
     errorMessage.value = '' // Clear any previous error messages
@@ -96,4 +108,6 @@ const handleSignup = async () => {
     errorMessage.value = error.message || 'An error occurred during sign up'
   }
 }
+// Handle Sign Up End
+
 </script>

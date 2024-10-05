@@ -64,14 +64,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+// Imports Start
+// Imports End
 
+// Receive Props Start
+// Receive Props End
+
+// Variables Start
+const supabase = useSupabaseClient()
+const router = useRouter()
+// Variables Start
+
+// Reactive Variable Start
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
-const supabase = useSupabaseClient()
-const router = useRouter()
+// Reactive Variable End
 
+
+// Handle Login Start
 const handleLogin = async () => {
   try {
     errorMessage.value = '' // Clear any previous error messages
@@ -89,4 +100,6 @@ const handleLogin = async () => {
     errorMessage.value = error.message || 'An error occurred during login'
   }
 }
+// Handle Login End
+
 </script>
