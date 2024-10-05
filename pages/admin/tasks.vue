@@ -128,20 +128,17 @@ const tasksDummy = ref([
     </section>
     <!-- My Tasks Header End -->
 
-    <!-- Task List Start -->
-    <section>
-      <AdminTasks :tasks="tasksDummy" />
-    </section>
-    <!-- Task List End -->
-
     <!-- Create Tasks Dialog Start -->
     <section>
       <AdminTasksCreateTask :openCreateTaskDialog="openCreateTaskDialog" @close="() => openCreateTaskDialog = false" />
     </section>
     <!-- Create Tasks Dialog End -->
 
-
-
+    <!-- Task List Start -->
+    <section>
+      <AdminTasks :tasks="tasksDummy" />
+    </section>
+    <!-- Task List End -->
 
 
 

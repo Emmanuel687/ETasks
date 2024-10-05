@@ -55,6 +55,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/admin/**': { middleware: 'auth' }
   },
+  build: {
+    transpile: ['primevue', 'quill']
+  },
 
 
 })

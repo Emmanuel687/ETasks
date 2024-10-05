@@ -2,7 +2,8 @@
 import type { DefineComponent, SlotsType } from 'vue'
 type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refresh: () => Promise<void>}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, SlotsType<{ fallback: { error: unknown } }>>
 interface _GlobalComponents {
-      'AdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
+      'CustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
+    'AdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'AdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'AdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
     'AdminTasks': typeof import("../components/admin/tasks/index.vue")['default']
@@ -33,7 +34,8 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-      'LazyAdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
+      'LazyCustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
+    'LazyAdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'LazyAdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'LazyAdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
     'LazyAdminTasks': typeof import("../components/admin/tasks/index.vue")['default']
@@ -70,6 +72,7 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const CustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const AdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const AdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const AdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']
@@ -101,6 +104,7 @@ export const Html: typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedde
 export const Body: typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyCustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const LazyAdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const LazyAdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const LazyAdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']

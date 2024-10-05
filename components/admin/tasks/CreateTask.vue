@@ -1,6 +1,6 @@
 <script setup>
 // Imports Start
-import { Editor } from 'primevue/editor';
+import Editor from 'primevue/editor';
 import { useUserStore } from "@/stores/user"
 // Imports End
 
