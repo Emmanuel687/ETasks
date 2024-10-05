@@ -13,6 +13,11 @@ const props = defineProps({
 });
 // Receive Props End
 
+
+// Reactive Variable Start
+const showEditModal = ref(false);
+// Reactive Variable End
+
 // Variables Start
 const statuses = ['open', 'submitted-for-approval', 'closed'];
 // Variables End
@@ -29,6 +34,13 @@ const getTasksByStatus = (status) => {
   return props.tasks.filter(task => task.status === status);
 };
 // Get TasksByStatus End
+
+
+// ShowModal Start
+const handleShowModal = (item) => {
+  showEditModal.value = true;
+};
+// ShowModal End
 
 </script> 
 
@@ -96,4 +108,12 @@ const getTasksByStatus = (status) => {
     </div>
   </div>
   <!-- Task List &&  KanBanBoard End -->
+
+
+
+  <!-- Edit Task Dialog Start -->
+  <section>
+    <AdminTasksEditTask :showEditModal="showEditModal" @close="showEditModal = false" />
+  </section>
+  <!-- Edit Task Dialog End -->
 </template>
