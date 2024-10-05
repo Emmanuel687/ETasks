@@ -1,0 +1,45 @@
+@mixin outlined($color) {
+  border: 1px solid $color;
+  background: transparent;
+  color: $color;
+
+  &:hover,
+  &:focus {
+    background: rgba($color, 0.15);
+  }
+
+  &:disabled {
+    background: transparent;
+    color: rgba($color, 0.5);
+    border: 1px solid rgba($color, 0.5);
+  }
+}
+
+@mixin button($color, $bg-color) {
+  color: $color;
+  background-color: $bg-color;
+  border: 1px solid $bg-color;
+  border-radius: 6px;
+  padding: 4px 12px;
+  // font-size: 12px !important;
+
+  &:hover,
+  &:focus {
+    background: darken($color: $bg-color, $amount: 10%);
+  }
+
+  &:disabled {
+    background-color: $bg-color;
+    opacity: 0.75;
+
+    &:hover,
+    &:focus {
+      background-color: $bg-color;
+      opacity: 0.75;
+    }
+  }
+
+  &.outlined {
+    @include outlined($bg-color);
+  }
+}

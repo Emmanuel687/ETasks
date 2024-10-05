@@ -27,7 +27,13 @@ export default defineNuxtConfig({
       exclude: []
     }
   },
-  css: ['/public/styles/global.css'],
+  css: [
+    '/assets/styles/global.css',
+    '/assets/styles/scss/theme.scss',
+    '/assets/css/tailwind.css',
+
+    'primeicons/primeicons.css'
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},

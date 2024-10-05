@@ -1,16 +1,3 @@
-<template>
-  <section class="dashboard rounded-md py-3 bg-white">
-
-    <!-- Tasks Section -->
-
-
-    <!-- Task List Start -->
-    <AdminTasks :tasks="tasksDummy" />
-    <!-- Task List End -->
-
-  </section>
-</template>
-
 <script setup>
 definePageMeta({
   layout: 'admin'
@@ -116,3 +103,29 @@ const tasksDummy = ref([
   },])
 
 </script>
+
+<template>
+  <section class="dashboard rounded-md py-3 bg-white">
+
+    <!-- My Work Header Start -->
+    <div class="flex justify-between items-end border-b-2 pb-1 px-3 mb-3">
+
+      <h1 class="text-lg text-[#3494ff] font-semibold">
+        My Work
+      </h1>
+
+      <button class="btn-primary" @click="openCreateTaskDialog = true">
+        <i class="pi pi-plus"></i>
+        New Task
+      </button>
+    </div>
+    <!-- My Work Header End -->
+
+
+    <!-- Task List Start -->
+    <AdminTasks :tasks="tasksDummy" />
+    <!-- Task List End -->
+
+  </section>
+</template>
+

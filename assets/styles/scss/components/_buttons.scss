@@ -1,0 +1,70 @@
+button {
+  transition: $transition-fast;
+  -moz-transition: $transition-fast;
+  -webkit-transition: $transition-fast;
+}
+
+.p-button:focus {
+  box-shadow: unset;
+}
+
+.btn-primary {
+  @include button($color: #ffffff, $bg-color: $primary);
+}
+
+.btn-secondary {
+  @include button($color: #ffffff, $bg-color: #757575);
+}
+
+.btn-secondary-2 {
+  @include button($color: #ffffff, $bg-color: #24576b);
+
+}
+
+.btn-danger {
+  @include button($color: #ffffff, $bg-color: $danger);
+}
+
+.tabmenu-container {
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius-sm;
+
+  .tabmenu-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .tabmenu-button {
+      font-weight: 700;
+      padding: 4px 12px;
+      border-bottom: 4px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 13px;
+      text-transform: uppercase;
+      transition: $transition-medium;
+      background-color: transparent;
+
+      i {
+        font-size: 16px;
+      }
+
+      &:hover {
+        border-bottom-color: rgba($primary, 0.3);
+        // background-color: rgba($primary, 0.1);
+        // color: $white;
+      }
+    }
+
+    .active {
+      color: $primary;
+      border-bottom-color: $primary !important;
+      // background-color: $primary;
+      // color: $white;
+    }
+  }
+}

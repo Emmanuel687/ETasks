@@ -1,0 +1,24 @@
+.p-paginator {
+  justify-content: flex-end;
+
+  .p-dropdown {
+    width: auto !important;
+    height: 2.5rem;
+    background-color: inherit !important;
+
+    .p-inputtext,
+    .p-inputtext:read-only {
+      background-color: inherit !important;
+      // color: #000000;
+    }
+  }
+
+  .p-paginator-element {
+    height: 2rem;
+    width: 2rem;
+    min-width: 2rem;
+    font-size: 12px;
+    // text-align: center;
+    // vertical-align: middle;
+  }
+}
