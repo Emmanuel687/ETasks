@@ -1,5 +1,8 @@
 <script setup>
 // Imports Start
+
+import Editor from 'primevue/editor';
+
 // Imports End
 
 // Receive Props Start
@@ -44,6 +47,7 @@ const closeDialog = () => {
             </button>
           </div>
           <!-- Close Task BTN End -->
+
 
 
 

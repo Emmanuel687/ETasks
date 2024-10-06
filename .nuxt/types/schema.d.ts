@@ -7879,9 +7879,7 @@ declare module 'nuxt/schema' {
 
       }>,
 
-      services: Array<{
-
-      }>,
+      services: Array<any>,
 
       styles: Array<{
 

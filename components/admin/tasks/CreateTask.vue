@@ -1,7 +1,9 @@
 <script setup>
 // Imports Start
 import Editor from 'primevue/editor';
+
 import { useUserStore } from "@/stores/user"
+
 // Imports End
 
 // Receive Props Start
@@ -12,18 +14,21 @@ const props = defineProps({
 })
 // Receive Props End
 
+// Variables Start
+const appStore = useUserStore()
+// Variables Start
+
+
 // Reactive Variable Start
 const isSubmitting = ref(false);
 const selectedAssignee = ref([]);
-const task_name = ref()
-const task_description = ref()
+const task_name = ref('')
+const task_description = ref('')
 const selectedPriority = ref()
 const task_end_date = ref()
 // Reactive Variable End
 
-// Variables Start
-const appStore = useUserStore()
-// Variables Start
+
 
 // Emits Start
 const emits = defineEmits(['close'])
@@ -36,6 +41,11 @@ const closeDialog = () => {
 // Close Dialog End
 
 
+// HandleCreateTask Start
+
+// HandleCreateTask End
+
+
 
 
 
@@ -43,9 +53,12 @@ const closeDialog = () => {
 
 </script>
 <template>
+  <Toast />
+
   <Dialog modal v-model:visible="props.openCreateTaskDialog" :style="{ width: '45rem' }">
 
     <template #container>
+
       <div class="p-3 bg-white rounded-lg">
         <!-- Close Task BTN Start -->
         <div class="flex justify-between">
@@ -60,7 +73,7 @@ const closeDialog = () => {
         <Form @submit="handleCreateTask">
           <!-- Assignee Start -->
           <CustomInputContainer label="Assignee" class="w-full mt-[10px]">
-            <Dropdown v-model="selectedAssignee" :options="appStore.assignees" optionLabel="first_name" optionValue="id"
+            <Dropdown v-model="selectedAssignee" :options="appStore.assignees" optionLabel="first_name"
               placeholder="Select Assignee" class="w-full md:w-14rem" />
           </CustomInputContainer>
           <!-- Assignee End -->
@@ -71,11 +84,13 @@ const closeDialog = () => {
           </CustomInputContainer>
           <!-- Task Name End -->
 
+
           <!-- Task Description Start -->
           <CustomInputContainer label="Description" class="w-full mt-[10px]">
-            <Editor v-model="task_description" editorStyle="height: 120px" />
+            <Editor v-model="task_description" editorStyle="height: 320px" />
           </CustomInputContainer>
           <!--Task Description End -->
+
 
           <!-- Priority Start -->
           <CustomInputContainer label="Priority" class="w-full mt-[10px]">
@@ -89,8 +104,6 @@ const closeDialog = () => {
             <Calendar v-model="task_end_date" />
           </CustomInputContainer>
           <!-- Deadline End -->
-
-
 
           <!-- Cancel & Save  BTN Start -->
           <div class="flex flex-row items-center justify-end space-x-4 ml-auto my-2.5 ">

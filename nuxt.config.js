@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     },
     components: {
       prefix: '',
+      include: ['Editor'],
       exclude: []
     }
   },
@@ -31,8 +32,10 @@ export default defineNuxtConfig({
     '/assets/styles/global.css',
     '/assets/styles/scss/theme.scss',
     '/assets/css/tailwind.css',
+    'primeicons/primeicons.css',
+    'quill/dist/quill.core.css',
+    'quill/dist/quill.snow.css',
 
-    'primeicons/primeicons.css'
   ],
   postcss: {
     plugins: {
@@ -56,7 +59,17 @@ export default defineNuxtConfig({
     '/admin/**': { middleware: 'auth' }
   },
   build: {
-    transpile: ['primevue', 'quill']
+    transpile: ['primevue', 'quill-delta']
+  },
+  vite: {
+    resolve: {
+      alias: {
+        'quill-delta': 'quill-delta/dist/Delta.js',
+      },
+    },
+    optimizeDeps: {
+      include: ['quill'],
+    },
   },
 
 

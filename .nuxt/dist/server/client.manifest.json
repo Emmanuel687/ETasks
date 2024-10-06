@@ -7,12 +7,12 @@
     "module": true,
     "resourceType": "script"
   },
-  "/Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/entry.js": {
+  "/Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
     "isEntry": true,
-    "file": "/Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/nuxt@3.13.2_sass-embedded@1.79.4_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/entry.js"
+    "file": "/Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/nuxt/dist/app/entry.js"
   }
 }

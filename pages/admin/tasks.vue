@@ -6,10 +6,6 @@ definePageMeta({
 // Imports Start
 // Imports End
 
-// Reactive Variables Start
-const openCreateTaskDialog = ref(false)
-// Reactive Variables End
-
 // Dummy Data Start
 const tasksDummy = ref([
   {
@@ -110,7 +106,54 @@ const tasksDummy = ref([
   },])
 // Dummy Data End
 
+// Reactive Variables Start
+const searchTask = ref('');
+const openCreateTaskDialog = ref(false)
+const loading = ref(false)
+const error = ref(null)
+const selectedTaskStatus = ref('')
+const supabase = useSupabaseClient()
+// Reactive Variables End
 
+
+const fetchTasks = async () => {
+  loading.value = true
+  error.value = null
+
+  try {
+    let query = supabase
+      .from('tasks')
+      .select('*')
+
+    if (selectedTaskStatus.value) {
+      query = query.eq('status', selectedTaskStatus.value)
+    }
+
+    if (searchTask.value) {
+      query = query.ilike('title', `%${searchTask.value}%`)
+    }
+
+    query = query.order('created_at', { ascending: false })
+
+    const { data, error: supabaseError } = await query
+
+    if (supabaseError) throw supabaseError
+
+    tasks.value = data
+  } catch (e) {
+    error.value = e.message || 'An error occurred while fetching tasks'
+    console.error('Error fetching tasks:', e)
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => fetchTasks())
+
+
+// OnMounted Start
+
+// OnMounted End
 </script>
 
 <template>
