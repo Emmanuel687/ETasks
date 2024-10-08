@@ -19,6 +19,12 @@ export const useUserStore = defineStore('user', () => {
     first_name: "Sofi",
     second_name: "Kiprotich"
   }])
+
+  const taskStatus = ref([
+    { name: "open" },
+    { name: "submitted-for-approval" },
+    { name: "closed" },
+  ]);
   // Reactive Variables End
 
   // IsLoggedIn Start
@@ -68,6 +74,7 @@ export const useUserStore = defineStore('user', () => {
     clearUser,
     setIsAdmin,
     assignees,
-    updateUserProfile
+    updateUserProfile,
+    taskStatus
   }
 })

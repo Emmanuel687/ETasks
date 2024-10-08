@@ -4,6 +4,8 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'CustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
     'CustomQuill': typeof import("../components/Custom/Quill.vue")['default']
+    'SearchMain': typeof import("../components/Search/Main.vue")['default']
+    'SearchSimple': typeof import("../components/Search/Simple.vue")['default']
     'AdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'AdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'AdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
@@ -37,6 +39,8 @@ interface _GlobalComponents {
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyCustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
     'LazyCustomQuill': typeof import("../components/Custom/Quill.vue")['default']
+    'LazySearchMain': typeof import("../components/Search/Main.vue")['default']
+    'LazySearchSimple': typeof import("../components/Search/Simple.vue")['default']
     'LazyAdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
     'LazyAdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'LazyAdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
@@ -76,6 +80,8 @@ declare module 'vue' {
 
 export const CustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const CustomQuill: typeof import("../components/Custom/Quill.vue")['default']
+export const SearchMain: typeof import("../components/Search/Main.vue")['default']
+export const SearchSimple: typeof import("../components/Search/Simple.vue")['default']
 export const AdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const AdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const AdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']
@@ -109,6 +115,8 @@ export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyCustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const LazyCustomQuill: typeof import("../components/Custom/Quill.vue")['default']
+export const LazySearchMain: typeof import("../components/Search/Main.vue")['default']
+export const LazySearchSimple: typeof import("../components/Search/Simple.vue")['default']
 export const LazyAdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
 export const LazyAdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const LazyAdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']

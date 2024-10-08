@@ -14,5 +14,5 @@
 
 </script>
 <template>
-  <WebsiteFeatures />
+  <WebsiteFaq />
 </template>

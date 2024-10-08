@@ -5,7 +5,6 @@ import ChartSVG from "/public/assets/svgs/Icons/chart.svg"
 import CalendarSVG from "/public/assets/svgs/Icons/calendar.svg"
 import SettingsSVG from "/public/assets/svgs/Icons/settings.svg"
 import TaskSVG from "/public/assets/svgs/Icons/task.svg"
-
 // Imports End
 
 // Reactive Variables Start
@@ -32,12 +31,7 @@ const featuresList = ref([
   }
 ])
 // Reactive Variables End
-
-
-
 </script>
-
-
 
 <template>
   <!-- Features Section Start -->

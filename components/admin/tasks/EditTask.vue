@@ -47,10 +47,6 @@ const closeDialog = () => {
             </button>
           </div>
           <!-- Close Task BTN End -->
-
-
-
-
         </div>
       </template>
     </Dialog>

@@ -4,6 +4,7 @@ definePageMeta({
 })
 
 // Imports Start
+import { useUserStore } from '@/stores/user'
 // Imports End
 
 // Dummy Data Start
@@ -106,6 +107,11 @@ const tasksDummy = ref([
   },])
 // Dummy Data End
 
+
+// Variables Start
+const appStore = useUserStore()
+// Variables End
+
 // Reactive Variables Start
 const searchTask = ref('');
 const openCreateTaskDialog = ref(false)
@@ -116,6 +122,7 @@ const supabase = useSupabaseClient()
 // Reactive Variables End
 
 
+// Fetch Tasks Start
 const fetchTasks = async () => {
   loading.value = true
   error.value = null
@@ -125,12 +132,13 @@ const fetchTasks = async () => {
       .from('tasks')
       .select('*')
 
+    // Only apply filters if they are not empty
     if (selectedTaskStatus.value) {
       query = query.eq('status', selectedTaskStatus.value)
     }
 
-    if (searchTask.value) {
-      query = query.ilike('title', `%${searchTask.value}%`)
+    if (searchTask.value.trim()) {
+      query = query.ilike('taskName', `%${searchTask.value.trim()}%`)
     }
 
     query = query.order('created_at', { ascending: false })
@@ -147,8 +155,37 @@ const fetchTasks = async () => {
     loading.value = false
   }
 }
+// Fetch Tasks End
 
-onMounted(() => fetchTasks())
+// Debounce Start
+function debounce(fn, delay) {
+  let timeoutId
+  return (...args) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => fn(...args), delay)
+  }
+}
+
+// Debounce End
+
+const debouncedFetchTasks = debounce(fetchTasks, 300)
+
+
+
+watch([selectedTaskStatus, searchTask], ([newStatus, newSearch], [oldStatus, oldSearch]) => {
+  // If both filters are cleared, fetch all tasks
+  if (!newStatus && !newSearch.trim() && (oldStatus || oldSearch.trim())) {
+    fetchTasks()
+  } else {
+    debouncedFetchTasks()
+  }
+})
+
+onMounted(async () => {
+  await fetchTasks()
+
+})
+
 
 
 // OnMounted Start
@@ -170,6 +207,13 @@ onMounted(() => fetchTasks())
       </button>
     </section>
     <!-- My Tasks Header End -->
+
+    <div class="flex gap-2">
+      <SearchSimple v-model="searchTask" />
+
+      <Dropdown v-model="selectedTaskStatus" filter showClear :options="appStore.taskStatus" option-label="name"
+        option-value="name" />
+    </div>
 
     <!-- Create Tasks Dialog Start -->
     <section>

@@ -30,8 +30,8 @@ This project is a comprehensive web application built with Nuxt 3 and Supabase, 
 - [Vue 3](https://v3.vuejs.org/)
 
 ## Prerequisites
-- Node.js (v14 or later)
-- npm or yarn
+- Node.js (v18)
+- npm 
 - Supabase account and project
 
 ## Installation

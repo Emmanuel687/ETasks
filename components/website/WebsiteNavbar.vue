@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { useSupabaseUser, useSupabaseClient, useRouter } from '#imports'
+// Imports Start
+// Imports End
 
 const navLinks = ref([
   { name: 'Overview', path: '/' },
@@ -8,12 +8,13 @@ const navLinks = ref([
   { name: 'FAQ', path: '/faq' },
   { name: 'Contact Us', path: '/contact' },
 ]);
+const isOpen = ref(false)
+
 
 const user = useSupabaseUser()
 const isLoggedIn = computed(() => !!user.value)
 const supabase = useSupabaseClient()
 const router = useRouter()
-const isOpen = ref(false)
 
 const handleLogout = async () => {
   const { error } = await supabase.auth.signOut()
@@ -54,20 +55,14 @@ const toggleMenu = () => {
         <!-- Desktop Auth Buttons -->
         <div class="hidden md:block">
           <div class="flex items-center space-x-4">
-            <template v-if="!isLoggedIn">
-              <NuxtLink to="/login"
-                class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                Login
-              </NuxtLink>
-              <NuxtLink to="/signup"
-                class="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                Sign Up
-              </NuxtLink>
-            </template>
-            <button v-else @click="handleLogout"
+            <NuxtLink to="/login"
               class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-              Logout
-            </button>
+              Login
+            </NuxtLink>
+            <NuxtLink to="/signup"
+              class="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
+              Sign Up
+            </NuxtLink>
           </div>
         </div>
 

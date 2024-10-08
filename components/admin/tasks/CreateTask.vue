@@ -3,6 +3,7 @@
 import Editor from 'primevue/editor';
 
 import { useUserStore } from "@/stores/user"
+import { useSupabaseClient } from '#imports';
 
 // Imports End
 
@@ -42,6 +43,39 @@ const closeDialog = () => {
 
 
 // HandleCreateTask Start
+const handleCreateTask = async () => {
+  const supabase = useSupabaseClient(); // Access Supabase client from Nuxt
+  isSubmitting.value = true;
+
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert({
+        taskName: task_name.value,
+        description: task_description.value,
+        deadline: task_end_date.value,
+        assignedTo: selectedAssignee.value,
+        priority: selectedPriority.value,
+        status: 'open'
+      })
+      .select();
+
+    if (error) throw error;
+
+    // Reset form
+    task_name.value = '';
+    task_description.value = '';
+    task_end_date.value = '';
+    selectedAssignee.value = '';
+    selectedPriority.value = '';
+
+  } catch (error) {
+    console.error('Error creating task:', error);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
 
 // HandleCreateTask End
 
@@ -84,13 +118,11 @@ const closeDialog = () => {
           </CustomInputContainer>
           <!-- Task Name End -->
 
-
           <!-- Task Description Start -->
           <CustomInputContainer label="Description" class="w-full mt-[10px]">
-            <Editor v-model="task_description" editorStyle="height: 320px" />
+            <Editor v-model="task_description" editorStyle="height: 200px" />
           </CustomInputContainer>
           <!--Task Description End -->
-
 
           <!-- Priority Start -->
           <CustomInputContainer label="Priority" class="w-full mt-[10px]">
@@ -98,12 +130,12 @@ const closeDialog = () => {
               placeholder="Select Priority" class="w-full md:w-14rem" />
           </CustomInputContainer>
           <!-- Priority End -->
-
           <!-- Deadline Start -->
           <CustomInputContainer label="Deadline" class="w-full mt-[10px]">
             <Calendar v-model="task_end_date" />
           </CustomInputContainer>
           <!-- Deadline End -->
+
 
           <!-- Cancel & Save  BTN Start -->
           <div class="flex flex-row items-center justify-end space-x-4 ml-auto my-2.5 ">
