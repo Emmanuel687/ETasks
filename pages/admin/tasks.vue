@@ -110,15 +110,17 @@ const tasksDummy = ref([
 
 // Variables Start
 const appStore = useUserStore()
+const supabase = useSupabaseClient()
+
 // Variables End
 
 // Reactive Variables Start
 const searchTask = ref('');
+const tasks = ref([])
 const openCreateTaskDialog = ref(false)
 const loading = ref(false)
 const error = ref(null)
 const selectedTaskStatus = ref('')
-const supabase = useSupabaseClient()
 // Reactive Variables End
 
 
@@ -145,9 +147,13 @@ const fetchTasks = async () => {
 
     const { data, error: supabaseError } = await query
 
-    if (supabaseError) throw supabaseError
+    console.log(data, "data")
 
     tasks.value = data
+
+
+    if (supabaseError) throw supabaseError
+
   } catch (e) {
     error.value = e.message || 'An error occurred while fetching tasks'
     console.error('Error fetching tasks:', e)
@@ -223,8 +229,9 @@ onMounted(async () => {
 
     <!-- Task List Start -->
     <section>
-      <AdminTasks :tasks="tasksDummy" />
+      <AdminTasks :tasks="tasks" />
     </section>
+
     <!-- Task List End -->
 
 

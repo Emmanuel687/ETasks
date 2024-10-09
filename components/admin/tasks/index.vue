@@ -7,7 +7,7 @@ import draggable from 'vuedraggable';
 // Receive Props Start
 const props = defineProps({
   tasks: {
-    type: Object,
+    type: Array,
     required: true
   }
 });
@@ -23,6 +23,16 @@ const statuses = ['open', 'submitted-for-approval', 'closed'];
 // Variables End
 
 
+
+// OnDragChange Method Start
+const onDragChange = (event, newStatus) => {
+  if (event.added) {
+    const task = event.added.element;
+    const updatedTask = { ...task, status: newStatus };
+  };
+}
+// OnDragChange Method End
+
 // Format Status Start
 const formatStatus = (status) => {
   return status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -35,6 +45,19 @@ const getTasksByStatus = (status) => {
 };
 // Get TasksByStatus End
 
+// Get Assigned To Name Start
+const getAssignedToName = (assignedTo) => {
+  try {
+    const parsed = typeof assignedTo === 'string' ? JSON.parse(assignedTo) : assignedTo;
+    return parsed && parsed.first_name && parsed.second_name
+      ? `${parsed.first_name} ${parsed.second_name}`
+      : 'Not assigned';
+  } catch (error) {
+    console.error('Error parsing assignedTo:', error);
+    return 'Not assigned';
+  }
+};
+// Get Assigned To Name End
 
 // ShowModal Start
 const handleShowModal = (item) => {
@@ -51,9 +74,7 @@ const handleShowModal = (item) => {
     style="max-width: 100%; height: calc(100vh - 210px);">
     <div v-for="status in statuses" :key="status"
       class="bg-gray-100 py-3 rounded-lg flex-shrink-0 h-full flex flex-col w-[450px]">
-
       <h2 class="text-lg font-semibold mb-4 px-3">{{ formatStatus(status) }}</h2>
-
       <!-- NB:- Client-only to avoid SSR issues with draggable -->
       <client-only>
         <!-- Draggable Task List -->
@@ -94,7 +115,7 @@ const handleShowModal = (item) => {
 
               <!-- Assigned to Start -->
               <div class="mt-2 text-xs text-gray-500">
-                Assigned to: {{ element.assignedTo[0].first_name }} {{ element.assignedTo[0].last_name }}
+                Assigned to: {{ getAssignedToName(element.assignedTo) }}
               </div>
               <!-- Assigned to End -->
 

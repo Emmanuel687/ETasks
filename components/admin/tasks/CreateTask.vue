@@ -25,7 +25,7 @@ const isSubmitting = ref(false);
 const selectedAssignee = ref([]);
 const task_name = ref('')
 const task_description = ref('')
-const selectedPriority = ref()
+const selectedPriority = ref([])
 const task_end_date = ref()
 // Reactive Variable End
 
@@ -44,8 +44,15 @@ const closeDialog = () => {
 
 // HandleCreateTask Start
 const handleCreateTask = async () => {
-  const supabase = useSupabaseClient(); // Access Supabase client from Nuxt
-  isSubmitting.value = true;
+  const supabase = useSupabaseClient()
+  const isSubmitting = ref(false)
+  isSubmitting.value = true
+
+  // Ensure deadline is correctly formatted
+  const formattedDeadline = task_end_date.value ? new Date(task_end_date.value).toISOString() : null;
+  const assignedTo = typeof selectedAssignee.value === 'string'
+    ? JSON.parse(selectedAssignee.value)
+    : selectedAssignee.value;
 
   try {
     const { data, error } = await supabase
@@ -53,14 +60,19 @@ const handleCreateTask = async () => {
       .insert({
         taskName: task_name.value,
         description: task_description.value,
-        deadline: task_end_date.value,
-        assignedTo: selectedAssignee.value,
-        priority: selectedPriority.value,
+        deadline: formattedDeadline,
+        assignedTo: assignedTo,
+        priority: selectedPriority.value.name,
         status: 'open'
       })
       .select();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error; // Re-throw the error to be caught in the catch block
+    }
+
+    console.log('Task created successfully:', data);
 
     // Reset form
     task_name.value = '';
@@ -71,12 +83,11 @@ const handleCreateTask = async () => {
 
   } catch (error) {
     console.error('Error creating task:', error);
+    // Consider showing an error message to the user
   } finally {
     isSubmitting.value = false;
   }
 };
-
-
 // HandleCreateTask End
 
 
@@ -104,7 +115,7 @@ const handleCreateTask = async () => {
         <!-- Close Task BTN End -->
 
         <!-- Create Task Form Start -->
-        <Form @submit="handleCreateTask">
+        <Form @submit.prevent="handleCreateTask">
           <!-- Assignee Start -->
           <CustomInputContainer label="Assignee" class="w-full mt-[10px]">
             <Dropdown v-model="selectedAssignee" :options="appStore.assignees" optionLabel="first_name"
@@ -126,13 +137,17 @@ const handleCreateTask = async () => {
 
           <!-- Priority Start -->
           <CustomInputContainer label="Priority" class="w-full mt-[10px]">
-            <Dropdown v-model="selectedPriority" :options="appStore.priority" optionLabel="name"
+            <Dropdown v-model="selectedPriority" :options="appStore.priority" optionLabel="name" optionValue="name"
               placeholder="Select Priority" class="w-full md:w-14rem" />
           </CustomInputContainer>
+
+
           <!-- Priority End -->
           <!-- Deadline Start -->
           <CustomInputContainer label="Deadline" class="w-full mt-[10px]">
             <Calendar v-model="task_end_date" />
+
+
           </CustomInputContainer>
           <!-- Deadline End -->
 
