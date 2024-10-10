@@ -121,6 +121,7 @@ const openCreateTaskDialog = ref(false)
 const loading = ref(false)
 const error = ref(null)
 const selectedTaskStatus = ref('')
+const isLoading = ref(false)
 // Reactive Variables End
 
 
@@ -163,6 +164,35 @@ const fetchTasks = async () => {
 }
 // Fetch Tasks End
 
+
+// HandleEditTask Start
+const updateTask = async (updatedTask) => {
+
+  console.log(updatedTask)
+
+  try {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update({ status: updatedTask.status })
+      .eq('id', updatedTask.id)
+      .select()
+
+    if (error) throw error
+
+    if (data) {
+      console.log('Task updated successfully:', data)
+
+      const index = tasks.value.findIndex(task => task.id === updatedTask.id)
+      if (index !== -1) {
+        tasks.value[index] = { ...tasks.value[index], ...data[0] }
+      }
+    }
+  } catch (error) {
+    console.error('Error updating task:', error)
+  }
+}
+// HandleEditTask End
+
 // Debounce Start
 function debounce(fn, delay) {
   let timeoutId
@@ -179,7 +209,6 @@ const debouncedFetchTasks = debounce(fetchTasks, 300)
 
 
 watch([selectedTaskStatus, searchTask], ([newStatus, newSearch], [oldStatus, oldSearch]) => {
-  // If both filters are cleared, fetch all tasks
   if (!newStatus && !newSearch.trim() && (oldStatus || oldSearch.trim())) {
     fetchTasks()
   } else {
@@ -229,9 +258,8 @@ onMounted(async () => {
 
     <!-- Task List Start -->
     <section>
-      <AdminTasks :tasks="tasks" />
+      <AdminTasks :tasks="tasks" @update-task="updateTask" />
     </section>
-
     <!-- Task List End -->
 
 

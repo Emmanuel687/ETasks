@@ -16,11 +16,16 @@ const props = defineProps({
 
 // Reactive Variable Start
 const showEditModal = ref(false);
+const task = ref('')
 // Reactive Variable End
 
 // Variables Start
 const statuses = ['open', 'submitted-for-approval', 'closed'];
 // Variables End
+
+// Emits Start
+const emit = defineEmits(['update-task']);
+// Emits End
 
 
 
@@ -29,6 +34,8 @@ const onDragChange = (event, newStatus) => {
   if (event.added) {
     const task = event.added.element;
     const updatedTask = { ...task, status: newStatus };
+    emit('update-task', updatedTask);
+
   };
 }
 // OnDragChange Method End
@@ -62,6 +69,7 @@ const getAssignedToName = (assignedTo) => {
 // ShowModal Start
 const handleShowModal = (item) => {
   showEditModal.value = true;
+  task.value = item
 };
 // ShowModal End
 
@@ -70,60 +78,40 @@ const handleShowModal = (item) => {
 
 <template>
   <!-- Task List && KanBanBoard Start -->
-  <div class="flex-1 flex space-x-4 p-3 overflow-x-auto overflow-y-hidden"
-    style="max-width: 100%; height: calc(100vh - 210px);">
+  <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-3 overflow-x-auto"
+    style="height: calc(100vh - 210px);">
     <div v-for="status in statuses" :key="status"
-      class="bg-gray-100 py-3 rounded-lg flex-shrink-0 h-full flex flex-col w-[450px]">
+      class="bg-gray-100 py-3 rounded-lg flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[400px] h-[calc(100vh-250px)] sm:h-full flex flex-col">
       <h2 class="text-lg font-semibold mb-4 px-3">{{ formatStatus(status) }}</h2>
-      <!-- NB:- Client-only to avoid SSR issues with draggable -->
       <client-only>
-        <!-- Draggable Task List -->
         <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
           class="overflow-y-auto flex-1 space-y-4 px-4" @change="(event) => onDragChange(event, status)">
-          <!-- Task Template Start -->
           <template #item="{ element }">
             <div
               class="bg-white p-3 rounded-lg cursor-move transition transform hover:scale-105 hover:bg-blue-50 hover:shadow"
               @click="handleShowModal(element)">
-              <!-- Task name Start -->
               <h3 class="font-semibold">{{ element.taskName }}</h3>
-              <!-- Task name End -->
-
-              <!-- Task description Start-->
               <p v-html="element.description" class="text-sm text-gray-600 truncate" />
-              <!-- Task description End-->
-
-              <!-- Task (Priority & Due Date) Start -->
-              <div class="flex justify-between items-center mt-2">
-                <div class="text-xs font-medium flex items-center space-x-2" :class="{
+              <div class="flex flex-wrap justify-between items-center mt-2">
+                <div class="text-xs font-medium flex items-center space-x-2 mb-1 sm:mb-0" :class="{
                   'text-red-500': element.priority === 'High',
                   'text-yellow-500': element.priority === 'Medium',
                   'text-green-500': element.priority === 'Low'
                 }">
                   <span>
-                    <img src="../../../public/assets/svgs/Icons/flag.svg" style="width: 20px; height: 20px;">
+                    <img src="../../../public/assets/svgs/Icons/flag.svg" class="w-5 h-5" alt="Priority flag">
                   </span>
-                  <span>
-                    {{ element.priority }}
-                  </span>
+                  <span>{{ element.priority }}</span>
                 </div>
                 <span class="text-xs text-gray-500">
                   Due: {{ new Date(element.deadline).toLocaleDateString() }}
                 </span>
               </div>
-              <!-- Task (Priority & Due Date) End -->
-
-              <!-- Assigned to Start -->
               <div class="mt-2 text-xs text-gray-500">
                 Assigned to: {{ getAssignedToName(element.assignedTo) }}
               </div>
-              <!-- Assigned to End -->
-
             </div>
           </template>
-          <!-- Task Template End -->
-
-
         </draggable>
       </client-only>
     </div>
@@ -134,7 +122,7 @@ const handleShowModal = (item) => {
 
   <!-- Edit Task Dialog Start -->
   <section>
-    <AdminTasksEditTask :showEditModal="showEditModal" @close="showEditModal = false" />
+    <AdminTasksEditTask :showEditModal="showEditModal" @close="showEditModal = false" :task="task" :tasks="props.tasks" />
   </section>
   <!-- Edit Task Dialog End -->
 </template>

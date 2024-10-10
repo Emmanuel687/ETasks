@@ -62,7 +62,7 @@ const handleCreateTask = async () => {
         description: task_description.value,
         deadline: formattedDeadline,
         assignedTo: assignedTo,
-        priority: selectedPriority.value.name,
+        priority: selectedPriority.value,
         status: 'open'
       })
       .select();
@@ -141,8 +141,10 @@ const handleCreateTask = async () => {
               placeholder="Select Priority" class="w-full md:w-14rem" />
           </CustomInputContainer>
 
-
+          {{ selectedPriority }}
           <!-- Priority End -->
+
+
           <!-- Deadline Start -->
           <CustomInputContainer label="Deadline" class="w-full mt-[10px]">
             <Calendar v-model="task_end_date" />
