@@ -1,35 +1,35 @@
-import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/node-fetch-native/dist/polyfill.mjs';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/node-fetch-native@1.6.4/node_modules/node-fetch-native/dist/polyfill.mjs';
 import { Server } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/h3/dist/index.mjs';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/devalue/index.js';
-import destr from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/destr/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/@unhead/ssr/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/hookable/dist/index.mjs';
-import { klona } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/scule/dist/index.mjs';
-import defu, { defuFn } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/radix3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
+import destr from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/ufo@1.5.4/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/vue@3.5.11/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/@unhead+ssr@1.11.7/node_modules/@unhead/ssr/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/unenv@1.10.0/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import defu, { defuFn } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/consola/dist/index.mjs';
-import { getContext } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/errx/dist/index.js';
-import { isVNode, version, unref } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/vue/index.mjs';
-import BaseStyle from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/@primevue/core/base/style/index.mjs';
-import { Theme } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/@primeuix/styled/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/consola@3.2.3/node_modules/consola/dist/index.mjs';
+import { getContext } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/unctx@2.3.1/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
+import { isVNode, version, unref } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/vue@3.5.11/node_modules/vue/index.mjs';
+import BaseStyle from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/@primevue+core@4.1.0_vue@3.5.11/node_modules/@primevue/core/base/style/index.mjs';
+import { Theme } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/@primeuix+styled@0.2.0/node_modules/@primeuix/styled/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/unhead@1.11.7/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/.pnpm/@unhead+shared@1.11.7/node_modules/@unhead/shared/dist/index.mjs';
 
 const r=Object.create(null),E=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return E()[o]??r[o]},has(e,o){const i=E();return o in i||o in r},set(e,o,i){const g=E(!0);return g[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=E(!0);return delete i[o],!0},ownKeys(){const e=E(!0);return Object.keys(e)}}),t=typeof process<"u"&&process.env&&"development"||"",p=[["APPVEYOR"],["AWS_AMPLIFY","AWS_APP_ID",{ci:!0}],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"],["ZEABUR"],["CODESPHERE","CODESPHERE_APP_ID",{ci:!0}],["RAILWAY","RAILWAY_PROJECT_ID"],["RAILWAY","RAILWAY_SERVICE_ID"]];function B(){if(globalThis.process?.env)for(const e of p){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const l=B(),d=l.name;function n(e){return e?e!=="false":!1}const I=globalThis.process?.platform||"",T=n(s.CI)||l.ci!==!1,R=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const C=t==="test"||n(s.TEST);n(s.MINIMAL)||T||C||!R;const a=/^win/i.test(I);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||(R||a)&&s.TERM!=="dumb"||T);const _=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(_?.split(".")[0])||null;const W=globalThis.process||Object.create(null),c={versions:{}};new Proxy(W,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in c)return c[o]}});const A=globalThis.process?.release?.name==="node",L=!!globalThis.Bun||!!globalThis.process?.versions?.bun,D=!!globalThis.Deno,O=!!globalThis.fastly,S=!!globalThis.Netlify,N=!!globalThis.EdgeRuntime,u=globalThis.navigator?.userAgent==="Cloudflare-Workers",b=!!globalThis.__lagon__,F=[[S,"netlify"],[N,"edge-light"],[u,"workerd"],[O,"fastly"],[D,"deno"],[L,"bun"],[A,"node"],[b,"lagon"]];function G(){const e=F.find(o=>o[0]);if(e)return {name:e[1]}}const P=G();P?.name||"";
 
@@ -117,6 +117,7 @@ const _inlineRuntimeConfig = {
       "resolvePath": "",
       "importPT": "",
       "importTheme": "",
+      "loadStyles": true,
       "options": {
         "ripple": true,
         "theme": {
@@ -549,6 +550,7 @@ const _inlineRuntimeConfig = {
                     "background": "{surface.0}",
                     "disabledBackground": "{surface.200}",
                     "filledBackground": "{surface.50}",
+                    "filledHoverBackground": "{surface.50}",
                     "filledFocusBackground": "{surface.50}",
                     "borderColor": "{surface.300}",
                     "hoverBorderColor": "{surface.400}",
@@ -558,7 +560,8 @@ const _inlineRuntimeConfig = {
                     "disabledColor": "{surface.500}",
                     "placeholderColor": "{surface.500}",
                     "floatLabelColor": "{surface.500}",
-                    "floatLabelFocusColor": "{surface.500}",
+                    "floatLabelFocusColor": "{primary.600}",
+                    "floatLabelActiveColor": "{surface.500}",
                     "floatLabelInvalidColor": "{red.400}",
                     "iconColor": "{surface.400}",
                     "shadow": "0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgba(18, 18, 23, 0.05)"
@@ -671,6 +674,7 @@ const _inlineRuntimeConfig = {
                     "background": "{surface.950}",
                     "disabledBackground": "{surface.700}",
                     "filledBackground": "{surface.800}",
+                    "filledHoverBackground": "{surface.800}",
                     "filledFocusBackground": "{surface.800}",
                     "borderColor": "{surface.700}",
                     "hoverBorderColor": "{surface.600}",
@@ -680,7 +684,8 @@ const _inlineRuntimeConfig = {
                     "disabledColor": "{surface.400}",
                     "placeholderColor": "{surface.400}",
                     "floatLabelColor": "{surface.400}",
-                    "floatLabelFocusColor": "{surface.400}",
+                    "floatLabelFocusColor": "{primary.color}",
+                    "floatLabelActiveColor": "{surface.400}",
                     "floatLabelInvalidColor": "{red.300}",
                     "iconColor": "{surface.400}",
                     "shadow": "0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgba(18, 18, 23, 0.05)"
@@ -817,6 +822,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -1633,12 +1639,14 @@ const _inlineRuntimeConfig = {
                   "margin": "0.5rem 0 0 0"
                 },
                 "month": {
+                  "padding": "0.375rem",
                   "borderRadius": "{content.border.radius}"
                 },
                 "yearView": {
                   "margin": "0.5rem 0 0 0"
                 },
                 "year": {
+                  "padding": "0.375rem",
                   "borderRadius": "{content.border.radius}"
                 },
                 "buttonbar": {
@@ -1749,6 +1757,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -1783,7 +1792,8 @@ const _inlineRuntimeConfig = {
                 },
                 "list": {
                   "padding": "{list.padding}",
-                  "gap": "{list.gap}"
+                  "gap": "{list.gap}",
+                  "mobileIndent": "1rem"
                 },
                 "option": {
                   "focusBackground": "{list.option.focus.background}",
@@ -1990,6 +2000,9 @@ const _inlineRuntimeConfig = {
                     "focusColor": "{navigation.item.icon.focus.color}",
                     "activeColor": "{navigation.item.icon.active.color}"
                   }
+                },
+                "submenu": {
+                  "mobileIndent": "1rem"
                 },
                 "submenuIcon": {
                   "size": "{navigation.submenu.icon.size}",
@@ -2400,12 +2413,57 @@ const _inlineRuntimeConfig = {
                   "gap": "0.5rem"
                 }
               },
-              "floatlabel": {
+              "iftalabel": {
                 "root": {
                   "color": "{form.field.float.label.color}",
                   "focusColor": "{form.field.float.label.focus.color}",
                   "invalidColor": "{form.field.float.label.invalid.color}",
-                  "transitionDuration": "0.2s"
+                  "transitionDuration": "0.2s",
+                  "positionX": "{form.field.padding.x}",
+                  "top": "{form.field.padding.y}",
+                  "fontSize": "0.75rem",
+                  "fontWeight": "400"
+                },
+                "input": {
+                  "paddingTop": "1.5rem",
+                  "paddingBottom": "{form.field.padding.y}"
+                }
+              },
+              "floatlabel": {
+                "root": {
+                  "color": "{form.field.float.label.color}",
+                  "focusColor": "{form.field.float.label.focus.color}",
+                  "activeColor": "{form.field.float.label.active.color}",
+                  "invalidColor": "{form.field.float.label.invalid.color}",
+                  "transitionDuration": "0.2s",
+                  "positionX": "{form.field.padding.x}",
+                  "positionY": "{form.field.padding.y}",
+                  "fontWeight": "500",
+                  "active": {
+                    "fontSize": "0.75rem",
+                    "fontWeight": "400"
+                  }
+                },
+                "over": {
+                  "active": {
+                    "top": "-1.25rem"
+                  }
+                },
+                "in": {
+                  "input": {
+                    "paddingTop": "1.5rem",
+                    "paddingBottom": "{form.field.padding.y}"
+                  },
+                  "active": {
+                    "top": "{form.field.padding.y}"
+                  }
+                },
+                "on": {
+                  "borderRadius": "{border.radius.xs}",
+                  "active": {
+                    "background": "{form.field.background}",
+                    "padding": "0 0.125rem"
+                  }
                 }
               },
               "galleria": {
@@ -2585,6 +2643,26 @@ const _inlineRuntimeConfig = {
                   }
                 }
               },
+              "imagecompare": {
+                "handle": {
+                  "size": "15px",
+                  "hoverSize": "30px",
+                  "background": "rgba(255,255,255,0.3)",
+                  "hoverBackground": "rgba(255,255,255,0.3)",
+                  "borderColor": "unset",
+                  "hoverBorderColor": "unset",
+                  "borderWidth": "0",
+                  "borderRadius": "50%",
+                  "transitionDuration": "{transition.duration}",
+                  "focusRing": {
+                    "width": "{focus.ring.width}",
+                    "style": "{focus.ring.style}",
+                    "color": "rgba(255,255,255,0.3)",
+                    "offset": "{focus.ring.offset}",
+                    "shadow": "{focus.ring.shadow}"
+                  }
+                }
+              },
               "inlinemessage": {
                 "root": {
                   "padding": "{form.field.padding.y} {form.field.padding.x}",
@@ -2743,7 +2821,9 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "borderColor": "{form.field.border.color}",
                   "color": "{form.field.icon.color}",
-                  "borderRadius": "{form.field.border.radius}"
+                  "borderRadius": "{form.field.border.radius}",
+                  "padding": "0.5rem",
+                  "minWidth": "2.5rem"
                 }
               },
               "inputnumber": {
@@ -2789,6 +2869,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -3304,6 +3385,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -3657,7 +3739,14 @@ const _inlineRuntimeConfig = {
               "rating": {
                 "root": {
                   "gap": "0.25rem",
-                  "transitionDuration": "{transition.duration}"
+                  "transitionDuration": "{transition.duration}",
+                  "focusRing": {
+                    "width": "{focus.ring.width}",
+                    "style": "{focus.ring.style}",
+                    "color": "{focus.ring.color}",
+                    "offset": "{focus.ring.offset}",
+                    "shadow": "{focus.ring.shadow}"
+                  }
                 },
                 "icon": {
                   "size": "1rem",
@@ -3699,6 +3788,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -4185,6 +4275,9 @@ const _inlineRuntimeConfig = {
                     "activeColor": "{navigation.item.icon.active.color}"
                   }
                 },
+                "submenu": {
+                  "mobileIndent": "1rem"
+                },
                 "submenuLabel": {
                   "padding": "{navigation.submenu.label.padding}",
                   "fontWeight": "{navigation.submenu.label.font.weight}",
@@ -4435,7 +4528,11 @@ const _inlineRuntimeConfig = {
                       "background": "{surface.0}",
                       "hoverBackground": "{surface.0}",
                       "checkedBackground": "{surface.0}",
-                      "checkedHoverBackground": "{surface.0}"
+                      "checkedHoverBackground": "{surface.0}",
+                      "color": "{text.muted.color}",
+                      "hoverColor": "{text.color}",
+                      "checkedColor": "{primary.color}",
+                      "checkedHoverColor": "{primary.hover.color}"
                     }
                   },
                   "dark": {
@@ -4449,7 +4546,11 @@ const _inlineRuntimeConfig = {
                       "background": "{surface.400}",
                       "hoverBackground": "{surface.300}",
                       "checkedBackground": "{surface.900}",
-                      "checkedHoverBackground": "{surface.900}"
+                      "checkedHoverBackground": "{surface.900}",
+                      "color": "{surface.900}",
+                      "hoverColor": "{surface.800}",
+                      "checkedColor": "{primary.color}",
+                      "checkedHoverColor": "{primary.hover.color}"
                     }
                   }
                 }
@@ -4510,6 +4611,7 @@ const _inlineRuntimeConfig = {
                   "background": "{form.field.background}",
                   "disabledBackground": "{form.field.disabled.background}",
                   "filledBackground": "{form.field.filled.background}",
+                  "filledHoverBackground": "{form.field.filled.hover.background}",
                   "filledFocusBackground": "{form.field.filled.focus.background}",
                   "borderColor": "{form.field.border.color}",
                   "hoverBorderColor": "{form.field.hover.border.color}",
@@ -4999,6 +5101,11 @@ const _inlineRuntimeConfig = {
           "name": "animateonscroll",
           "as": "AnimateOnScroll",
           "from": "primevue/animateonscroll"
+        },
+        {
+          "name": "keyfilter",
+          "as": "KeyFilter",
+          "from": "primevue/keyfilter"
         }
       ],
       "composables": [
@@ -5583,7 +5690,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _kQPzdXyyx0 = (function(nitro) {
+const _OZusTfan97 = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
@@ -5608,7 +5715,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _cEfdqM8YXA = (nitroApp) => {
+const _YDAiijnCAi = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -5763,22 +5870,23 @@ const { options = {} } = config;
 
 const stylesToTop = [].join('');
 const styleProps = {
-  
+    
 };
 const styles$2 = [
-  ,
-  BaseStyle && BaseStyle.getStyleSheet ? BaseStyle.getStyleSheet(undefined, styleProps) : ''
+    ,
+    BaseStyle && BaseStyle.getStyleSheet ? BaseStyle.getStyleSheet(undefined, styleProps) : ''
 ].join('');
 
 Theme.setTheme(options?.theme);
 
-const themes = [
+const themes = 
+[
     BaseStyle && BaseStyle.getCommonThemeStyleSheet ? BaseStyle.getCommonThemeStyleSheet(undefined, styleProps) : '',
     BaseStyle && BaseStyle.getThemeStyleSheet ? BaseStyle.getThemeStyleSheet(undefined, styleProps) : ''
 ].join('');
 
 const defineNitroPlugin = (def) => def;
-const _u1HIVfOqBE = defineNitroPlugin(async (nitroApp) => {
+const _Pn13Xu84gy = defineNitroPlugin(async (nitroApp) => {
   nitroApp.hooks.hook("render:html", (html) => {
     html.head.unshift(stylesToTop);
     html.head.push(styles$2);
@@ -5787,9 +5895,9 @@ const _u1HIVfOqBE = defineNitroPlugin(async (nitroApp) => {
 });
 
 const plugins = [
-  _kQPzdXyyx0,
-_cEfdqM8YXA,
-_u1HIVfOqBE
+  _OZusTfan97,
+_YDAiijnCAi,
+_Pn13Xu84gy
 ];
 
 const errorHandler = (async function errorhandler(error, event) {
@@ -5852,11 +5960,11 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_htOvMN = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_Shrlxr = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_htOvMN, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_htOvMN, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_Shrlxr, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_Shrlxr, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

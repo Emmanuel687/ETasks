@@ -111,7 +111,7 @@ const tasksDummy = ref([
 // Variables Start
 const appStore = useUserStore()
 const supabase = useSupabaseClient()
-
+const user = useSupabaseUser()
 // Variables End
 
 // Reactive Variables Start
@@ -134,6 +134,7 @@ const fetchTasks = async () => {
     let query = supabase
       .from('tasks')
       .select('*')
+
 
     // Only apply filters if they are not empty
     if (selectedTaskStatus.value) {
@@ -167,28 +168,30 @@ const fetchTasks = async () => {
 
 // HandleEditTask Start
 const updateTask = async (updatedTask) => {
-
-  console.log(updatedTask)
-
+  console.log('Updating task:', updatedTask)
   try {
     const { data, error } = await supabase
       .from('tasks')
       .update({ status: updatedTask.status })
       .eq('id', updatedTask.id)
-      .select()
+      .select('*')  // Select all columns to get the full updated row
 
     if (error) throw error
 
-    if (data) {
-      console.log('Task updated successfully:', data)
-
+    if (data && data.length > 0) {
+      console.log('Task updated successfully:', data[0])
       const index = tasks.value.findIndex(task => task.id === updatedTask.id)
       if (index !== -1) {
         tasks.value[index] = { ...tasks.value[index], ...data[0] }
+      } else {
+        console.warn('Updated task not found in local array')
       }
+    } else {
+      console.warn('No data returned after update')
     }
   } catch (error) {
     console.error('Error updating task:', error)
+    // Handle error (e.g., show error message to user)
   }
 }
 // HandleEditTask End
@@ -242,6 +245,7 @@ onMounted(async () => {
       </button>
     </section>
     <!-- My Tasks Header End -->
+
 
     <div class="flex gap-2">
       <SearchSimple v-model="searchTask" />

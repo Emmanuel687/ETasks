@@ -31,8 +31,9 @@
 
           <div>
             <button type="submit"
-              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Sign up
+              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              :disabled="isLoading">
+              {{ isLoading ? 'Signing up...' : 'Sign up' }}
             </button>
           </div>
         </form>
@@ -43,9 +44,7 @@
               <div class="w-full border-t border-gray-300"></div>
             </div>
             <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">
-                Or continue with
-              </span>
+              <span class="px-2 bg-white text-gray-500">Or continue with</span>
             </div>
           </div>
 
@@ -55,7 +54,6 @@
         </div>
       </div>
     </div>
-
     <p v-if="errorMessage" class="mt-2 text-center text-sm text-red-600">
       {{ errorMessage }}
     </p>
@@ -65,49 +63,69 @@
     </p>
   </div>
 </template>
-
 <script setup>
-// Imports Start
-import { useSupabaseClient, useRouter } from '#imports'
-// Imports End
+import { ref, computed } from 'vue'
 
-// Receive Props Start
-// Receive Props End
-
-// Variables Start
-const supabase = useSupabaseClient()
-const router = useRouter()
-// Variables Start
-
-// Reactive Variable Start
-
+// Reactive Variables
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const successMessage = ref('')
-// Reactive Variable End
+const isLoading = ref(false)
 
+// Supabase Client and Router
+const supabase = useSupabaseClient()
+const router = useRouter()
 
-// Handle Sign Up Start
-const handleSignup = async () => {
+// Basic form validation
+const isFormValid = computed(() => {
+  return email.value.trim() !== '' && password.value.length >= 6
+})
+
+// Handle Sign Up
+const handleSignup = async (event) => {
+  event.preventDefault();
+
+  if (!isFormValid.value) {
+    errorMessage.value = 'Please enter a valid email and a password with at least 6 characters.'
+    return
+  }
+
   try {
-    errorMessage.value = '' // Clear any previous error messages
-    successMessage.value = '' // Clear any previous success messages
-    const { error } = await supabase.auth.signUp({
+    isLoading.value = true
+    errorMessage.value = ''
+    successMessage.value = ''
+
+    const { data, error } = await supabase.auth.signUp({
       email: email.value,
       password: password.value,
     })
+
     if (error) throw error
+
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      throw new Error('Email address is already registered. Please try logging in.')
+    }
+
     // Handle successful signup
     successMessage.value = 'Sign up successful! Please check your email to verify your account.'
-    // You might want to redirect after a short delay or let the user click a link to login
+    email.value = ''
+    password.value = ''
+
+    // Optionally redirect to login or dashboard
     // setTimeout(() => router.push('/login'), 5000)
   } catch (error) {
-    // Handle error
     console.error('Error signing up:', error)
-    errorMessage.value = error.message || 'An error occurred during sign up'
+    if (error.message.includes('Email rate limit exceeded')) {
+      errorMessage.value = 'Too many sign-up attempts. Please try again later.'
+    } else {
+      errorMessage.value = error.message || 'An error occurred during sign up'
+    }
+  } finally {
+    isLoading.value = false
   }
 }
-// Handle Sign Up End
-
 </script>
+<style scoped>
+/* Add any component-specific styles here */
+</style>

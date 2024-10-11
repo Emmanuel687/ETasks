@@ -73,7 +73,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useSupabaseClient } from '#imports'
 
 const route = useRoute()
 const router = useRouter()
@@ -83,11 +82,19 @@ const isOpen = ref(false)
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))
 
 const handleLogout = async () => {
-  const { error } = await supabase.auth.signOut()
-  if (!error) {
-    router.push('/')
-  } else {
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+
+
+    await router.push('/')
+
+    // Optionally, show a success message
+    // toast.success('Logged out successfully')
+  } catch (error) {
     console.error('Error during logout:', error)
+    // Show error to user
+    // toast.error('Failed to log out. Please try again.')
   }
 }
 

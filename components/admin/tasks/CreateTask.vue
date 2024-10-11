@@ -17,6 +17,8 @@ const props = defineProps({
 
 // Variables Start
 const appStore = useUserStore()
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 // Variables Start
 
 
@@ -44,7 +46,6 @@ const closeDialog = () => {
 
 // HandleCreateTask Start
 const handleCreateTask = async () => {
-  const supabase = useSupabaseClient()
   const isSubmitting = ref(false)
   isSubmitting.value = true
 
@@ -63,7 +64,8 @@ const handleCreateTask = async () => {
         deadline: formattedDeadline,
         assignedTo: assignedTo,
         priority: selectedPriority.value,
-        status: 'open'
+        status: 'open',
+        user_id: user.id
       })
       .select();
 
@@ -113,6 +115,7 @@ const handleCreateTask = async () => {
           </button>
         </div>
         <!-- Close Task BTN End -->
+
 
         <!-- Create Task Form Start -->
         <Form @submit.prevent="handleCreateTask">
