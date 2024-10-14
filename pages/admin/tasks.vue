@@ -164,6 +164,7 @@ const fetchTasks = async () => {
 // Fetch Tasks End
 
 
+
 // HandleEditTask Start
 const updateTask = async (updatedTask) => {
   console.log('Updating task:', updatedTask)
@@ -201,13 +202,14 @@ function debounce(fn, delay) {
     timeoutId = setTimeout(() => fn(...args), delay)
   }
 }
-
 // Debounce End
 
+// Debounced Fetch Tasks Start
 const debouncedFetchTasks = debounce(fetchTasks, 300)
+// Debounced Fetch Tasks End
 
 
-
+// Watcher Start
 watch([selectedTaskStatus, searchTask], ([newStatus, newSearch], [oldStatus, oldSearch]) => {
   if (!newStatus && !newSearch.trim() && (oldStatus || oldSearch.trim())) {
     fetchTasks()
@@ -215,16 +217,13 @@ watch([selectedTaskStatus, searchTask], ([newStatus, newSearch], [oldStatus, old
     debouncedFetchTasks()
   }
 })
+// Watcher End
 
+// OnMounted Start
 onMounted(async () => {
   await fetchTasks()
 
 })
-
-
-
-// OnMounted Start
-
 // OnMounted End
 </script>
 

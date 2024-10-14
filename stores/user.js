@@ -4,6 +4,9 @@ export const useUserStore = defineStore('user', () => {
 
   // Reactive Variables Start
   const user = ref(null)
+  const tasks = ref([])
+  const loading = ref(false)
+  const error = ref('')
   const isAdmin = ref(false)
   const priority = ref([
     { name: "High" },
@@ -26,6 +29,12 @@ export const useUserStore = defineStore('user', () => {
     { name: "closed" },
   ]);
   // Reactive Variables End
+
+  // Normal Variables Start
+  const supabase = useSupabaseClient()
+  // Normal Variables Start
+
+
 
   // IsLoggedIn Start
   const isLoggedIn = computed(() => !!user.value)
@@ -64,6 +73,45 @@ export const useUserStore = defineStore('user', () => {
   // UpdateUserProfile End
 
 
+  // Fetch Tasks Start
+  const fetchTasks = async () => {
+    loading.value = true
+    error.value = null
+
+    try {
+      let query = supabase
+        .from('tasks')
+        .select('*')
+
+      query = query.order('created_at', { ascending: false })
+
+      const { data, error: supabaseError } = await query
+
+
+      tasks.value = data
+
+      if (supabaseError) throw supabaseError
+
+    } catch (e) {
+      error.value = e.message || 'An error occurred while fetching tasks'
+      console.error('Error fetching tasks:', e)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  // Fetch Tasks End
+
+
+
+  // OnMounted Start
+  onMounted(() => {
+    fetchTasks()
+  })
+  // OnMounted End
+
+
+
   return {
     user,
     isAdmin,
@@ -75,6 +123,8 @@ export const useUserStore = defineStore('user', () => {
     setIsAdmin,
     assignees,
     updateUserProfile,
-    taskStatus
+    fetchTasks,
+    taskStatus,
+    tasks
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <section class="dashboard rounded-md py-3 bg-white">
+  <section class="dashboard rounded-md py-3 p-2 bg-white">
     <div class="grid-cols-1 lg:grid-cols-2 gap-3" style="display: grid">
       <!-- All Task Table Start -->
       <AdminDashboardAllTasks />
