@@ -25,7 +25,7 @@
             </a>
           </div>
 
-          <span class="text-2xl font-bold">Admin Panel</span>
+          <span class="text-2xl font-bold">Task Panel</span>
         </NuxtLink>
       </div>
       <nav class="flex-1 px-2 py-4 space-y-2">

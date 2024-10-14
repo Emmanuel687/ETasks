@@ -31,7 +31,7 @@ const task_end_date = ref()
 
 
 // Emits Start
-const emits = defineEmits(['close'])
+const emits = defineEmits(['close', 'fetchTasks'])
 // Emits End
 
 // Close  Dialog Start
@@ -70,13 +70,15 @@ const handleCreateTask = async () => {
       throw error;
     }
 
-    console.log('Task created successfully:', data);
 
     task_name.value = '';
     task_description.value = '';
     task_end_date.value = '';
     selectedAssignee.value = '';
     selectedPriority.value = '';
+
+    emits('fetchTasks')
+    !props.openCreateTaskDialog
 
   } catch (error) {
     console.error('Error creating task:', error);

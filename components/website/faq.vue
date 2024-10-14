@@ -31,7 +31,12 @@ const faqQuestions = [
 
 </script>
 <template>
-  <!-- FAQ Section Start -->
+  <!-- <div class="w-full h-[402px] bg-cover bg-center flex items-center justify-center main-assestment">
+    <p class="text-[#ffff] leading-[50.4px] font-[600] text-center text-[20px] sm:text-[20px] lg:text-[42px]">
+      FAQ </p>
+  </div> -->
+
+  <!-- FAQ Content Section Start -->
   <section class="mt-24 mx-auto max-w-[85%]">
     <!-- FAQ Hero Start -->
     <section>
@@ -62,5 +67,12 @@ const faqQuestions = [
     </section>
     <!-- FAQ Questions && Answer End -->
   </section>
-  <!-- FAQ Section End -->
+  <!-- FAQ Content Section End -->
 </template>
+
+
+<style lang="scss" scoped>
+.main-assestment {
+  background-image: url("../../public/assets/backgroundimages/contactus.jpg");
+}
+</style>

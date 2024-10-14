@@ -254,7 +254,8 @@ onMounted(async () => {
 
     <!-- Create Tasks Dialog Start -->
     <section>
-      <AdminTasksCreateTask :openCreateTaskDialog="openCreateTaskDialog" @close="() => openCreateTaskDialog = false" />
+      <AdminTasksCreateTask :openCreateTaskDialog="openCreateTaskDialog" @close="() => openCreateTaskDialog = false"
+        @fetchTasks="fetchTasks" />
     </section>
     <!-- Create Tasks Dialog End -->
 
