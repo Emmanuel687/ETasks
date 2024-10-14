@@ -1,20 +1,14 @@
 
-import type tasksVue from '~/pages/admin/tasks.vue';
 <script setup>
 // Imports Start
 import { useUserStore } from "../../../stores/user.js"
+import { formatedAssignedToName } from '../../../utils/formatNamed'
 // Imports End
 
 // Variables Start
 const appStore = useUserStore()
 const tasks = appStore.tasks
 // Variables End
-
-
-
-
-
-
 
 
 // OnMounted Start
@@ -43,9 +37,7 @@ onMounted(() => {
       <!-- AssignedTo Start -->
       <Column field="assignedTo" header="Assigned To">
         <template #body="slotProps">
-
-          <span> {{ slotProps.data.first_name }}</span>
-
+          <span> {{ formatedAssignedToName(slotProps.data.assignedTo) }}</span>
         </template>
       </Column>
       <!-- AssignedTo End -->

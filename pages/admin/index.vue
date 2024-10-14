@@ -17,13 +17,6 @@
       <AdminDashboardChartsAnalytics />
       <!-- Charts Start-->
     </div>
-
-
-
-
-
-
-
   </section>
 </template>
 

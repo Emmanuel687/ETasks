@@ -1,36 +1,75 @@
+
 <script setup>
+// Imports Start
+import { useUserStore } from "../../../stores/user.js"
+import { formatedAssignedToName } from '../../../utils/formatNamed'
+// Imports End
+
+// Variables Start
+const appStore = useUserStore()
+const tasks = appStore.tasks
+// Variables End
 
 
-const products = ref([
-  {
-    id: '1000',
-    code: 'f230fh0g3',
-    name: 'Bamboo Watch',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Accessories',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-  },
-])
+// Pending Tasks
+const pendingTasks = tasks.filter(task => task.status === 'open')
+// Pending Tasks
+
+// OnMounted Start
+onMounted(() => {
+  appStore.fetchTasks()
+  pendingTasks
+})
+// OnMounted End
+
+
 
 </script>
 
 <template>
   <section class="border rounded-md p-3 h-[400px]">
+    <!-- Task Hero Start -->
     <div class="d-card-header">
       <h1 class="d-card-title !text-indigo-700">
-        Pending Tasks (7)
+        Open Tasks
+        ({{ pendingTasks.length }})
       </h1>
     </div>
-    <DataTable :value="products" tableStyle="min-width: 20rem">
-      <Column field="code" header="Code"></Column>
-      <Column field="name" header="Name"></Column>
-      <Column field="category" header="Category"></Column>
-      <Column field="quantity" header="Quantity"></Column>
+    <!-- Task Hero End -->
+    <!-- All Task Table Start -->
+    <DataTable :value="pendingTasks" tableStyle="min-width: 20rem">
+      <!-- AssignedTo Start -->
+      <Column field="assignedTo" header="Assigned To">
+        <template #body="slotProps">
+          <span> {{ formatedAssignedToName(slotProps.data.assignedTo) }}</span>
+        </template>
+      </Column>
+      <!-- AssignedTo End -->
+
+      <!-- TaskName Start -->
+      <Column field="taskName" header="Task Name"></Column>
+      <!-- TaskName End -->
+
+      <!-- Task Description Start -->
+      <Column field="description" header="Task Description">
+        <template #body="slotProps">
+          <span v-html="slotProps.data.description" />
+        </template>
+      </Column>
+      <!-- Task Description End -->
+
+      <!-- Deadline Start -->
+      <Column field="deadline" header="Deadline"></Column>
+      <!-- Deadline End -->
+
+      <!--Task Priority Start -->
+      <Column field="priority" header="Priority"></Column>
+      <!--Task Priority End -->
+
     </DataTable>
+    <!-- All Task Table End -->
+
   </section>
 </template>
+
 <style></style>

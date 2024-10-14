@@ -1,6 +1,8 @@
 <script setup>
 // Imports Start
 import draggable from 'vuedraggable';
+import { formatedAssignedToName } from '../../../utils/formatNamed'
+
 // Imports End
 
 
@@ -53,18 +55,6 @@ const getTasksByStatus = (status) => {
 // Get TasksByStatus End
 
 // Get Assigned To Name Start
-const getAssignedToName = (assignedTo) => {
-  try {
-    const parsed = typeof assignedTo === 'string' ? JSON.parse(assignedTo) : assignedTo;
-    return parsed && parsed.first_name && parsed.second_name
-      ? `${parsed.first_name} ${parsed.second_name}`
-      : 'Not assigned';
-  } catch (error) {
-    console.error('Error parsing assignedTo:', error);
-    return 'Not assigned';
-  }
-};
-// Get Assigned To Name End
 
 // ShowModal Start
 const handleShowModal = (item) => {
@@ -108,7 +98,7 @@ const handleShowModal = (item) => {
                 </span>
               </div>
               <div class="mt-2 text-xs text-gray-500">
-                Assigned to: {{ getAssignedToName(element.assignedTo) }}
+                Assigned to: {{ formatedAssignedToName(element.assignedTo) }}
               </div>
             </div>
           </template>

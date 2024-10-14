@@ -42,6 +42,7 @@ const closeDialog = () => {
 // Close Dialog End
 
 
+
 // HandleEditTask Start
 const handleEditTask = async () => {
 
@@ -88,6 +89,7 @@ const handleEditTask = async () => {
     // })
   } finally {
     isLoading.value = false
+    closeDialog()
   }
 }
 // HandleEditTask End
@@ -118,6 +120,8 @@ const handleShowEdit = () => {
             </button>
           </div>
           <!-- Close Task BTN End -->
+
+
 
           <!-- Task Title Start -->
           <div class="flex justify-between item-center mt-[10px]">
