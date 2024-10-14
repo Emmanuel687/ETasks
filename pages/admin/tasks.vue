@@ -244,12 +244,13 @@ onMounted(async () => {
     <!-- My Tasks Header End -->
 
 
-    <div class="flex gap-2 ml-[20px]">
+    <!-- Search Bar Start -->
+    <section class="flex gap-2 ml-[20px]">
       <SearchSimple v-model="searchTask" />
-
       <Dropdown v-model="selectedTaskStatus" filter showClear :options="appStore.taskStatus" option-label="name"
         option-value="name" />
-    </div>
+    </section>
+    <!-- Search Bar End -->
 
     <!-- Create Tasks Dialog Start -->
     <section>
