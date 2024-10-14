@@ -135,8 +135,6 @@ const fetchTasks = async () => {
       .from('tasks')
       .select('*')
 
-
-    // Only apply filters if they are not empty
     if (selectedTaskStatus.value) {
       query = query.eq('status', selectedTaskStatus.value)
     }
@@ -174,7 +172,7 @@ const updateTask = async (updatedTask) => {
       .from('tasks')
       .update({ status: updatedTask.status })
       .eq('id', updatedTask.id)
-      .select('*')  // Select all columns to get the full updated row
+      .select('*')
 
     if (error) throw error
 
@@ -191,7 +189,6 @@ const updateTask = async (updatedTask) => {
     }
   } catch (error) {
     console.error('Error updating task:', error)
-    // Handle error (e.g., show error message to user)
   }
 }
 // HandleEditTask End
@@ -235,11 +232,11 @@ onMounted(async () => {
   <section class="dashboard rounded-md py-3 bg-white">
     <!-- My Tasks Header Start -->
     <section class="flex justify-between items-end border-b-2 pb-1 px-3 mb-3">
-      <h1 class="text-lg text-[#3494ff] font-semibold">
+      <h1 class="text-lg text-indigo-700 font-semibold">
         My Tasks
       </h1>
 
-      <button class="btn-primary" @click="openCreateTaskDialog = true">
+      <button class="btn-primary bg-indigo-700 border-indigo-700" @click="openCreateTaskDialog = true">
         <i class="pi pi-plus"></i>
         New Task
       </button>
@@ -247,7 +244,7 @@ onMounted(async () => {
     <!-- My Tasks Header End -->
 
 
-    <div class="flex gap-2">
+    <div class="flex gap-2 ml-[20px]">
       <SearchSimple v-model="searchTask" />
 
       <Dropdown v-model="selectedTaskStatus" filter showClear :options="appStore.taskStatus" option-label="name"

@@ -1,10 +1,7 @@
 <script setup>
 // Imports Start
 import Editor from 'primevue/editor';
-
 import { useUserStore } from "@/stores/user"
-import { useSupabaseClient } from '#imports';
-
 // Imports End
 
 // Receive Props Start
@@ -49,7 +46,6 @@ const handleCreateTask = async () => {
   const isSubmitting = ref(false)
   isSubmitting.value = true
 
-  // Ensure deadline is correctly formatted
   const formattedDeadline = task_end_date.value ? new Date(task_end_date.value).toISOString() : null;
   const assignedTo = typeof selectedAssignee.value === 'string'
     ? JSON.parse(selectedAssignee.value)
@@ -71,12 +67,11 @@ const handleCreateTask = async () => {
 
     if (error) {
       console.error('Supabase error:', error);
-      throw error; // Re-throw the error to be caught in the catch block
+      throw error;
     }
 
     console.log('Task created successfully:', data);
 
-    // Reset form
     task_name.value = '';
     task_description.value = '';
     task_end_date.value = '';
@@ -85,27 +80,17 @@ const handleCreateTask = async () => {
 
   } catch (error) {
     console.error('Error creating task:', error);
-    // Consider showing an error message to the user
   } finally {
     isSubmitting.value = false;
   }
 };
 // HandleCreateTask End
-
-
-
-
-
-
-
 </script>
 <template>
   <Toast />
 
   <Dialog modal v-model:visible="props.openCreateTaskDialog" :style="{ width: '45rem' }">
-
     <template #container>
-
       <div class="p-3 bg-white rounded-lg">
         <!-- Close Task BTN Start -->
         <div class="flex justify-between">
@@ -144,18 +129,13 @@ const handleCreateTask = async () => {
               placeholder="Select Priority" class="w-full md:w-14rem" />
           </CustomInputContainer>
 
-          {{ selectedPriority }}
           <!-- Priority End -->
-
 
           <!-- Deadline Start -->
           <CustomInputContainer label="Deadline" class="w-full mt-[10px]">
             <Calendar v-model="task_end_date" />
-
-
           </CustomInputContainer>
           <!-- Deadline End -->
-
 
           <!-- Cancel & Save  BTN Start -->
           <div class="flex flex-row items-center justify-end space-x-4 ml-auto my-2.5 ">
