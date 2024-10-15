@@ -5,10 +5,10 @@ import { useUserStore } from "../../../stores/user.js"
 import { formatedAssignedToName } from '../../../utils/formatNamed'
 // Imports End
 
-// Variables Start
+// Reactive Variables Start
 const appStore = useUserStore()
 const tasks = computed(() => appStore.tasks)
-// Variables End
+// Reactive Variables End
 
 
 // Pending Tasks
@@ -34,9 +34,10 @@ onMounted(() => {
         Closed Tasks
         ({{ closedTasks.length }})
       </h1>
-
     </div>
     <!-- Task Hero End -->
+
+
     <!-- All Task Table Start -->
     <DataTable :value="closedTasks" tableStyle="min-width: 20rem">
       <!-- AssignedTo Start -->
