@@ -7,18 +7,17 @@ import { formatedAssignedToName } from '../../../utils/formatNamed'
 
 // Variables Start
 const appStore = useUserStore()
-const tasks = appStore.tasks
+const tasks = computed(() => appStore.tasks)
 // Variables End
 
 
 // Pending Tasks
-const pendingTasks = tasks.filter(task => task.status === 'open')
+const pendingTasks = computed(() => tasks.value.filter(task => task.status === 'open'))
 // Pending Tasks
 
 // OnMounted Start
 onMounted(() => {
   appStore.fetchTasks()
-  pendingTasks
 })
 // OnMounted End
 

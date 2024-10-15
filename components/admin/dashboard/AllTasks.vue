@@ -7,7 +7,7 @@ import { formatedAssignedToName } from '../../../utils/formatNamed'
 
 // Variables Start
 const appStore = useUserStore()
-const tasks = appStore.tasks
+const tasks = computed(() => appStore.tasks)
 // Variables End
 
 
