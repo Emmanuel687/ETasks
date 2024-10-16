@@ -23,7 +23,6 @@ onMounted(() => {
 // OnMounted End
 
 
-
 </script>
 
 <template>
@@ -40,6 +39,14 @@ onMounted(() => {
 
     <!-- All Task Table Start -->
     <DataTable :value="closedTasks" tableStyle="min-width: 20rem">
+      <!-- Empty DataTable Start -->
+      <template #empty>
+        <div>
+          <DatatableEmptyDatatable />
+        </div>
+      </template>
+      <!-- Empty DataTable End -->
+
       <!-- AssignedTo Start -->
       <Column field="assignedTo" header="Assigned To">
         <template #body="slotProps">
@@ -70,7 +77,6 @@ onMounted(() => {
 
     </DataTable>
     <!-- All Task Table End -->
-
   </section>
 </template>
 

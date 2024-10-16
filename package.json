@@ -21,6 +21,7 @@
     "quill-delta": "^5.1.0",
     "vue": "latest",
     "vue-router": "latest",
+    "vue3-apexcharts": "^1.7.0",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

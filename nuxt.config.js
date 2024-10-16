@@ -40,11 +40,15 @@ export default defineNuxtConfig({
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
+
     },
   },
   nitro: {
     preset: 'vercel',
   },
+  plugins: [
+    { src: '~/plugins/apexcharts.js', mode: 'client' }
+  ],
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,

@@ -4,6 +4,7 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'CustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
     'CustomQuill': typeof import("../components/Custom/Quill.vue")['default']
+    'DatatableEmptyDatatable': typeof import("../components/Datatable/EmptyDatatable.vue")['default']
     'SearchMain': typeof import("../components/Search/Main.vue")['default']
     'SearchSimple': typeof import("../components/Search/Simple.vue")['default']
     'AdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
@@ -11,6 +12,7 @@ interface _GlobalComponents {
     'AdminDashboardCompletedTasks': typeof import("../components/admin/dashboard/CompletedTasks.vue")['default']
     'AdminDashboardPendingTasks': typeof import("../components/admin/dashboard/PendingTasks.vue")['default']
     'AdminDashboardChartsAnalytics': typeof import("../components/admin/dashboard/charts/Analytics.vue")['default']
+    'AdminDashboardChartsGauge': typeof import("../components/admin/dashboard/charts/Gauge.vue")['default']
     'AdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'AdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
     'AdminTasks': typeof import("../components/admin/tasks/index.vue")['default']
@@ -44,6 +46,7 @@ interface _GlobalComponents {
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyCustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
     'LazyCustomQuill': typeof import("../components/Custom/Quill.vue")['default']
+    'LazyDatatableEmptyDatatable': typeof import("../components/Datatable/EmptyDatatable.vue")['default']
     'LazySearchMain': typeof import("../components/Search/Main.vue")['default']
     'LazySearchSimple': typeof import("../components/Search/Simple.vue")['default']
     'LazyAdminSidebar': typeof import("../components/admin/AdminSidebar.vue")['default']
@@ -51,6 +54,7 @@ interface _GlobalComponents {
     'LazyAdminDashboardCompletedTasks': typeof import("../components/admin/dashboard/CompletedTasks.vue")['default']
     'LazyAdminDashboardPendingTasks': typeof import("../components/admin/dashboard/PendingTasks.vue")['default']
     'LazyAdminDashboardChartsAnalytics': typeof import("../components/admin/dashboard/charts/Analytics.vue")['default']
+    'LazyAdminDashboardChartsGauge': typeof import("../components/admin/dashboard/charts/Gauge.vue")['default']
     'LazyAdminTasksCreateTask': typeof import("../components/admin/tasks/CreateTask.vue")['default']
     'LazyAdminTasksEditTask': typeof import("../components/admin/tasks/EditTask.vue")['default']
     'LazyAdminTasks': typeof import("../components/admin/tasks/index.vue")['default']
@@ -90,6 +94,7 @@ declare module 'vue' {
 
 export const CustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const CustomQuill: typeof import("../components/Custom/Quill.vue")['default']
+export const DatatableEmptyDatatable: typeof import("../components/Datatable/EmptyDatatable.vue")['default']
 export const SearchMain: typeof import("../components/Search/Main.vue")['default']
 export const SearchSimple: typeof import("../components/Search/Simple.vue")['default']
 export const AdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
@@ -97,6 +102,7 @@ export const AdminDashboardAllTasks: typeof import("../components/admin/dashboar
 export const AdminDashboardCompletedTasks: typeof import("../components/admin/dashboard/CompletedTasks.vue")['default']
 export const AdminDashboardPendingTasks: typeof import("../components/admin/dashboard/PendingTasks.vue")['default']
 export const AdminDashboardChartsAnalytics: typeof import("../components/admin/dashboard/charts/Analytics.vue")['default']
+export const AdminDashboardChartsGauge: typeof import("../components/admin/dashboard/charts/Gauge.vue")['default']
 export const AdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const AdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']
 export const AdminTasks: typeof import("../components/admin/tasks/index.vue")['default']
@@ -130,6 +136,7 @@ export const NuxtIsland: typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass@1
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/.pnpm/nuxt@3.13.2_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyCustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
 export const LazyCustomQuill: typeof import("../components/Custom/Quill.vue")['default']
+export const LazyDatatableEmptyDatatable: typeof import("../components/Datatable/EmptyDatatable.vue")['default']
 export const LazySearchMain: typeof import("../components/Search/Main.vue")['default']
 export const LazySearchSimple: typeof import("../components/Search/Simple.vue")['default']
 export const LazyAdminSidebar: typeof import("../components/admin/AdminSidebar.vue")['default']
@@ -137,6 +144,7 @@ export const LazyAdminDashboardAllTasks: typeof import("../components/admin/dash
 export const LazyAdminDashboardCompletedTasks: typeof import("../components/admin/dashboard/CompletedTasks.vue")['default']
 export const LazyAdminDashboardPendingTasks: typeof import("../components/admin/dashboard/PendingTasks.vue")['default']
 export const LazyAdminDashboardChartsAnalytics: typeof import("../components/admin/dashboard/charts/Analytics.vue")['default']
+export const LazyAdminDashboardChartsGauge: typeof import("../components/admin/dashboard/charts/Gauge.vue")['default']
 export const LazyAdminTasksCreateTask: typeof import("../components/admin/tasks/CreateTask.vue")['default']
 export const LazyAdminTasksEditTask: typeof import("../components/admin/tasks/EditTask.vue")['default']
 export const LazyAdminTasks: typeof import("../components/admin/tasks/index.vue")['default']

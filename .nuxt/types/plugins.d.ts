@@ -25,6 +25,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/.pnpm/@primevue+nuxt-module@4.1.0_vue@3.5.11/node_modules/@primevue/nuxt-module/dist/runtime/plugin.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_sass@1.79.4_vite@5.4.8/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default> &
+  InjectionType<typeof import("../../plugins/apexcharts.js").default> &
   InjectionType<typeof import("../../plugins/supabase.js").default>
 
 declare module '#app' {

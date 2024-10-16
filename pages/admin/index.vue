@@ -94,9 +94,12 @@ onMounted(() => {
       <!-- Task Category Card End -->
     </section>
 
+    <!-- Chart Section  Start -->
+    <section class="grid grid-cols-2">
+      <AdminDashboardChartsAnalytics />
+      <AdminDashboardChartsGauge />
+    </section>
+    <!-- Charts Section End -->
 
-
-    <!-- <AdminDashboardChartsAnalytics /> -->
-    <!-- Charts End-->
   </section>
 </template>

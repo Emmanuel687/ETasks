@@ -34,6 +34,15 @@ onMounted(() => {
     <!-- Task Hero End -->
     <!-- All Task Table Start -->
     <DataTable :value="tasks" tableStyle="min-width: 20rem">
+      <!-- Empty DataTable Start -->
+      <template #empty>
+        <div>
+          <DatatableEmptyDatatable />
+        </div>
+      </template>
+      <!-- Empty DataTable End -->
+
+
       <!-- AssignedTo Start -->
       <Column field="assignedTo" header="Assigned To">
         <template #body="slotProps">
