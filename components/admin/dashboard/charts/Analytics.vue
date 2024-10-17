@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="border rounded-md p-3 h-[400px]">
     <client-only>
       <apexchart width="500" type="line" :options="chartOptions" :series="series"></apexchart>
     </client-only>

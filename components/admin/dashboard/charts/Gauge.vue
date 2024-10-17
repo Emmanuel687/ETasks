@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div>
-      <h1 class="font-[600] text-[18px] text-[#161718]">
+  <section class="border rounded-md p-4 h-[400px] flex flex-col">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="font-semibold text-lg text-[#161718]">
         {{ totalPayrolls }} Task
       </h1>
     </div>
 
     <!-- Gauge Start -->
-    <div class="flex justify-center items-center mt-[20px] w-full h-full">
-      <div class="relative h-[290px]">
+    <section class="flex justify-center items-center mt-4 w-full h-[290px]">
+      <div class="relative w-full h-full">
         <svg class="w-full h-full" viewBox="0 0 200 100">
           <!-- Background arc -->
           <path d="M20 90 A 80 80 0 0 1 180 90" fill="none" stroke="#e5e7eb" stroke-width="10" />
@@ -24,30 +24,26 @@
           </text>
         </svg>
       </div>
-    </div>
+    </section>
     <!-- Gauge End -->
 
-    <div class="flex gap-8 px-8">
-      <div>
-        <p class="font-[500] text-[14px] text-[#8D98A9] font-500">Total</p>
-        <p>100%</p>
+    <div class="flex justify-around mt-[-20px]">
+      <div class="text-center">
+        <p class="font-medium text-sm text-[#8D98A9]">Total</p>
+        <p class="font-bold">{{ ((closedPayrolls / totalPayrolls) * 100).toFixed(2) }}%</p>
       </div>
 
-      <div>
-        <p class="font-[500] text-[14px] text-[#8D98A9] font-500">Completed</p>
-        <p>
-          {{ ((closedPayrolls / totalPayrolls) * 100).toFixed(2) }}%
-        </p>
+      <div class="text-center">
+        <p class="font-medium text-sm text-[#8D98A9]">Closed Task</p>
+        <p class="font-bold">{{ ((closedPayrolls / totalPayrolls) * 100).toFixed(2) }}%</p>
       </div>
 
-      <div>
-        <p class="font-[500] text-[14px] text-[#8D98A9] font-500">Pending</p>
-        <p>
-          {{ ((pendingPayrolls / totalPayrolls) * 100).toFixed(2) }}%
-        </p>
+      <div class="text-center">
+        <p class="font-medium text-sm text-[#8D98A9]">Open Tasks</p>
+        <p class="font-bold">{{ ((pendingPayrolls / totalPayrolls) * 100).toFixed(2) }}%</p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

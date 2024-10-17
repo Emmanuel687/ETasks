@@ -95,7 +95,7 @@ onMounted(() => {
     </section>
 
     <!-- Chart Section  Start -->
-    <section class="grid grid-cols-2">
+    <section class="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 !mt-5">
       <AdminDashboardChartsAnalytics />
       <AdminDashboardChartsGauge />
     </section>
