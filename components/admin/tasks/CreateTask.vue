@@ -78,6 +78,7 @@ const handleCreateTask = async () => {
     selectedPriority.value = '';
 
     emits('fetchTasks')
+    closeDialog()
 
   } catch (error) {
     console.error('Error creating task:', error);
