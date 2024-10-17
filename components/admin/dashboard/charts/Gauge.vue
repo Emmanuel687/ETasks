@@ -2,7 +2,7 @@
   <div>
     <div>
       <h1 class="font-[600] text-[18px] text-[#161718]">
-        {{ totalPayrolls }} Payrolls processed
+        {{ totalPayrolls }} Task
       </h1>
     </div>
 
