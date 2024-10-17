@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h1>This is Settings</h1>
-    <!-- Add your settings content here -->
-  </div>
+  <section>
+    <AdminSettings />
+  </section>
 </template>
+
+
 
 <script setup>
 definePageMeta({
