@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="border rounded-md p-3 h-[400px]">
+  <section class="border rounded-md p-3 h-[450px]">
     <!-- Task Hero Start -->
     <div class="d-card-header">
       <h1 class="d-card-title !text-indigo-700">
@@ -38,7 +38,8 @@ onMounted(() => {
 
 
     <!-- All Task Table Start -->
-    <DataTable :value="closedTasks" tableStyle="min-width: 20rem">
+    <DataTable :value="closedTasks" paginator :rows="4" :rowsPerPageOptions="[5, 10, 20, 50]"
+      tableStyle="min-width: 20rem" scrollable scrollHeight="310px">
       <!-- Empty DataTable Start -->
       <template #empty>
         <div>

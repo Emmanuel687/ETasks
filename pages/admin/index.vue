@@ -66,7 +66,7 @@ onMounted(() => {
       <!-- Task Components End -->
 
       <!-- Task Category Card Start -->
-      <section class="grid col-span-4 border rounded-md p-3 h-[400px]">
+      <section class="grid col-span-4 border rounded-md p-3 h-[450px]">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
           <div v-for="(task, index) in taskItems" :key="index">
             <Card class="w-full h-[135px] overflow-hidden" @click="handleShowTask(task.taskStatus)">
@@ -96,8 +96,8 @@ onMounted(() => {
 
     <!-- Chart Section  Start -->
     <section class="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 !mt-5">
-      <!-- <AdminDashboardChartsAnalytics />
-      <AdminDashboardChartsGauge /> -->
+      <AdminDashboardChartsAnalytics />
+      <AdminDashboardChartsGauge />
     </section>
     <!-- Charts Section End -->
 

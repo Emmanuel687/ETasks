@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
 
   const taskStatus = ref([
     { name: "open" },
-    { name: "submitted-for-approval" },
+    { name: "In Progress" },
     { name: "closed" },
   ]);
   // Reactive Variables End
@@ -99,7 +99,6 @@ export const useUserStore = defineStore('user', () => {
       loading.value = false
     }
   }
-
   // Fetch Tasks End
 
 

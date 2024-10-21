@@ -260,7 +260,9 @@ onMounted(async () => {
 
     <!-- Task List Start -->
     <section>
-      <AdminTasks :tasks="tasks" @update-task="updateTask" />
+      <AdminTasks :tasks="tasks" @update-task="updateTask" v-if="tasks.length" />
+      <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
+
     </section>
     <!-- Task List End -->
 
