@@ -4,6 +4,7 @@
     <main class="flex-grow p-6 overflow-auto">
       <slot />
     </main>
+
   </div>
 </template>
 
