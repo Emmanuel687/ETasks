@@ -47,6 +47,20 @@
           <span>Tasks</span>
         </NuxtLink>
 
+        <NuxtLink to="/admin/calendar"
+          class="flex items-center space-x-2 px-4 py-3 rounded transition duration-200 hover:bg-gray-100 hover:text-indigo-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+            <path d="M12 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M10 20h-6"></path>
+            <path d="M14 20h6"></path>
+            <path d="M12 15l-2 -2h-3a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-3l-2 2z"></path>
+            <path d="M12 6v2"></path>
+            <path d="M12 11v.01"></path>
+          </svg>
+          <span>Calendar</span>
+        </NuxtLink>
+
         <NuxtLink to="/admin/settings"
           class="flex items-center space-x-2 px-4 py-3 rounded transition duration-200 hover:bg-gray-100 hover:text-indigo-400">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFC300">
