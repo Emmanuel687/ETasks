@@ -84,12 +84,8 @@ export const useUserStore = defineStore('user', () => {
         .select('*')
 
       query = query.order('created_at', { ascending: false })
-
       const { data, error: supabaseError } = await query
-
-
       tasks.value = data
-
       if (supabaseError) throw supabaseError
 
     } catch (e) {

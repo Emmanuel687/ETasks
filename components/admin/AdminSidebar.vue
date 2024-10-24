@@ -49,14 +49,22 @@
 
         <NuxtLink to="/admin/calendar"
           class="flex items-center space-x-2 px-4 py-3 rounded transition duration-200 hover:bg-gray-100 hover:text-indigo-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-            <path d="M12 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-            <path d="M10 20h-6"></path>
-            <path d="M14 20h6"></path>
-            <path d="M12 15l-2 -2h-3a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-3l-2 2z"></path>
-            <path d="M12 6v2"></path>
-            <path d="M12 11v.01"></path>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+              fill="#E3F2FD" />
+            <path
+              d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+              stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M16 2V6" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 2V6" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 10H21" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="7" y="13" width="2" height="2" rx="0.5" fill="#1976D2" />
+            <rect x="11" y="13" width="2" height="2" rx="0.5" fill="#1976D2" />
+            <rect x="15" y="13" width="2" height="2" rx="0.5" fill="#1976D2" />
+            <rect x="7" y="17" width="2" height="2" rx="0.5" fill="#1976D2" />
+            <rect x="11" y="17" width="2" height="2" rx="0.5" fill="#1976D2" />
+            <rect x="15" y="17" width="2" height="2" rx="0.5" fill="#1976D2" />
           </svg>
           <span>Calendar</span>
         </NuxtLink>
