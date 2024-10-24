@@ -1,41 +1,61 @@
 <template>
   <div class="calendar-wrapper">
-
-    <!-- {{ appStore.tasks }} -->
-    <FullCalendar :options="calendarOptions" class="calendar" />
+    <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
   </div>
 </template>
 
 <script setup>
-
-// Imports Start
+import { ref, computed, watch } from 'vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useUserStore } from "@/stores/user"
-// Imports End
 
-
-// Reactive Variables Start
-const events = ref([
-  {
-    id: 1,
-    title: 'Meeting',
-    start: '2024-01-01T10:00:00',
-    end: '2024-01-01T12:00:00'
-  },
-  {
-    id: 2,
-    title: 'Conference',
-    start: '2024-01-15',
-    end: '2024-01-17'
-  }
-])
-// Reactive Variables End
-
-// Variables  Start
 const appStore = useUserStore()
+
+// Transform tasks to calendar events
+const formatTasksForCalendar = computed(() => {
+  if (!appStore.tasks?.length) return []
+
+  return appStore.tasks.map(task => {
+    let assignedTo = task.assignedTo
+    try {
+      assignedTo = typeof task.assignedTo === 'string' ?
+        JSON.parse(task.assignedTo) : task.assignedTo
+    } catch (e) {
+      console.error('Error parsing assignedTo:', e)
+      assignedTo = { first_name: 'Unknown', second_name: '' }
+    }
+
+    // Check if task has multiple priorities
+    const priorities = Array.isArray(task.priority) ? task.priority : [task.priority]
+
+    return {
+      id: task.id,
+      title: task.taskName,
+      start: new Date(task.deadline).toISOString(), // Ensure correct date format
+      allDay: true,
+      description: task.description,
+      extendedProps: {
+        priority: task.priority,
+        status: task.status,
+        assignedTo: assignedTo,
+        description: task.description
+      },
+      backgroundColor: getPriorityColor(priorities),
+      borderColor: getPriorityColor(priorities),
+      classNames: [
+        `priority-${task.priority.toString().toLowerCase()}`,
+        `status-${task.status.toLowerCase().replace(' ', '-')}`
+      ],
+    }
+  })
+})
+
+
+// Cale ndar options
+const calendarRef = ref(null) // For die ct access to FullCalendar API
 const calendarOptions = {
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
   initialView: 'dayGridMonth',
@@ -44,69 +64,75 @@ const calendarOptions = {
     center: 'title',
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
-  events: appStore.tasks,
+  events: formatTasksForCalendar.value,
   editable: true,
   selectable: true,
   selectMirror: true,
   dayMaxEvents: true,
   weekends: true,
-  // Event handlers
-  select: handleDateSelect,
-  eventClick: handleEventClick,
-  eventsSet: handleEvents,
-  eventDrop: handleEventDrop,
-  eventResize: handleEventResize
-}
 
-// Variables  Start
+  // Customize event rendering
+  eventContent: (arg) => {
+    const assignedTo = arg.event.extendedProps.assignedTo
+    const priority = arg.event.extendedProps.priority
+    const status = arg.event.extendedProps.status
 
-
-// Event handlers
-function handleDateSelect(selectInfo) {
-  const title = prompt('Please enter a title for the event:')
-  if (title) {
-    const newEvent = {
-      id: Date.now(),
-      title,
-      start: selectInfo.startStr,
-      end: selectInfo.endStr,
-      allDay: selectInfo.allDay
+    return {
+      html: `
+        <div class="task-event ${priority.toLowerCase()}-priority ${status.toLowerCase()}-status">
+          <div class="task-title">
+            ${arg.event.title}
+            ${priority === 'High' ? '⚡' : ''}
+          </div>
+          <div class="task-info">
+            <span class="task-priority">${priority}</span>
+            <span class="task-assignee">${assignedTo.first_name}</span>
+          </div>
+          <div class="task-status">${status}</div>
+        </div>
+      `
     }
-    events.value.push(newEvent)
+  },
+
+  // Event handlers
+  eventClick: (info) => {
+    console.log('Event clicked:', info.event)
+    emit('show-task-details', {
+      id: info.event.id,
+      title: info.event.title,
+      description: info.event.extendedProps.description,
+      priority: info.event.extendedProps.priority,
+      status: info.event.extendedProps.status,
+      assignedTo: info.event.extendedProps.assignedTo,
+      deadline: info.event.start
+    })
   }
 }
 
-function handleEventClick(clickInfo) {
-  if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'?`)) {
-    clickInfo.event.remove()
-    events.value = events.value.filter(event => event.id !== clickInfo.event.id)
+// Watch for task changes and manually refetch events if needed
+watch(formatTasksForCalendar, () => {
+  if (calendarRef.value) {
+    calendarRef.value.getApi().refetchEvents()
   }
+})
+
+// Utility function for priority colors
+function getPriorityColor(priorities) {
+  if (priorities.length > 1) {
+    return '#9C27B0' // Purple color for tasks with multiple priorities
+  }
+
+  const priority = priorities[0] // Single priority case
+  const colors = {
+    'High': '#ef5350',    // Red
+    'Medium': '#fb8c00',  // Orange
+    'Low': '#66bb6a'      // Green
+  }
+  return colors[priority] || '#9e9e9e'
 }
 
-function handleEvents(events) {
-  // Handle events update
-  console.log('Events updated:', events)
-}
-
-function handleEventDrop(dropInfo) {
-  // Handle event drag and drop
-  const { event } = dropInfo
-  const updatedEvent = events.value.find(e => e.id === parseInt(event.id))
-  if (updatedEvent) {
-    updatedEvent.start = event.startStr
-    updatedEvent.end = event.endStr
-  }
-}
-
-function handleEventResize(resizeInfo) {
-  // Handle event resize
-  const { event } = resizeInfo
-  const updatedEvent = events.value.find(e => e.id === parseInt(event.id))
-  if (updatedEvent) {
-    updatedEvent.end = event.endStr
-  }
-}
 </script>
+
 
 <style scoped>
 .calendar-wrapper {
@@ -123,7 +149,6 @@ function handleEventResize(resizeInfo) {
 }
 
 :deep(.fc) {
-  /* Full Calendar customization */
   --fc-border-color: #e5e7eb;
   --fc-button-bg-color: #1976D2;
   --fc-button-border-color: #1976D2;
@@ -133,16 +158,91 @@ function handleEventResize(resizeInfo) {
   --fc-button-active-border-color: #1565C0;
 }
 
-:deep(.fc-button) {
-  text-transform: capitalize !important;
+:deep(.task-event) {
+  padding: 4px;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+:deep(.task-title) {
+  font-weight: 500;
+  font-size: 0.9em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:deep(.task-info) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8em;
+  margin-top: 2px;
+}
+
+:deep(.task-priority) {
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+:deep(.task-status) {
+  font-size: 0.7em;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+:deep(.task-assignee) {
+  font-size: 0.8em;
+}
+
+/* Priority-based styling */
+:deep(.high-priority) {
+  border-left: 3px solid #ef5350;
+}
+
+:deep(.medium-priority) {
+  border-left: 3px solid #fb8c00;
+}
+
+:deep(.low-priority) {
+  border-left: 3px solid #66bb6a;
+}
+
+/* Status-based styling */
+:deep(.closed-status) {
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+
+:deep(.in-progress-status) {
+  border-style: dashed !important;
 }
 
 :deep(.fc-event) {
   cursor: pointer;
-  padding: 2px 4px;
+  transition: transform 0.1s ease;
 }
 
 :deep(.fc-event:hover) {
-  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .calendar {
+    height: 600px;
+  }
+
+  :deep(.fc-toolbar) {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 </style>

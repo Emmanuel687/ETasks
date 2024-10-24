@@ -13,6 +13,7 @@ declare module "#build/plugins/server.mjs";
 declare module "#build/test-component-wrapper.mjs";
 declare module "#build/primevue-style.mjs";
 declare module "#build/primevue-plugin.mjs";
+declare module "#build/devtools/settings.mjs";
 declare module "#build/routes.mjs";
 declare module "#build/pages.mjs";
 declare module "#build/router.options.mjs";
