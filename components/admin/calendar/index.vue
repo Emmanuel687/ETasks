@@ -1,7 +1,7 @@
 <template>
   <div class="calendar-wrapper">
 
-    {{ appStore.tasks }}
+    <!-- {{ appStore.tasks }} -->
     <FullCalendar :options="calendarOptions" class="calendar" />
   </div>
 </template>
@@ -44,7 +44,7 @@ const calendarOptions = {
     center: 'title',
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
-  events: events.value,
+  events: appStore.tasks,
   editable: true,
   selectable: true,
   selectMirror: true,
