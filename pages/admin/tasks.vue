@@ -235,13 +235,13 @@ onMounted(async () => {
         My Tasks
       </h1>
 
-      <button class="btn-primary bg-indigo-700 border-indigo-700" @click="openCreateTaskDialog = true">
+      <button class="btn-primary bg-indigo-700 border-indigo-700   hover:bg-indigo-600"
+        @click="openCreateTaskDialog = true">
         <i class="pi pi-plus"></i>
         New Task
       </button>
     </section>
     <!-- My Tasks Header End -->
-
 
     <!-- Search Bar Start -->
     <section class="flex gap-2 ml-[20px]">
@@ -260,9 +260,9 @@ onMounted(async () => {
 
     <!-- Task List Start -->
     <section>
-      <AdminTasks :tasks="tasks" @update-task="updateTask" v-if="tasks.length" />
-      <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
+      <CustomLoader v-if="loading" />
 
+      <AdminTasks :tasks="tasks" @update-task="updateTask" v-else="loading" />
     </section>
     <!-- Task List End -->
 

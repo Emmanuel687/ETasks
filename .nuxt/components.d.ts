@@ -3,6 +3,7 @@ import type { DefineComponent, SlotsType } from 'vue'
 type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refresh: () => Promise<void>}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, SlotsType<{ fallback: { error: unknown } }>>
 interface _GlobalComponents {
       'CustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
+    'CustomLoader': typeof import("../components/Custom/Loader.vue")['default']
     'CustomQuill': typeof import("../components/Custom/Quill.vue")['default']
     'DatatableEmptyDatatable': typeof import("../components/Datatable/EmptyDatatable.vue")['default']
     'SearchMain': typeof import("../components/Search/Main.vue")['default']
@@ -48,6 +49,7 @@ interface _GlobalComponents {
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyCustomInputContainer': typeof import("../components/Custom/InputContainer.vue")['default']
+    'LazyCustomLoader': typeof import("../components/Custom/Loader.vue")['default']
     'LazyCustomQuill': typeof import("../components/Custom/Quill.vue")['default']
     'LazyDatatableEmptyDatatable': typeof import("../components/Datatable/EmptyDatatable.vue")['default']
     'LazySearchMain': typeof import("../components/Search/Main.vue")['default']
@@ -99,6 +101,7 @@ declare module 'vue' {
 }
 
 export const CustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
+export const CustomLoader: typeof import("../components/Custom/Loader.vue")['default']
 export const CustomQuill: typeof import("../components/Custom/Quill.vue")['default']
 export const DatatableEmptyDatatable: typeof import("../components/Datatable/EmptyDatatable.vue")['default']
 export const SearchMain: typeof import("../components/Search/Main.vue")['default']
@@ -144,6 +147,7 @@ export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyCustomInputContainer: typeof import("../components/Custom/InputContainer.vue")['default']
+export const LazyCustomLoader: typeof import("../components/Custom/Loader.vue")['default']
 export const LazyCustomQuill: typeof import("../components/Custom/Quill.vue")['default']
 export const LazyDatatableEmptyDatatable: typeof import("../components/Datatable/EmptyDatatable.vue")['default']
 export const LazySearchMain: typeof import("../components/Search/Main.vue")['default']

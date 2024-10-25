@@ -1,5 +1,6 @@
 <template>
   <div class="calendar-wrapper">
+
     <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
   </div>
 </template>

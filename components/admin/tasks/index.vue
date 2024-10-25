@@ -63,9 +63,9 @@ const handleShowModal = (item) => {
 <template>
   <!-- Task List && KanBanBoard Start -->
   <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-3 overflow-x-auto"
-    style="height: calc(100vh - 210px);">
+    style="height: calc(100vh - 210px);" v-if="props.tasks.length">
 
-    <div v-for="status in statuses" :key="status" v-if="props.tasks.length"
+    <div v-for="status in statuses" :key="status"
       class="bg-gray-100 py-4 px-3 rounded-lg shadow-md flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full flex flex-col">
 
       <!-- Column Header Start -->
@@ -127,8 +127,12 @@ const handleShowModal = (item) => {
     </div>
 
 
+
+
   </div>
   <!-- Task List &&  KanBanBoard End -->
+
+  <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
 
 
 
