@@ -66,7 +66,7 @@ const handleShowModal = (item) => {
     style="height: calc(100vh - 210px);">
 
     <div v-for="status in statuses" :key="status" v-if="props.tasks.length"
-      class="bg-gray-100 py-4 px-3 rounded-lg shadow-md flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[400px] h-[calc(100vh-250px)] sm:h-full flex flex-col">
+      class="bg-gray-100 py-4 px-3 rounded-lg shadow-md flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full flex flex-col">
 
       <!-- Column Header Start -->
       <h2 class="text-lg font-semibold mb-3 text-gray-700 border-b pb-2">{{ formatStatus(status) }}</h2>
