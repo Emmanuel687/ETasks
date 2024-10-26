@@ -1,4 +1,4 @@
-# Your Project Name
+# Etasks
 
 ## Description
 This project is a comprehensive web application built with Nuxt 3 and Supabase, featuring both a public-facing website and a secure admin dashboard. It combines a user-friendly public interface with a powerful administrative backend, all wrapped in a modern, responsive design.
