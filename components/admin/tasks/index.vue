@@ -1,7 +1,89 @@
+<template>
+  <div v-if="props.tasks.length"
+    class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 p-4 overflow-x-auto h-[calc(100vh-210px)]">
+    <!-- Status Column -->
+    <div v-for="status in statuses" :key="status"
+      class="flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full">
+      <!-- Column Header -->
+      <div class="bg-white rounded-t-xl p-4 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 rounded-full" :class="{
+              'bg-green-400': status === 'closed',
+              'bg-yellow-400': status === 'in-progress',
+              'bg-blue-400': status === 'open'
+            }"></div>
+            <h2 class="text-lg font-semibold text-gray-700">{{ formatStatus(status) }}</h2>
+          </div>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{{ getTasksByStatus(status).length
+          }}</span>
+        </div>
+      </div>
+
+      <!-- Tasks Container -->
+      <div class="bg-gray-50 p-4 rounded-b-xl h-full">
+        <client-only>
+          <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
+            class="space-y-4 h-full overflow-y-auto custom-scrollbar" @change="(event) => onDragChange(event, status)">
+            <!-- Task Card -->
+            <template #item="{ element }">
+              <div
+                class="bg-white p-5 rounded-xl cursor-move border border-gray-100 hover:shadow-lg hover:border-blue-200 transform transition-all duration-300 ease-out relative group"
+                @click="handleShowModal(element)">
+                <!-- Priority Badge -->
+                <div
+                  class="absolute -top-[-14px] -right-[-10px] px-2.5 py-1 rounded-full text-xs font-medium shadow-sm transform transition-transform group-hover:scale-110"
+                  :class="{
+                    'bg-red-100 text-red-600': element.priority === 'High',
+                    'bg-yellow-100 text-yellow-600': element.priority === 'Medium',
+                    'bg-green-100 text-green-600': element.priority === 'Low'
+                  }">{{ element.priority }}</div>
+
+                <!-- Title -->
+                <h3 class="font-semibold text-gray-800 text-base mb-2 pr-16">{{ element.taskName }}</h3>
+
+                <!-- Description -->
+                <div class="bg-gray-50 rounded-lg p-3 mb-3 group-hover:bg-blue-50/50 transition-colors">
+                  <p v-html="element.description" class="text-sm text-gray-600" :class="{ 'line-clamp-2': !isExpanded }">
+                  </p>
+                  <button @click="toggleExpand" class="expand-btn">{{ isExpanded ? 'Show Less' : 'Show More'
+                  }}</button>
+                </div>
+
+                <!-- Footer -->
+                <div class="flex items-center justify-between mt-3">
+                  <!-- Due Date -->
+                  <div class="flex items-center space-x-2 text-sm text-gray-600">
+                    <i class="pi pi-calendar text-blue-500"></i>
+                    <span>{{ formatDate(element.deadline) }}</span>
+                  </div>
+
+                  <!-- Drag Handle Indicator -->
+                  <div class="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="pi pi-grip-vertical"></i>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </draggable>
+        </client-only>
+      </div>
+    </div>
+  </div>
+
+  <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
+
+  <!-- Edit Task Dialog Start -->
+  <section>
+    <AdminTasksEditTask :showEditModal="showEditModal" @close="showEditModal = false" :task="task" :tasks="props.tasks" />
+  </section>
+  <!-- Edit Task Dialog End -->
+</template>
+
 <script setup>
 // Imports Start
 import draggable from 'vuedraggable';
-import { formatedAssignedToName } from '../../../utils/formatNamed'
+import { ref, defineProps, defineEmits } from 'vue';
 // Imports End
 
 // Receive Props Start
@@ -13,14 +95,11 @@ const props = defineProps({
 });
 // Receive Props End
 
-// Reactive Variable Start
+// Reactive Variables Start
 const showEditModal = ref(false);
-const task = ref('')
-// Reactive Variable End
-
-// Variables Start
+const task = ref('');
+const isExpanded = ref(false);
 const statuses = ['open', 'In Progress', 'closed'];
-// Variables End
 
 // Emits Start
 const emit = defineEmits(['update-task']);
@@ -32,8 +111,8 @@ const onDragChange = (event, newStatus) => {
     const task = event.added.element;
     const updatedTask = { ...task, status: newStatus };
     emit('update-task', updatedTask);
-  };
-}
+  }
+};
 // OnDragChange Method End
 
 // Format Status Start
@@ -42,103 +121,61 @@ const formatStatus = (status) => {
 };
 // Format Status End
 
-// Get TasksByStatus Start
+// Format Date Start
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(date);
+}
+// Format Date End
+
+// Get Tasks By Status Start
 const getTasksByStatus = (status) => {
   return props.tasks.filter(task => task.status === status);
 };
-// Get TasksByStatus End
+// Get Tasks By Status End
 
-// Get Assigned To Name Start
-
-// ShowModal Start
+// Show Modal Start
 const handleShowModal = (item) => {
   showEditModal.value = true;
-  task.value = item
+  task.value = item;
 };
-// ShowModal End
+// Show Modal End
 
-</script> 
+// Toggle Expand Start
+const toggleExpand = () => {
+  isExpanded.value = !isExpanded.value;
+};
+// Toggle Expand End
+</script>
 
+<style scoped>
+/* Button for expanding/collapsing */
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #2563EB;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
-<template>
-  <!-- Task List && KanBanBoard Start -->
-  <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-3 overflow-x-auto"
-    style="height: calc(100vh - 210px);" v-if="props.tasks.length">
+  &:hover {
+    color: #1D4ED8;
+    text-decoration: underline;
+  }
+}
 
-    <div v-for="status in statuses" :key="status"
-      class="bg-gray-100 py-4 px-3 rounded-lg shadow-md flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full flex flex-col">
-
-      <!-- Column Header Start -->
-      <h2 class="text-lg font-semibold mb-3 text-gray-700 border-b pb-2">{{ formatStatus(status) }}</h2>
-      <!-- Column Header End -->
-
-      <!-- Draggable Task List -->
-      <client-only>
-        <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
-          class="overflow-y-auto flex-1 space-y-4 px-2 sm:px-3 transition-all ease-in-out duration-200"
-          @change="(event) => onDragChange(event, status)">
-
-          <!-- Task Card -->
-          <template #item="{ element }">
-            <div
-              class="bg-white p-4 rounded-lg cursor-move shadow hover:shadow-lg hover:bg-blue-50 hover:scale-105 transition transform duration-200 ease-in-out"
-              @click="handleShowModal(element)">
-              <!-- Task Title Start -->
-              <h3 class="font-semibold text-gray-800 truncate">{{ element.taskName }}</h3>
-              <!-- Task Title End -->
-
-              <!-- Task Description Start -->
-              <p v-html="element.description" class="text-sm text-gray-600 truncate"></p>
-              <!-- Task Description End -->
-
-              <!-- Task Metadata -->
-              <div class="flex flex-wrap justify-between items-center mt-3">
-                <!-- Priority Start -->
-                <div class="text-xs font-medium flex items-center space-x-2" :class="{
-                  'text-red-500': element.priority === 'High',
-                  'text-yellow-500': element.priority === 'Medium',
-                  'text-green-500': element.priority === 'Low'
-                }">
-                  <img src="../../../public/assets/svgs/Icons/flag.svg" class="w-4 h-4" alt="Priority flag">
-                  <span>{{ element.priority }}</span>
-                </div>
-
-                <!-- Priority End -->
-
-
-                <!-- Due Date Start -->
-                <span class="text-xs text-gray-500">
-                  Due: {{ new Date(element.deadline).toLocaleDateString() }}
-                </span>
-                <!-- Due Date End -->
-
-              </div>
-
-              <!-- Assigned To Start -->
-              <div class="mt-2 text-xs text-gray-500">
-                Assigned to: {{ formatedAssignedToName(element.assignedTo) }}
-              </div>
-              <!-- Assigned To End -->
-
-            </div>
-          </template>
-        </draggable>
-      </client-only>
-    </div>
-
-
-
-
-  </div>
-  <!-- Task List &&  KanBanBoard End -->
-
-  <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
-
-
-
-  <!-- Edit Task Dialog Start -->
-  <section>
-    <AdminTasksEditTask :showEditModal="showEditModal" @close="showEditModal = false" :task="task" :tasks="props.tasks" />
-  </section>
-  <!-- Edit Task Dialog End -->
-</template>
+/* Line clamp for collapsed state */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+</style>

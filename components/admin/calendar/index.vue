@@ -1,25 +1,51 @@
+
+
 <template>
   <div class="calendar-wrapper">
-
+    <AdminCalendarDialogsTaskListDetails :calendarTasksList="calendarTasksList" :showTaskListDialog="showTaskListDialog"
+      @close="showTaskListDialog = false" />
     <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
   </div>
 </template>
 
 <script setup>
-// import { ref, computed, watch } from 'vue'
+// Imports Start
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { useUserStore } from "@/stores/user"
+// Imports End
 
+// Store Start
 const appStore = useUserStore()
+// Store End
 
-// Transform tasks to calendar events
+// Reactive Variables Start
+const calendarRef = ref(null)
+const showTaskListDialog = ref(false)
+const calendarTasksList = reactive(
+  {
+    id: "",
+    title: "",
+    description: "",
+    priority: "",
+    status: "",
+    assignedTo: "",
+    deadline: ""
+  }
+)
+// Reactive Variables End
+
+// Tasks Start
+const tasks = computed(() => appStore.tasks)
+// Tasks End
+
+// Format Tasks For Calendar Start
 const formatTasksForCalendar = computed(() => {
-  if (!appStore.tasks?.length) return []
+  if (!tasks.value?.length) return []
 
-  return appStore.tasks.map(task => {
+  return tasks?.value.map(task => {
     let assignedTo = task.assignedTo
     try {
       assignedTo = typeof task.assignedTo === 'string' ?
@@ -35,7 +61,7 @@ const formatTasksForCalendar = computed(() => {
     return {
       id: task.id,
       title: task.taskName,
-      start: new Date(task.deadline).toISOString(), // Ensure correct date format
+      start: new Date(task.deadline).toISOString(),
       allDay: true,
       description: task.description,
       extendedProps: {
@@ -53,10 +79,9 @@ const formatTasksForCalendar = computed(() => {
     }
   })
 })
+// Format Tasks For Calendar End
 
-
-// Cale ndar options
-const calendarRef = ref(null) // For die ct access to FullCalendar API
+// Calendar options Start
 const calendarOptions = {
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
   initialView: 'dayGridMonth',
@@ -97,41 +122,51 @@ const calendarOptions = {
 
   // Event handlers
   eventClick: (info) => {
-    console.log('Event clicked:', info.event)
-    emit('show-task-details', {
-      id: info.event.id,
-      title: info.event.title,
-      description: info.event.extendedProps.description,
-      priority: info.event.extendedProps.priority,
-      status: info.event.extendedProps.status,
-      assignedTo: info.event.extendedProps.assignedTo,
-      deadline: info.event.start
-    })
+
+    calendarTasksList.id = info.event.id
+    calendarTasksList.title = info.event.title
+    calendarTasksList.description = info.event.extendedProps.description
+    calendarTasksList.priority = info.event.extendedProps.priority
+    calendarTasksList.status = info.event.extendedProps.status
+    calendarTasksList.assignedTo = info.event.extendedProps.assignedTo
+    calendarTasksList.deadline = info.event.start
+
+    showTaskListDialog.value = true
+
+
   }
 }
+// Calendar options End
 
-// Watch for task changes and manually refetch events if needed
-watch(formatTasksForCalendar, () => {
-  if (calendarRef.value) {
-    calendarRef.value.getApi().refetchEvents()
-  }
-})
-
-// Utility function for priority colors
+// Priority Color Start
 function getPriorityColor(priorities) {
   if (priorities.length > 1) {
     return '#9C27B0' // Purple color for tasks with multiple priorities
   }
 
-  const priority = priorities[0] // Single priority case
+  const priority = priorities[0]
   const colors = {
-    'High': '#ef5350',    // Red
-    'Medium': '#fb8c00',  // Orange
-    'Low': '#66bb6a'      // Green
+    'High': '#ef5350',
+    'Medium': '#fb8c00',
+    'Low': '#66bb6a'
   }
   return colors[priority] || '#9e9e9e'
 }
+// Priority Color End
 
+// Watchers Start
+watch(formatTasksForCalendar, () => {
+  if (calendarRef.value) {
+    calendarRef.value.getApi().refetchEvents()
+  }
+})
+// Watchers End
+
+// OnMounted Start
+onMounted(() => {
+  appStore.fetchTasks()
+})
+// OnMounted End
 </script>
 
 
