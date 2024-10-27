@@ -4,8 +4,8 @@
     <!-- Status Column -->
     <div v-for="status in statuses" :key="status"
       class="flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full">
-      <!-- Column Header -->
-      <div class="bg-white rounded-t-xl p-4 shadow-sm border border-gray-100">
+      <!-- Column Header Start -->
+      <section class="bg-white rounded-t-xl p-4 shadow-sm border border-gray-100">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
             <div class="w-2 h-2 rounded-full" :class="{
@@ -18,60 +18,103 @@
           <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{{ getTasksByStatus(status).length
           }}</span>
         </div>
-      </div>
+      </section>
+      <!-- Column Header End -->
 
-      <!-- Tasks Container -->
-      <div class="bg-gray-50 p-4 rounded-b-xl h-full">
+
+      <!-- Tasks Container Start -->
+      <section class="bg-gray-50 p-4 rounded-b-xl h-full">
         <client-only>
           <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
             class="space-y-4 h-full overflow-y-auto custom-scrollbar" @change="(event) => onDragChange(event, status)">
-            <!-- Task Card -->
+            <!-- Task Card Start -->
             <template #item="{ element }">
               <div
-                class="bg-white p-5 rounded-xl cursor-move border border-gray-100 hover:shadow-lg hover:border-blue-200 transform transition-all duration-300 ease-out relative group"
+                class="bg-white p-5 rounded-xl cursor-move border border-gray-100 hover:shadow-lg hover:border-purple-200 transform transition-all duration-300 ease-out relative group"
                 @click="handleShowModal(element)">
-                <!-- Priority Badge -->
+
+                <!-- Priority Badge Start -->
                 <div
                   class="absolute -top-[-14px] -right-[-10px] px-2.5 py-1 rounded-full text-xs font-medium shadow-sm transform transition-transform group-hover:scale-110"
                   :class="{
                     'bg-red-100 text-red-600': element.priority === 'High',
                     'bg-yellow-100 text-yellow-600': element.priority === 'Medium',
                     'bg-green-100 text-green-600': element.priority === 'Low'
-                  }">{{ element.priority }}</div>
+                  }">{{ element.priority }}
+                </div>
+                <!-- Priority Badge End -->
 
-                <!-- Title -->
+
+                <!-- Title Start-->
                 <h3 class="font-semibold text-gray-800 text-base mb-2 pr-16">{{ element.taskName }}</h3>
+                <!-- Title End-->
 
-                <!-- Description -->
-                <div class="bg-gray-50 rounded-lg p-3 mb-3 group-hover:bg-blue-50/50 transition-colors">
-                  <p v-html="element.description" class="text-sm text-gray-600" :class="{ 'line-clamp-2': !isExpanded }">
-                  </p>
-                  <button @click="toggleExpand" class="expand-btn">{{ isExpanded ? 'Show Less' : 'Show More'
-                  }}</button>
-                </div>
 
-                <!-- Footer -->
-                <div class="flex items-center justify-between mt-3">
-                  <!-- Due Date -->
-                  <div class="flex items-center space-x-2 text-sm text-gray-600">
-                    <i class="pi pi-calendar text-blue-500"></i>
-                    <span>{{ formatDate(element.deadline) }}</span>
+                <!-- Description Start -->
+                <section class="bg-gray-50 rounded-lg p-4 mb-4 group-hover:bg-blue-50/50 transition-colors">
+                  <div class="relative">
+                    <p v-html="element.description" class="text-sm text-gray-600"
+                      :class="{ 'line-clamp-3': !isExpanded }"></p>
+                    <div v-if="!isExpanded"
+                      class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-50 to-transparent"></div>
                   </div>
 
-                  <!-- Drag Handle Indicator -->
+                  <button @click.stop="toggleExpand"
+                    class="mt-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none flex items-center">
+                    <span class="mr-1">{{ isExpanded ? 'Show Less' : 'Show More' }}</span>
+                    <svg v-if="!isExpanded" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-700"
+                      viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-700" viewBox="0 0 20 20"
+                      fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </section>
+                <!-- Description End -->
+
+
+
+                <!-- Deadline Start -->
+                <section class="flex items-center justify-between mt-3">
+                  <div class="flex items-center space-x-2 text-sm font-medium text-red-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <span>Deadline: {{ formatDate(element.deadline) }}</span>
+                  </div>
                   <div class="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i class="pi pi-grip-vertical"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                    </svg>
                   </div>
-                </div>
+                </section>
+                <!-- Deadline End -->
+
               </div>
             </template>
+            <!-- Task Card End -->
+
           </draggable>
         </client-only>
-      </div>
+      </section>
+      <!-- Tasks Container End -->
+
     </div>
   </div>
 
-  <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" v-else />
+
+  <section v-else>
+    <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" />
+  </section>
 
   <!-- Edit Task Dialog Start -->
   <section>

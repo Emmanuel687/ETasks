@@ -111,82 +111,76 @@ const handleShowEdit = () => {
   <section>
     <Dialog modal v-model:visible="props.showEditModal" :style="{ width: '45rem' }">
       <template #container>
-        <div class="p-3 bg-white rounded-lg">
-          <!-- Close Task BTN Start -->
-          <div class="flex justify-between">
-            <p class="text-[#1a40e2]">Edit task</p>
-            <button @click="closeDialog">
-              <i class="pi pi-times" />
+        <div class="p-6 bg-white rounded-lg shadow-md">
+          <!-- Header Start -->
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-[20px] font-semibold text-indigo-600">Edit Task</h2>
+            <button @click="closeDialog" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
           </div>
-          <!-- Close Task BTN End -->
-
-
+          <Divider />
+          <!-- Header End -->
 
           <!-- Task Title Start -->
-          <div class="flex justify-between item-center mt-[10px]">
-            <!-- Tasks Title -->
-            <div class="flex space-x-[10px] items-center">
-
-              <!-- Text Input Start -->
-              <div v-if="showEdit">
-                <InputText type="text" v-model="task.taskName" />
+          <div class="flex justify-between items-center mt-6">
+            <div class="flex items-center space-x-2">
+              <div v-if="showEdit" class="w-full">
+                <InputText type="text" v-model="task.taskName"
+                  class="w-full border-gray-300 focus:border-blue-500 focus:ring-indigo-600" />
               </div>
-              <!-- Text Input End -->
-
-
-              <!-- Title Text Start -->
-              <div v-else class="flex space-x-2 items-center" style="width: 20px; height: 20px;">
-                <img src="../../../public/assets/svgs/Icons/tick.svg">
-                <div class="flex items-center space-x-2 !p-[2px]">
-                  <span class="font-semibold !text-[17px] text-nowrap">{{ task.taskId }} -</span>
-                  <span class="text-lg first-letter:uppercase text-nowrap ">{{ task.taskName }}</span>
+              <div v-else class="flex items-center space-x-2">
+                <img src="../../../public/assets/svgs/Icons/tick.svg" alt="Tick Icon" class="w-8 h-8">
+                <div class="flex items-center space-x-2">
+                  <span class="text-lg font-semibold">{{ task.taskId }} -</span>
+                  <span class="text-xl capitalize">{{ task.taskName }}</span>
                 </div>
               </div>
-              <!-- Title Text End -->
             </div>
-            <!-- Task Title-->
-
-            <!-- Save && Close BTN Start -->
-            <div class="flex space-x-2" v-if="showEdit">
-              <button class="btn-primary !pt-[1px] !pb-[1px]" @click="handleEditTask">Save </button>
-              <button class="btn-primary outlined" @click="handleShowEdit()">Close </button>
+            <div class="flex space-x-2">
+              <button v-if="showEdit"
+                class="px-4 py-2 text-sm font-medium text-white bg-indigo-700 rounded-md shadow-sm hover:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                @click="handleEditTask">Save</button>
+              <button v-if="showEdit"
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                @click="handleShowEdit()">Close</button>
+              <button v-else
+                class="px-4 py-2 text-sm font-medium text-white bg-indigo-700 rounded-md shadow-sm hover:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                @click="handleShowEdit()">Edit</button>
             </div>
-            <!-- Save && Close BTN End -->
-
-            <!-- Edit Start -->
-            <div class="flex space-x-2" v-else>
-              <button class="btn-primary !pt-[1px] !pb-[1px]" @click="handleShowEdit()">Edit </button>
-            </div>
-            <!-- Edit End -->
           </div>
           <!-- Task Title End -->
 
           <!-- Task Description Start -->
-          <div class="mt-[30px]">
-            <p class="text-base font-semibold underline"> Description</p>
-            <Editor v-if="showEdit" v-model="task.description" editorStyle="height: 120px" />
-            <p v-else v-html="task?.description" class="!text-[10px] my-2 text-wrap h-[250px] overflow-y-scroll" />
-
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold mb-2">Description</h3>
+            <Editor v-if="showEdit" v-model="task.description" editorStyle="height: 150px"
+              class="border-gray-300 focus:border-blue-500 focus:ring-indigo-600" />
+            <div v-else class="prose prose-sm max-w-none" v-html="task?.description"></div>
           </div>
           <!-- Task Description End -->
 
           <!-- Priority Start -->
-          <div class="mt-[30px]">
-            <p class="text-base font-semibold underline"> Priority</p>
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold mb-2">Priority</h3>
             <Dropdown v-if="showEdit" v-model="task.priority" :options="appStore.priority" optionLabel="name"
-              option-value="name" placeholder="Select Priority" class="w-full md:w-14rem" />
-            <p v-else>{{ task.priority }}</p>
+              option-value="name" placeholder="Select Priority"
+              class="w-full md:w-64 border-gray-300 focus:border-blue-500 focus:ring-indigo-600" />
+            <p v-else class="text-gray-900">{{ task.priority }}</p>
           </div>
           <!-- Priority End -->
 
-          <!-- Deadline Date -->
-          <div class="mt-[30px]">
-            <p class="text-base font-semibold underline"> Deadline</p>
-            <Calendar v-if="showEdit" v-model="task.deadline" dateFormat="dd/mm/yy" />
-            <p v-else>{{ task.deadline }}</p>
+          <!-- Deadline Date Start -->
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold mb-2">Deadline</h3>
+            <Calendar v-if="showEdit" v-model="task.deadline" dateFormat="dd/mm/yy"
+              class="w-full md:w-64 border-gray-300 focus:border-blue-500 focus:ring-indigo-600" />
+            <p v-else class="text-gray-900">{{ task.deadline }}</p>
           </div>
-          <!-- Deadline Date -->
+          <!-- Deadline Date End -->
         </div>
       </template>
     </Dialog>
