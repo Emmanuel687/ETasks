@@ -111,7 +111,7 @@ const handleSignup = async (event) => {
     // Handle successful signup
     // successMessage.value = 'Sign up successful! Please check your email to verify your account.'
     successMessage.value = 'Sign up successful!.'
-    router.push('/login')
+    setTimeout(() => router.push('/login'), 5000)
 
 
 
@@ -119,7 +119,6 @@ const handleSignup = async (event) => {
     password.value = ''
 
     // Optionally redirect to login or dashboard
-    // setTimeout(() => router.push('/login'), 5000)
   } catch (error) {
     console.error('Error signing up:', error)
     if (error.message.includes('Email rate limit exceeded')) {
@@ -132,6 +131,4 @@ const handleSignup = async (event) => {
   }
 }
 </script>
-<style scoped>
-/* Add any component-specific styles here */
-</style>
+<style scoped></style>
