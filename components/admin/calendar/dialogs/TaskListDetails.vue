@@ -84,7 +84,7 @@ const closeDialog = () => {
         <!-- Header with Close Button -->
         <div class="flex justify-between items-center mb-4">
           <div class="flex items-center space-x-2">
-            <h2 class="text-xl font-semibold text-[#1a40e2]">{{ calendarTasksList.title }}</h2>
+            <h2 class="text-xl font-semibold text-indigo-600">{{ calendarTasksList.title }}</h2>
           </div>
           <button @click="closeDialog" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
             <i class="pi pi-times text-gray-600" />
@@ -108,7 +108,7 @@ const closeDialog = () => {
         <!-- Date and Time -->
         <div class="flex items-center space-x-3 mb-6 text-gray-700">
           <div class="flex items-center bg-blue-50 px-3 py-2 rounded-lg">
-            <i class="pi pi-calendar text-blue-600 mr-2"></i>
+            <i class="pi pi-calendar text-indigo-600 mr-2"></i>
             <div>
               <div class="text-sm font-medium">
                 {{ formatDate(calendarTasksList.deadline) }}

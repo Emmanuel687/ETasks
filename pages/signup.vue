@@ -65,6 +65,7 @@
 </template>
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 // Reactive Variables
 const email = ref('')
@@ -108,7 +109,12 @@ const handleSignup = async (event) => {
     }
 
     // Handle successful signup
-    successMessage.value = 'Sign up successful! Please check your email to verify your account.'
+    // successMessage.value = 'Sign up successful! Please check your email to verify your account.'
+    successMessage.value = 'Sign up successful!.'
+    router.push('/login')
+
+
+
     email.value = ''
     password.value = ''
 

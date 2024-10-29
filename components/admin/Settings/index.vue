@@ -28,3 +28,19 @@
 <style scoped>
 /* You can add any additional styles if needed */
 </style>
+
+
+<!-- <template>
+  <div class="h-[650px]">
+    <AdminSettingsProfile />
+
+  </div>
+</template>
+
+<script setup>
+</script>
+
+<style scoped>
+/* You can add any additional styles if needed */
+</style> -->
+
