@@ -31,14 +31,23 @@ const faqQuestions = [
 
 </script>
 <template>
-  <!-- <div class="w-full h-[402px] bg-cover bg-center flex items-center justify-center main-assestment">
-    <p class="text-[#ffff] leading-[50.4px] font-[600] text-center text-[20px] sm:text-[20px] lg:text-[42px]">
-      FAQ </p>
-  </div> -->
-
   <!-- FAQ Content Section Start -->
-  <section class="mt-24 mx-auto max-w-[85%]">
-    <!-- FAQ Hero Start -->
+  <section class="mt-24 mx-auto max-w-[75%]">
+
+    <!--FAQ Hero Start  -->
+    <section class="w-full h-[350px] bg-cover bg-center flex items-center ">
+      <p class="text-indigo-600 leading-[50.4px] font-[600]  sm:text-right lg:text-right xl:text-right   min-[400px]:!text-[50px]	 !text-[65px] !sm:text-[20px] !lg:text-[42px] xl:text-[42px]">
+        How can we help you?
+        <br />
+        <span class="!text-[20px] text-nowrap  font-500 !text-indigo-550  font-[400] italic">
+          "Organize your work and life, finally"
+        </span>
+
+      </p>
+    </section>
+    <!--FAQ Hero End  -->
+
+    <!-- FAQ Sub-Hero Start -->
     <section>
       <h1 class="text-[24px] !text-[#111827] font-[700] leading-[2.5rem]">Frequently asked questions
       </h1>
@@ -49,13 +58,13 @@ const faqQuestions = [
         <br />
         support team by
 
-        <a href="#" class="text-[#4f46e5] font-[600]">
+        <NuxtLink to="/contact" class="text-[#4f46e5] font-[600]">
           sending
           us
-          an email</a> and we’ll get back to you as soon as we can.
+          an email</NuxtLink> and we’ll get back to you as soon as we can.
       </p>
     </section>
-    <!-- FAQ Hero End -->
+    <!-- FAQ Sub-Hero End -->
 
     <!-- FAQ Questions && Answer Start -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 !mt-[45px]">
