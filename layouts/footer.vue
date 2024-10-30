@@ -19,44 +19,7 @@ const contactDetails = ref([
   "Email Address",
   "info@etasks.co.ke",
 ])
-const industries = ref([
-  {
-    industryName: "Education Industrys",
-    route: "/consultingbyindustry/educationindustry",
-  },
-  {
-    industryName: "Health Care",
-    route: "/consultingbyindustry/healthcare",
-  },
-  {
-    industryName: "Corporate",
-    route: "/consultingbyindustry/corporate",
-  },
-  {
-    industryName: "Banking Industry",
-    route: "/consultingbyindustry/bankingindustry",
-  },
-  {
-    industryName: "Retail Industry",
-    route: "/consultingbyindustry/retail",
-  },
-  {
-    industryName: "Cyber Security & ForensicsInvestigations",
-    route: "/consultingbyindustry/cybersecurityForensicsInvestigation",
-  },
-  {
-    industryName: "Media Safety & Protection",
-    route: "/consultingbyindustry/mediasafetyProtection",
-  },
-  {
-    industryName: "MSMEs Security Consulting",
-    route: "/consultingbyindustry/msmesSecurityConsulting",
-  },
-  {
-    industryName: "NGO & Humanitarian",
-    route: "/consultingbyindustry/ngoHumanitarian",
-  },
-]);
+const socials = ref([Twitter, Facebook, Instagram, LinkedIn]);
 // Reactive Variables Start
 
 // Normal Variables Start
@@ -67,97 +30,70 @@ const year = date.getFullYear();
 
 <template>
   <!-- Footer Section Start -->
-  <section class="bg-[#f9f9fa] pt-[60px] lg:pt-[90px] pl-[20px] pr-[20px] pb-[30px] mt-[10px]">
-    <div class="max-w-[90%] md:max-w-[90%] mx-auto">
-      <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
-        <!-- Talk to Us Start -->
-        <div class="text-center  md:text-start lg:text-start">
-          <button class="bg-[#4337ca] pl-8 pr-8 pt-2 pb-2 text-[#ffff] text-[16px] leading-[19.4px]">
-            <a href="https://wa.me/+254790064309" target="_blank">
-              Talk to Us
-            </a>
-          </button>
-        </div>
-        <!-- Talk to Us End -->
-
-        <!-- Pages Start -->
-        <div class="text-left sm:text-start  md:text-start lg:text-start lg:mt-0 md:mt-0 sm:mt-0 mt-[40px]">
-          <h1 class="font-[700] text-[16px] leading-[19.49px]">Pages</h1>
-          <div class="mt-[15px] sm:mt-0 lg:mt-0 xl:mt-0 md:mt-0">
-            <div v-for="(page, index) in pages" :key="index" class="mt-2">
-              <NuxtLink :to="page.route" class="text-[15px] text-[#131313 font-[400] leading-[20.83px] mt-3">
-                {{ page.pageName }}
-              </NuxtLink>
-            </div>
+  <section class="bg-[#f9f9fa] py-12 lg:py-16">
+    <div class="mx-auto w-[90%] mr-[12px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <!-- Brand Section -->
+        <div class="flex flex-col space-y-4">
+          <div class="flex items-center space-x-3">
+            <img src="/public/assets/svgs/Icons/footer.png" alt="logo" class="w-[60px] h-auto" />
+            <span class="text-lg font-semibold">ETasks Manager</span>
           </div>
-
+          <p class="text-sm font-medium max-w-[280px]">
+            Join millions of people who organize work and life with Etasks.
+          </p>
         </div>
-        <!-- Pages End -->
 
-        <!-- Consulting By Industry Start -->
-        <div class="text-left sm:text-start  md:text-start lg:text-start lg:mt-0 md:mt-0 sm:mt-0 mt-[40px]">
-          <h1 class="font-[700] text-[16px] leading-[19.49px]">
-            Consulting By Industry
-          </h1>
-          <div class="mt-[15px] sm:mt-0 lg:mt-0 xl:mt-0 md:mt-0">
-            <div v-for="(industry, index) in industries" :key="index" class="mt-2">
-              <NuxtLink :to="industry.route" class="text-[15px] text-[#131313] font-[400] leading-[20.83px]">
-                {{ industry.industryName }}
-              </NuxtLink>
-            </div>
-          </div>
-
-        </div>
-        <!-- Consulting By Industry End -->
-
-        <!-- Contact  Start -->
-        <div class="text-left sm:text-start  md:text-start lg:text-start lg:mt-0 md:mt-0 sm:mt-0 mt-[40px]">
-          <h1 class="font-[700] text-[16px] leading-[19.49px]">Contact</h1>
-          <div class="mt-[15px] sm:mt-0 lg:mt-0 xl:mt-0 md:mt-0">
-            <div v-for="(contactDetail, index) in contactDetails" :key="index" class="mt-2">
-              <p class="text-[15px] text-[#131313] font-[400] leading-[20.83px]">
-                {{ contactDetail }}
-              </p>
-            </div>
+        <!-- Pages Section -->
+        <div class="flex flex-col space-y-4  lg:ml-[25px] xl:ml-[25px]">
+          <h2 class="text-base font-bold ">Pages</h2>
+          <div class="flex flex-col space-y-2">
+            <NuxtLink v-for="(page, index) in pages" :key="index" :to="page.route"
+              class="text-sm text-gray-800 hover:text-indigo-600 transition-colors">
+              {{ page.pageName }}
+            </NuxtLink>
           </div>
         </div>
-        <!-- Contact End -->
+
+        <!-- Contact Section -->
+        <div class="flex flex-col space-y-4">
+          <h2 class="text-base font-bold">Contact</h2>
+          <div class="flex flex-col space-y-2">
+            <p v-for="(contact, index) in contactDetails" :key="index" class="text-sm text-gray-800">
+              {{ contact }}
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="flex justify-start mt-4">
+          <NuxtLink to="/signup"
+            class="inline-flex items-center px-6 py-3 text-base font-semibold text-white bg-indigo-600 border border-transparent transition-all duration-200 hover:bg-indigo-700 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 active:bg-indigo-800 h-[50px]">
+            Start For Free
+            <!-- Optional: Add icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd" />
+            </svg>
+          </NuxtLink>
+        </div>
       </div>
 
-      <div class="mt-[80px]">
-        <!-- Social Media Logos Start -->
-        <div class="flex justify-center mt-3">
-          <div class="flex space-x-10">
-            <div>
-              <a href="">
-                <img :src="Twitter" alt="Twitter Logo" />
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img :src="Facebook" alt="Facebook Logo" />
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img :src="Instagram" alt="Instagram Logo" />
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img :src="LinkedIn" alt="LinkedIn Logo" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Social Media Logos End -->
 
-        <!-- Terms & Conditions Start-->
-        <div class="text-center text-[14px] font-[400] leading-[18.23px] mt-[14px]">
-          <p>© ETasks. All rights reserved {{ year }}.</p>
-        </div>
-        <!-- Terms & Conditions End -->
+    </div>
+    <!-- Footer Bottom -->
+    <div class="mt-16 pt-8 border-t border-gray-200">
+      <!-- Social Links -->
+      <div class="flex justify-center space-x-8">
+        <img v-for="(social) in socials" :key="name" :src="social" class="hover:opacity-80 transition-opacity">
+
       </div>
+
+      <!-- Copyright -->
+      <p class="text-center text-sm text-gray-600 mt-6">
+        © ETasks. All rights reserved {{ year }}.
+      </p>
     </div>
   </section>
   <slot />
