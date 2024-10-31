@@ -10,8 +10,7 @@
     <h1 class="text-[48px]">Task Management Made Easy
     </h1>
     <p class="!text-[20px] text-[#595759]">
-      We consider all the drivers of change gives you the blocks & components <br /> you need to change to create a truly
-      professional website.
+      Streamline your productivity and conquer your to-do list with our intuitive task <br /> manager designed to help you work smarter, not harder.
     </p>
     <!-- Hero End End -->
 
@@ -29,6 +28,9 @@
       <img src="/assets/heroImg.jpg" class="hero-img" />
     </div>
   </div>
+
+
+  <WebsiteFeatures />
   <!-- Hero Section End -->
 </template>
 

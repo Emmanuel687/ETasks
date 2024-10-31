@@ -35,9 +35,9 @@ const featuresList = ref([
 
 <template>
   <!-- Features Section Start -->
-  <div class="mx-auto max-w-[80%] text-center mt-24 flex flex-col items-center space-y-8">
+  <div class="mx-auto max-w-[80%] text-left mt-24 flex flex-col  space-y-8">
     <!-- Features Text Start -->
-    <h1 class="text-[48px]">Streamline Your Workflow, <br /> Your Productivity
+    <h1 class="text-[32px]">Streamline Your Workflow, Your Productivity
 
     </h1>
     <p class="!text-[18px] text-[#595759]">
@@ -50,7 +50,7 @@ const featuresList = ref([
     <div class="container mx-auto px-4 py-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div v-for="(feature, index) in featuresList" :key="index"
-          class="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          class="flex flex-col text-left p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
           <!-- SVG Section Start  -->
           <div class="flex justify-center items-center h-24 mb-4">
             <img :src="feature.img" :alt="`${feature.title} illustration`" class="w-16 h-16 object-contain">

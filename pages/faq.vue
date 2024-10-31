@@ -14,5 +14,8 @@
 
 </script>
 <template>
-  <WebsiteFaq />
+  <section class="pb-[100px] sm:pb-[100px]  lg:pb-[200px] xl:pb-[200px]">
+    <WebsiteFaq />
+
+  </section>
 </template>

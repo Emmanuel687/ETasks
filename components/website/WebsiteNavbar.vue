@@ -4,7 +4,7 @@
 
 const navLinks = ref([
   { name: 'Overview', path: '/' },
-  { name: 'Features', path: '/features' },
+  // { name: 'Pricing', path: '/pricing' },
   { name: 'FAQ', path: '/faq' },
   { name: 'Contact Us', path: '/contact' },
 ]);
