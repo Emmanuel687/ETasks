@@ -16,11 +16,11 @@
 
     <!-- Get STarted BTN Start -->
     <div class="flex justify-center items-center">
-      <button class="bg-[#000000] !text-[16px] p-[16px] text-[#ffff] rounded-[8px] flex items-center font-[500]">
+      <NuxtLink  to="/login" class="bg-[#000000] !text-[16px] p-[16px] text-[#ffff] rounded-[8px] flex items-center font-[500]">
         <span> Get Started Now
         </span>
         <img src="/assets/svgs/Icons/arrowup.svg" />
-      </button>
+      </NuxtLink>
     </div>
     <!-- Get STarted BTN End -->
 
