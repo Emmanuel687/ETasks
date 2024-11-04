@@ -3,11 +3,18 @@ definePageMeta({
   layout: 'admin'
 })
 
+
+// Imports Start
+import { useUserStore } from '@/stores/user'
+// Imports End
+
+
+
 // Reactive Variables Start
 const taskItems = ref([
   {
     taskStatus: "All Tasks",
-    taskNumber: 3,
+    taskNumber: 5,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
@@ -27,7 +34,11 @@ const statuses = ref({
   pendingTasks: "Pending Tasks"
 })
 const status = ref()
+const value = ref(40);
+
 // Reactive Variables End
+
+//
 
 // HandleShowTask Start
 const handleShowTask = (taskStatus) => {
@@ -35,8 +46,55 @@ const handleShowTask = (taskStatus) => {
 }
 // HandleShowTask End
 
-// OnMounted Start
+// Get Task Styles Start
+const getTaskStyles = (status) => {
+  return {
+    'bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-250 uppercase !font-900':
+      status === 'All Tasks',
 
+    'bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100  uppercase':
+      status === 'Completed Tasks',
+
+    'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-80  uppercase':
+      status === 'Pending Tasks'
+  }
+}
+// Get Task Styles End
+
+// Get Task Title Text Styles Start
+const getTitleStyles = (status) => {
+  return {
+    'text-amber-800 ': status === 'All Tasks',
+    'text-emerald-800': status === 'Completed Tasks',
+    'text-blue-800': status === 'Pending Tasks'
+  }
+}
+// Get Task Title Text Styles End
+
+
+// Get Icon Background Styles Start
+const getIconBgStyles = (status) => {
+  return {
+    'bg-amber-100': status === 'All Tasks',
+    'bg-emerald-100': status === 'Completed Tasks',
+    'bg-blue-100': status === 'Pending Tasks'
+  }
+}
+// Get Icon Background Styles End
+
+
+// Get Task Number Text Styles Start
+const getNumberStyles = (status) => {
+  return {
+    'text-amber-700': status === 'All Tasks',
+    'text-emerald-700': status === 'Completed Tasks',
+    'text-blue-700': status === 'Pending Tasks'
+  }
+}
+// Get Task Number Text Styles End
+
+
+// OnMounted Start
 onMounted(() => {
   status.value = statuses.value.allTasks
 })
@@ -46,9 +104,69 @@ onMounted(() => {
 <template>
   <section class="dashboard rounded-md py-3 p-2 bg-white border ">
 
-    <section class="grid grid-cols-2  sm:grid-cols-12 md:grid-cols-12  lg:grid-cols-12 gap-3">
-      <!-- Task Components Start -->
-      <section class="grid col-span-8">
+    <!-- Task Category Card Desktop View Start -->
+    <section class="hidden md:grid col-span-4">
+      <div class="grid grid-cols-3 gap-6">
+        <div v-for="(task, index) in taskItems" :key="index">
+          <!-- Task Card Start -->
+          <div
+            class="w-full h-[135px] rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-lg"
+            :class="getTaskStyles(task.taskStatus)" @click="handleShowTask(task.taskStatus)">
+            <div class="flex items-center justify-between h-full p-6 relative">
+              <!-- Task Status Icon Start -->
+              <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+                :class="getIconBgStyles(task.taskStatus)">
+                <img :src="task.img" class="w-8 h-8" alt="Task status icon" />
+              </div>
+              <!-- Task Status Icon End -->
+
+              <div class="flex flex-col items-end">
+                <!-- Task Title Start -->
+                <h1 class="text-[17px] font-medium mb-1" :class="getTitleStyles(task.taskStatus)">
+                  {{ task.taskStatus }}
+                </h1>
+                <!-- Task Title End -->
+
+                <!-- Task Number Start -->
+                <p class="text-[16px] font-bold" :class="getNumberStyles(task.taskStatus)">
+                  {{ task.taskNumber }} 
+                </p>
+                <!-- Task Number Start -->
+
+
+                <ProgressBar :value="40"> {{ value }}/100 </ProgressBar>
+
+              </div>
+            </div>
+          </div>
+          <!-- Task Card End -->
+        </div>
+      </div>
+    </section>
+    <!-- Task Category Card Desktop View End -->
+
+
+    <!-- Task Category Card Mobile View Start  -->
+    <section class="md:hidden">
+      <div class="flex gap-5">
+        <div v-for="(task, index) in taskItems" :key="index" @click="handleShowTask(task.taskStatus)" :class="{
+          'bg-yellow-100 border-yellow-300 text-yellow-700': task.taskStatus === 'All Tasks',
+          'bg-green-100 border-green-300 text-green-700': task.taskStatus === 'Completed Tasks',
+          'bg-indigo-100 border-indigo-300 text-indigo-700': task.taskStatus === 'Pending Tasks'
+        }"
+          class="group inline-flex items-center rounded-lg px-4 py-2 cursor-pointer border transition-all duration-200 w-full">
+          <div class="flex space-x-3">
+            <h1 class="text-xs">{{ task.taskStatus }}</h1>
+            <p class="text-sm font-semibold">{{ task.taskNumber }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Task Category Card Mobile View End  -->
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  lg:grid-cols-12 gap-2">
+      <!-- Task Info Card  Start -->
+      <section class="lg:col-span-8 mt-[10px]">
         <div>
           <!-- All Task Table Start -->
           <AdminDashboardAllTasks v-if="status === statuses.allTasks" />
@@ -63,43 +181,18 @@ onMounted(() => {
           <!-- Completed Tasks Table End -->
         </div>
       </section>
-      <!-- Task Components End -->
+      <!-- Task Info Card End -->
 
-      <!-- Task Category Card Start -->
-      <section class="grid col-span-4 border rounded-md p-3 h-[450px]">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
-          <div v-for="(task, index) in taskItems" :key="index">
-            <Card class="w-full h-[135px] overflow-hidden" @click="handleShowTask(task.taskStatus)">
-              <template #title>
-                <div class="flex flex-col items-center justify-center h-full mt-[15px]">
-                  <!-- Task Title Start -->
-                  <h1 class="text-center text-[12px]">{{ task.taskStatus }}</h1>
-                  <!-- Task Title End -->
-
-                  <div class="flex items-center justify-center space-x-5">
-                    <!-- Task Status Start Icon Start -->
-                    <img :src="task.img" class="text-center" alt="Task status icon" />
-                    <!-- Task Status Start Icon End -->
-
-                    <!-- Task Number Start -->
-                    <p class="!text-[24px] text-indigo-700">{{ task.taskNumber }}</p>
-                    <!-- Task Number End -->
-                  </div>
-                </div>
-              </template>
-            </Card>
-          </div>
-        </div>
+      <!-- Chart Section  Start -->
+      <section class="lg:col-span-4 mt-[10px]">
+        <AdminDashboardChartsGauge />
+        <!-- <AdminDashboardChartsAnalytics /> -->
       </section>
-      <!-- Task Category Card End -->
+      <!-- Charts Section End -->
+
+
     </section>
 
-    <!-- Chart Section  Start -->
-    <section class="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 !mt-5">
-      <AdminDashboardChartsGauge />
-      <!-- <AdminDashboardChartsAnalytics /> -->
-    </section>
-    <!-- Charts Section End -->
 
   </section>
 </template>

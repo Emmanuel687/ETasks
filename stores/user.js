@@ -98,6 +98,40 @@ export const useUserStore = defineStore('user', () => {
   // Fetch Tasks End
 
 
+  // Pending Tasks Start
+  const pendingTasks = computed(() => {
+    return tasks.value.filter(task => task.status === 'open')
+  })
+  // Pending Tasks End
+
+  // Completed Tasks Start
+  const completedTasks = computed(() => {
+    return tasks.value.filter(task => task.status === 'closed')
+  })
+  // Completed Tasks End
+
+ 
+
+  // Upcoming Tasks Start
+  const upcomingTasks = computed(() => {
+    return tasks.value.filter(task => new Date(task.due_date) > new Date())
+  })
+  // Upcoming Tasks End
+
+  // Past Tasks Start
+  const pastTasks = computed(() => {
+    return tasks.value.filter(task => new Date(task.due_date) < new Date())
+  })
+  // Past Tasks End
+
+  // Due Today Tasks Start
+  const dueTodayTasks = computed(() => {
+    return tasks.value.filter(task => new Date(task.due_date).toDateString() === new Date().toDateString())
+  })
+  // Due Today Tasks End
+
+
+
 
   // OnMounted Start
   onMounted(() => {
@@ -120,6 +154,12 @@ export const useUserStore = defineStore('user', () => {
     updateUserProfile,
     fetchTasks,
     taskStatus,
-    tasks
+    tasks,
+    pendingTasks,
+    completedTasks,
+    upcomingTasks,
+    pastTasks,
+    dueTodayTasks,
+    
   }
 })
