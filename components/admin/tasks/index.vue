@@ -54,16 +54,18 @@
                 <section class="bg-gray-50 rounded-lg p-4 mb-4 group-hover:bg-blue-50/50 transition-colors">
                   <div class="relative">
                     <p v-html="element.description" class="text-sm text-gray-600"
-                      :class="{ 'line-clamp-3': !isExpanded }"></p>
-                    <div v-if="!isExpanded"
+                      :class="{ 'line-clamp-3': !expandedStates[element.id] }"></p>
+                    <div v-if="!expandedStates[element.id]"
                       class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-50 to-transparent"></div>
                   </div>
 
-                  <button @click.stop="toggleExpand"
+                  <button @click.stop="toggleExpand(element.id)"
                     class="mt-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none flex items-center">
-                    <span class="mr-1">{{ isExpanded ? 'Show Less' : 'Show More' }}</span>
-                    <svg v-if="!isExpanded" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-700"
-                      viewBox="0 0 20 20" fill="currentColor">
+                    <span class="mr-1">
+                      {{ expandedStates[element.id] ? 'Show Less' : 'Show More' }}
+                    </span>
+                    <svg v-if="!expandedStates[element.id]" xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4 text-indigo-700" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd"
                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                         clip-rule="evenodd" />
@@ -76,6 +78,7 @@
                     </svg>
                   </button>
                 </section>
+
                 <!-- Description End -->
 
 
@@ -141,7 +144,7 @@ const props = defineProps({
 // Reactive Variables Start
 const showEditModal = ref(false);
 const task = ref('');
-const isExpanded = ref(false);
+const expandedStates = ref({});
 const statuses = ['open', 'In Progress', 'closed'];
 
 // Emits Start
@@ -189,9 +192,10 @@ const handleShowModal = (item) => {
 // Show Modal End
 
 // Toggle Expand Start
-const toggleExpand = () => {
-  isExpanded.value = !isExpanded.value;
+const toggleExpand = (itemId) => {
+  expandedStates.value[itemId] = !expandedStates.value[itemId];
 };
+
 // Toggle Expand End
 </script>
 

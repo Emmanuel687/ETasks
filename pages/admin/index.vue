@@ -9,22 +9,27 @@ import { useUserStore } from '@/stores/user'
 // Imports End
 
 
+// Store Start
+const appStore = useUserStore()
+// Store End
+
+
 
 // Reactive Variables Start
 const taskItems = ref([
   {
     taskStatus: "All Tasks",
-    taskNumber: 5,
+    taskNumber: appStore.tasks.length,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
     taskStatus: "Completed Tasks",
-    taskNumber: 3,
+    taskNumber: appStore.completedTasks.length,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
     taskStatus: "Pending Tasks",
-    taskNumber: 3,
+    taskNumber: appStore.pendingTasks.length,
     img: '/assets/svgs/completedtasks.svg',
   }
 ])
@@ -38,7 +43,6 @@ const value = ref(40);
 
 // Reactive Variables End
 
-//
 
 // HandleShowTask Start
 const handleShowTask = (taskStatus) => {
@@ -49,13 +53,13 @@ const handleShowTask = (taskStatus) => {
 // Get Task Styles Start
 const getTaskStyles = (status) => {
   return {
-    'bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-250 uppercase !font-900':
+    'bg-gradient-to-br from-amber-200 to-orange-150 border border-amber-250 uppercase':
       status === 'All Tasks',
 
-    'bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100  uppercase':
+    'bg-gradient-to-br from-emerald-200 to-teal-150 border border-emerald-100  uppercase':
       status === 'Completed Tasks',
 
-    'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-80  uppercase':
+    'bg-gradient-to-br from-blue-200 to-indigo-150 border border-blue-80  uppercase':
       status === 'Pending Tasks'
   }
 }
@@ -134,7 +138,6 @@ onMounted(() => {
                 <!-- Task Number Start -->
 
 
-                <ProgressBar :value="40"> {{ value }}/100 </ProgressBar>
 
               </div>
             </div>
@@ -189,10 +192,6 @@ onMounted(() => {
         <!-- <AdminDashboardChartsAnalytics /> -->
       </section>
       <!-- Charts Section End -->
-
-
     </section>
-
-
   </section>
 </template>

@@ -104,13 +104,21 @@ export const useUserStore = defineStore('user', () => {
   })
   // Pending Tasks End
 
+  // Inprogress Tasks Start
+  const inProgressTasks = computed(() =>{
+    return tasks.value.filter(task => task.status === 'In Progress')
+
+  })
+  // Inprogress Tasks End
+
+
   // Completed Tasks Start
   const completedTasks = computed(() => {
     return tasks.value.filter(task => task.status === 'closed')
   })
   // Completed Tasks End
 
- 
+
 
   // Upcoming Tasks Start
   const upcomingTasks = computed(() => {
@@ -126,7 +134,7 @@ export const useUserStore = defineStore('user', () => {
 
   // Due Today Tasks Start
   const dueTodayTasks = computed(() => {
-    return tasks.value.filter(task => new Date(task.due_date).toDateString() === new Date().toDateString())
+    return tasks.value.filter(task => new Date(task.due_date).toISOString().slice(0, 19) === new Date().toISOString().slice(0, 19))
   })
   // Due Today Tasks End
 
@@ -157,9 +165,8 @@ export const useUserStore = defineStore('user', () => {
     tasks,
     pendingTasks,
     completedTasks,
-    upcomingTasks,
-    pastTasks,
-    dueTodayTasks,
-    
+    inProgressTasks
+
+
   }
 })
