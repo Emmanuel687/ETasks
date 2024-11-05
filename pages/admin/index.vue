@@ -23,15 +23,22 @@ const taskItems = ref([
     img: '/assets/svgs/completedtasks.svg',
   },
   {
+    taskStatus: "Open Tasks",
+    taskNumber: appStore.pendingTasks.length,
+    img: '/assets/svgs/completedtasks.svg',
+  },
+  {
     taskStatus: "Completed Tasks",
     taskNumber: appStore.completedTasks.length,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
-    taskStatus: "Pending Tasks",
-    taskNumber: appStore.pendingTasks.length,
+    taskStatus: "Inprogress Tasks",
+    taskNumber: appStore.inProgressTasks.length,
     img: '/assets/svgs/completedtasks.svg',
-  }
+  },
+
+
 ])
 const statuses = ref({
   allTasks: "All Tasks",
@@ -49,18 +56,20 @@ const handleShowTask = (taskStatus) => {
   status.value = taskStatus
 }
 // HandleShowTask End
-
 // Get Task Styles Start
 const getTaskStyles = (status) => {
   return {
     'bg-gradient-to-br from-amber-200 to-orange-150 border border-amber-250 uppercase':
       status === 'All Tasks',
 
-    'bg-gradient-to-br from-emerald-200 to-teal-150 border border-emerald-100  uppercase':
+    'bg-gradient-to-br from-emerald-200 to-teal-150 border border-emerald-100 uppercase':
       status === 'Completed Tasks',
 
-    'bg-gradient-to-br from-blue-200 to-indigo-150 border border-blue-80  uppercase':
-      status === 'Pending Tasks'
+    'bg-gradient-to-br from-blue-200 to-indigo-150 border border-blue-80 uppercase':
+      status === 'Open Tasks',
+
+    'bg-gradient-to-br from-purple-200 to-indigo-150 border border-purple-100 uppercase':
+      status === 'Inprogress Tasks',
   }
 }
 // Get Task Styles End
@@ -68,31 +77,32 @@ const getTaskStyles = (status) => {
 // Get Task Title Text Styles Start
 const getTitleStyles = (status) => {
   return {
-    'text-amber-800 ': status === 'All Tasks',
+    'text-amber-800': status === 'All Tasks',
     'text-emerald-800': status === 'Completed Tasks',
-    'text-blue-800': status === 'Pending Tasks'
+    'text-blue-800': status === 'Open Tasks',
+    'text-purple-800': status === 'Inprogress Tasks',
   }
 }
 // Get Task Title Text Styles End
-
 
 // Get Icon Background Styles Start
 const getIconBgStyles = (status) => {
   return {
     'bg-amber-100': status === 'All Tasks',
     'bg-emerald-100': status === 'Completed Tasks',
-    'bg-blue-100': status === 'Pending Tasks'
+    'bg-blue-100': status === 'Open Tasks',
+    'bg-purple-100': status === 'Inprogress Tasks',
   }
 }
 // Get Icon Background Styles End
-
 
 // Get Task Number Text Styles Start
 const getNumberStyles = (status) => {
   return {
     'text-amber-700': status === 'All Tasks',
     'text-emerald-700': status === 'Completed Tasks',
-    'text-blue-700': status === 'Pending Tasks'
+    'text-blue-700': status === 'Open Tasks',
+    'text-purple-700': status === 'Inprogress Tasks',
   }
 }
 // Get Task Number Text Styles End
@@ -110,7 +120,7 @@ onMounted(() => {
 
     <!-- Task Category Card Desktop View Start -->
     <section class="hidden md:grid col-span-4">
-      <div class="grid grid-cols-3 gap-6">
+      <div class="grid grid-cols-4 gap-6">
         <div v-for="(task, index) in taskItems" :key="index">
           <!-- Task Card Start -->
           <div
@@ -133,7 +143,7 @@ onMounted(() => {
 
                 <!-- Task Number Start -->
                 <p class="text-[16px] font-bold" :class="getNumberStyles(task.taskStatus)">
-                  {{ task.taskNumber }} 
+                  {{ task.taskNumber }}
                 </p>
                 <!-- Task Number Start -->
 
@@ -155,7 +165,7 @@ onMounted(() => {
         <div v-for="(task, index) in taskItems" :key="index" @click="handleShowTask(task.taskStatus)" :class="{
           'bg-yellow-100 border-yellow-300 text-yellow-700': task.taskStatus === 'All Tasks',
           'bg-green-100 border-green-300 text-green-700': task.taskStatus === 'Completed Tasks',
-          'bg-indigo-100 border-indigo-300 text-indigo-700': task.taskStatus === 'Pending Tasks'
+          'bg-indigo-100 border-indigo-300 text-indigo-700': task.taskStatus === 'Open Tasks'
         }"
           class="group inline-flex items-center rounded-lg px-4 py-2 cursor-pointer border transition-all duration-200 w-full">
           <div class="flex space-x-3">

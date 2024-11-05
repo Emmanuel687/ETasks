@@ -510,3 +510,10 @@ h6 {
 *:focus {
   box-shadow: unset !important;
 }
+
+.p-datatable-table th {
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  background: red !important;
+}
