@@ -5,22 +5,10 @@ import { useUserStore } from "../../../stores/user.js"
 import { formatedAssignedToName } from '../../../utils/formatNamed'
 // Imports End
 
-// Reactive Variables Start
+// Variables Start
 const appStore = useUserStore()
-const tasks = computed(() => appStore.tasks)
-// Reactive Variables End
+// Variables End
 
-
-// Pending Tasks
-const closedTasks = computed(() => tasks.value.filter(task => task.status === 'closed'))
-// Pending Tasks
-
-// OnMounted Start
-onMounted(() => {
-  appStore.fetchTasks()
-  closedTasks
-})
-// OnMounted End
 
 
 </script>
@@ -28,17 +16,15 @@ onMounted(() => {
 <template>
   <section class="border rounded-md p-3 h-[450px]">
     <!-- Task Hero Start -->
-    <div class="d-card-header ">
+    <div class="d-card-header">
       <h1 class="d-card-title !text-indigo-700">
-        Completed Tasks
-        ({{ closedTasks.length }})
+        Inprogress Tasks
+        ({{ appStore.inProgressTasks.length }})
       </h1>
     </div>
     <!-- Task Hero End -->
-
-
     <!-- All Task Table Start -->
-    <DataTable :value="closedTasks" paginator :rows="4" :rowsPerPageOptions="[5, 10, 20, 50]"
+    <DataTable :value="appStore.inProgressTasks" paginator :rows="4" :rowsPerPageOptions="[5, 10, 20, 50]"
       tableStyle="min-width: 20rem" scrollable scrollHeight="310px">
       <!-- Empty DataTable Start -->
       <template #empty>
@@ -78,6 +64,7 @@ onMounted(() => {
 
     </DataTable>
     <!-- All Task Table End -->
+
   </section>
 </template>
 

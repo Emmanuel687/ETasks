@@ -2,18 +2,13 @@
 definePageMeta({
   layout: 'admin'
 })
-
-
 // Imports Start
 import { useUserStore } from '@/stores/user'
 // Imports End
 
-
 // Store Start
 const appStore = useUserStore()
 // Store End
-
-
 
 // Reactive Variables Start
 const taskItems = ref([
@@ -42,8 +37,9 @@ const taskItems = ref([
 ])
 const statuses = ref({
   allTasks: "All Tasks",
-  completedTasks: "Completed Tasks",
-  pendingTasks: "Pending Tasks"
+  openTasks: "Open Tasks",
+  inProgressTasks: "Inprogress Tasks",
+  completedTasks: "Completed Tasks"
 })
 const status = ref()
 const value = ref(40);
@@ -116,7 +112,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="dashboard rounded-md py-3 p-2 bg-white border ">
+  <section class="dashboard rounded-md py-3 p-2 h-full bg-white border overflow-x-auto ">
 
     <!-- Task Category Card Desktop View Start -->
     <section class="hidden md:grid col-span-4">
@@ -177,31 +173,56 @@ onMounted(() => {
     </section>
     <!-- Task Category Card Mobile View End  -->
 
+
+
+
+    <section class="mt-[10px]">
+      <!-- All Task Table Start -->
+      <AdminDashboardAllTasks v-if="status === statuses.allTasks" />
+      <!-- All Task Table End -->
+
+      <!-- Open Task Table Start -->
+      <AdminDashboardOpenTasks v-if="status === statuses.openTasks" />
+      <!-- Open Task Table End -->
+
+      <!-- Inprogress Tasks Table Start -->
+      <AdminDashboardInProgressTasks v-if="status === statuses.inProgressTasks" />
+      <!-- Inprogress Tasks Table End -->
+
+      <!-- Completed Tasks Table Start -->
+      <AdminDashboardCompletedTasks v-if="status === statuses.completedTasks" />
+      <!-- Completed Tasks Table End -->
+    </section>
+
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  lg:grid-cols-12 gap-2">
+
+
+
+
+
       <!-- Task Info Card  Start -->
       <section class="lg:col-span-8 mt-[10px]">
-        <div>
-          <!-- All Task Table Start -->
-          <AdminDashboardAllTasks v-if="status === statuses.allTasks" />
-          <!-- All Task Table End -->
-
-          <!-- Pending Task Table Start -->
-          <AdminDashboardPendingTasks v-if="status === statuses.pendingTasks" />
-          <!-- Pending Task Table End -->
-
-          <!-- Completed Tasks Table Start -->
-          <AdminDashboardCompletedTasks v-if="status === statuses.completedTasks" />
-          <!-- Completed Tasks Table End -->
-        </div>
+        <!-- Past Tasks Section  Start -->
+        <section>
+          <AdminDashboardPastTasks />
+        </section>
+        <!-- Past Tasks Section  End -->
       </section>
       <!-- Task Info Card End -->
 
       <!-- Chart Section  Start -->
       <section class="lg:col-span-4 mt-[10px]">
         <AdminDashboardChartsGauge />
-        <!-- <AdminDashboardChartsAnalytics /> -->
       </section>
       <!-- Charts Section End -->
     </section>
+
+
+
+
+
+
+
+
   </section>
 </template>

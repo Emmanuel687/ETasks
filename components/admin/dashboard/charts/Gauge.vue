@@ -1,9 +1,10 @@
 <template>
   <section class="border rounded-md p-4 h-[450px] flex flex-col">
-    <div class="flex justify-between items-center mb-4">
-      <h1 class="font-semibold text-lg text-[#161718]">
+    <div class="flex justify-between items-center mb-4 bottom-1 border-b border-gray-200">
+      <h1 class="font-semibold text-lg text-indigo-700">
         {{ totalTasks }} Tasks
       </h1>
+
     </div>
 
     <!-- Gauge Start -->
@@ -51,12 +52,12 @@
 
       <div class="text-center">
         <p class="font-medium text-sm text-[#8D98A9]">In-Progress Tasks</p>
-        <p class="font-bold">{{ inProgressPercentage }}%</p>
+        <p class="font-bold">{{ inProgressPercentage.toFixed(2) }}%</p>
       </div>
 
       <div class="text-center">
         <p class="font-medium text-sm text-[#8D98A9]">Completed Tasks</p>
-        <p class="font-bold">{{ completedPercentage }}%</p>
+        <p class="font-bold">{{ completedPercentage.toFixed(2) }}%</p>
       </div>
     </div>
   </section>

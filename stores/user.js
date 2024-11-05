@@ -122,20 +122,43 @@ export const useUserStore = defineStore('user', () => {
 
   // Upcoming Tasks Start
   const upcomingTasks = computed(() => {
-    return tasks.value.filter(task => new Date(task.due_date) > new Date())
-  })
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return tasks.value.filter(task => {
+      const deadline = new Date(task.deadline);
+      deadline.setHours(0, 0, 0, 0);
+      return deadline > today;
+    });
+  });
   // Upcoming Tasks End
 
   // Past Tasks Start
   const pastTasks = computed(() => {
-    return tasks.value.filter(task => new Date(task.due_date) < new Date())
-  })
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return tasks.value.filter(task => {
+      const deadline = new Date(task.deadline);
+      deadline.setHours(0, 0, 0, 0);
+      return deadline < today;
+    });
+  });
+  
   // Past Tasks End
 
   // Due Today Tasks Start
   const dueTodayTasks = computed(() => {
-    return tasks.value.filter(task => new Date(task.due_date).toISOString().slice(0, 19) === new Date().toISOString().slice(0, 19))
-  })
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return tasks.value.filter(task => {
+      const deadline = new Date(task.deadline);
+      deadline.setHours(0, 0, 0, 0);
+      return deadline.getTime() === today.getTime();
+    });
+  });
+  
   // Due Today Tasks End
 
 
@@ -165,7 +188,10 @@ export const useUserStore = defineStore('user', () => {
     tasks,
     pendingTasks,
     completedTasks,
-    inProgressTasks
+    inProgressTasks,
+    upcomingTasks,
+    dueTodayTasks,
+    pastTasks
 
 
   }

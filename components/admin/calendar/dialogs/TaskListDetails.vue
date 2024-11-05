@@ -86,9 +86,7 @@ const closeDialog = () => {
           <div class="flex items-center space-x-2">
             <h2 class="text-xl font-semibold text-indigo-600">{{ calendarTasksList.title }}</h2>
           </div>
-          <button @click="closeDialog" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <i class="pi pi-times text-gray-600" />
-          </button>
+
         </div>
 
         <!-- Status and Priority Badges -->
@@ -132,6 +130,16 @@ const closeDialog = () => {
           </div>
           <div class="prose prose-sm max-w-none text-gray-600" v-html="calendarTasksList.description"></div>
         </div>
+
+        <!-- Close BTN Start -->
+        <div class="flex justify-end mt-[10px]">
+          <button @click="closeDialog" class="btn-danger outlined">
+              Close
+          </button>
+        </div>
+        <!-- Close BTN End˝ -->
+
+
       </div>
 
     </template>

@@ -511,9 +511,11 @@ h6 {
   box-shadow: unset !important;
 }
 
-.p-datatable-table th {
+.p-datatable-table tr th {
   border: none !important;
   font-weight: 500 !important;
   font-size: 0.9rem !important;
-  background: red !important;
+  color: white !important;
+  text-wrap: nowrap;
+  background: linear-gradient(to top right, #6366F1, #4338CA) !important; /* Smoother and brighter gradient */
 }
