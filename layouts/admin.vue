@@ -1,12 +1,19 @@
 <template>
   <div v-if="user" class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
     <AdminSidebar class="flex-shrink-0" />
-    <main class="flex-grow p-6 overflow-auto">
-      <slot />
-    </main>
 
+    <!-- Main content area with topbar -->
+    <div class="flex-grow flex flex-col">
+      <AdminTopBar />
+      <!-- Main content -->
+      <main class="flex-grow p-6 overflow-auto">
+        <slot />
+      </main>
+    </div>
   </div>
 </template>
+
 
 <script setup>
 import { useSupabaseUser, useRouter } from '#imports'

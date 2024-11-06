@@ -27,6 +27,7 @@
     "vue": "^3.5.12",
     "vue-router": "latest",
     "vue-template-compiler": "^2.7.16",
+    "vue-toastification": "^2.0.0-rc.5",
     "vue3-apexcharts": "^1.7.0",
     "vuedraggable": "^4.1.0"
   },

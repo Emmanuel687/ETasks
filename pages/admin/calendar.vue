@@ -6,7 +6,7 @@ definePageMeta({
 </script>
 
 <template>
-  <section class="dashboard rounded-md py-3 p-2 bg-white border ">
+  <section class="dashboard rounded-md py-3 p-2 bg-white border h-full w-full">
     <AdminCalendar />
   </section>
 </template>

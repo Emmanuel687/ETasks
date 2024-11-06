@@ -2,6 +2,7 @@
 // Imports Start
 import Editor from 'primevue/editor';
 import { useUserStore } from "@/stores/user"
+import { useCustomToast } from '~/composables/useToast'
 // Imports End
 
 // Receive Props Start
@@ -16,6 +17,8 @@ const props = defineProps({
 const appStore = useUserStore()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
+const toast = useCustomToast()
+
 // Variables Start
 
 
@@ -70,6 +73,7 @@ const handleCreateTask = async () => {
       throw error;
     }
 
+    toast.success("Form submitted successfully!")
 
     task_name.value = '';
     task_description.value = '';

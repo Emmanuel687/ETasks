@@ -26,7 +26,8 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default> &
   InjectionType<typeof import("../../plugins/apexcharts.js").default> &
-  InjectionType<typeof import("../../plugins/supabase.js").default>
+  InjectionType<typeof import("../../plugins/supabase.js").default> &
+  InjectionType<typeof import("../../plugins/toast.js").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
