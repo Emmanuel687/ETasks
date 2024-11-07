@@ -1,7 +1,8 @@
 <script setup>
 // Imports Start
 import Editor from 'primevue/editor';
-import { useUserStore } from "@/stores/user"
+import { useUserStore } from "@/stores/user";
+import { useCustomToast } from '~/composables/useToast'
 // Imports End
 
 // Receive Props Start
@@ -21,6 +22,7 @@ const props = defineProps({
 // Variables Start
 const appStore = useUserStore()
 const supabase = useSupabaseClient()
+const toast = useCustomToast()
 // Variables Start
 
 
@@ -69,24 +71,17 @@ const handleEditTask = async () => {
         props.tasks[index] = { ...props.tasks[index], ...data[0] }
       }
 
-      // toast.add({
-      //   severity: 'success',
-      //   summary: 'Success',
-      //   detail: 'Task updated successfully',
-      //   life: 3000,
-      // })
+      toast.success("Task Updated successfully!")
 
       showEdit.value = false
     }
 
   } catch (error) {
+
+    toast.error("Error Updating Tasks!")
+
     console.error('Error updating task:', error)
-    // toast.add({
-    //   severity: 'error',
-    //   summary: 'Error',
-    //   detail: error.message || 'Failed to update task',
-    //   life: 3000,
-    // })
+  
   } finally {
     isLoading.value = false
     closeDialog()

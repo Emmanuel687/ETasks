@@ -50,9 +50,9 @@ const handleCreateTask = async () => {
   isSubmitting.value = true
 
   const formattedDeadline = task_end_date.value ? new Date(task_end_date.value).toISOString() : null;
-  const assignedTo = typeof selectedAssignee.value === 'string'
-    ? JSON.parse(selectedAssignee.value)
-    : selectedAssignee.value;
+  // const assignedTo = typeof selectedAssignee.value === 'string'
+  //   ? JSON.parse(selectedAssignee.value)
+  //   : selectedAssignee.value;
 
   try {
     const { data, error } = await supabase
@@ -61,7 +61,7 @@ const handleCreateTask = async () => {
         taskName: task_name.value,
         description: task_description.value,
         deadline: formattedDeadline,
-        assignedTo: assignedTo,
+        // assignedTo: assignedTo,
         priority: selectedPriority.value,
         status: 'open',
         user_id: user.id
@@ -78,7 +78,7 @@ const handleCreateTask = async () => {
     task_name.value = '';
     task_description.value = '';
     task_end_date.value = '';
-    selectedAssignee.value = '';
+    // selectedAssignee.value = '';
     selectedPriority.value = '';
 
     emits('fetchTasks')
@@ -112,11 +112,11 @@ const handleCreateTask = async () => {
         <!-- Create Task Form Start -->
         <Form @submit.prevent="handleCreateTask" class="space-y-6">
           <!-- Assignee Start -->
-          <CustomInputContainer label="Assignee" class="w-full">
+          <!-- <CustomInputContainer label="Assignee" class="w-full">
             <Dropdown v-model="selectedAssignee" :options="appStore.assignees" optionLabel="first_name"
               placeholder="Select Assignee"
               class="w-full md:w-14rem border-gray-300 focus:border-indigo-600 focus:ring-indigo-500" />
-          </CustomInputContainer>
+          </CustomInputContainer> -->
           <!-- Assignee End -->
 
           <!-- Task Name Start -->

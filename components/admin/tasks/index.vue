@@ -24,6 +24,7 @@
 
       <!-- Tasks Container Start -->
       <section class="bg-gray-50 p-4 rounded-b-xl h-full">
+
         <client-only>
           <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
             class="space-y-4 h-full overflow-y-auto custom-scrollbar" @change="(event) => onDragChange(event, status)">
@@ -48,6 +49,8 @@
                 <!-- Title Start-->
                 <h3 class="font-semibold text-gray-800 text-base mb-2 pr-16">{{ element.taskName }}</h3>
                 <!-- Title End-->
+
+
 
 
                 <!-- Description Start -->

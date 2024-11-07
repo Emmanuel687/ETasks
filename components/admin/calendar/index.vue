@@ -1,13 +1,5 @@
 
 
-<template>
-  <div class="calendar-wrapper">
-    <AdminCalendarDialogsTaskListDetails :calendarTasksList="calendarTasksList" :showTaskListDialog="showTaskListDialog"
-      @close="showTaskListDialog = false" />
-    <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
-  </div>
-</template>
-
 <script setup>
 // Imports Start
 import FullCalendar from '@fullcalendar/vue3'
@@ -24,17 +16,14 @@ const appStore = useUserStore()
 // Reactive Variables Start
 const calendarRef = ref(null)
 const showTaskListDialog = ref(false)
-const calendarTasksList = reactive(
-  {
-    id: "",
-    title: "",
-    description: "",
-    priority: "",
-    status: "",
-    assignedTo: "",
-    deadline: ""
-  }
-)
+const calendarTasksList = reactive({
+  id: "",
+  title: "",
+  description: "",
+  priority: "",
+  status: "",
+  deadline: ""
+})
 // Reactive Variables End
 
 // Tasks Start
@@ -46,15 +35,6 @@ const formatTasksForCalendar = computed(() => {
   if (!tasks.value?.length) return []
 
   return tasks?.value.map(task => {
-    let assignedTo = task.assignedTo
-    try {
-      assignedTo = typeof task.assignedTo === 'string' ?
-        JSON.parse(task.assignedTo) : task.assignedTo
-    } catch (e) {
-      console.error('Error parsing assignedTo:', e)
-      assignedTo = { first_name: 'Unknown', second_name: '' }
-    }
-
     // Check if task has multiple priorities
     const priorities = Array.isArray(task.priority) ? task.priority : [task.priority]
 
@@ -67,7 +47,6 @@ const formatTasksForCalendar = computed(() => {
       extendedProps: {
         priority: task.priority,
         status: task.status,
-        assignedTo: assignedTo,
         description: task.description
       },
       backgroundColor: getPriorityColor(priorities),
@@ -99,7 +78,6 @@ const calendarOptions = {
 
   // Customize event rendering
   eventContent: (arg) => {
-    const assignedTo = arg.event.extendedProps.assignedTo
     const priority = arg.event.extendedProps.priority
     const status = arg.event.extendedProps.status
 
@@ -112,7 +90,6 @@ const calendarOptions = {
           </div>
           <div class="task-info">
             <span class="task-priority">${priority}</span>
-            <span class="task-assignee">${assignedTo.first_name}</span>
           </div>
           <div class="task-status">${status}</div>
         </div>
@@ -122,18 +99,14 @@ const calendarOptions = {
 
   // Event handlers
   eventClick: (info) => {
-
     calendarTasksList.id = info.event.id
     calendarTasksList.title = info.event.title
     calendarTasksList.description = info.event.extendedProps.description
     calendarTasksList.priority = info.event.extendedProps.priority
     calendarTasksList.status = info.event.extendedProps.status
-    calendarTasksList.assignedTo = info.event.extendedProps.assignedTo
     calendarTasksList.deadline = info.event.start
 
     showTaskListDialog.value = true
-
-
   }
 }
 // Calendar options End
@@ -168,6 +141,19 @@ onMounted(() => {
 })
 // OnMounted End
 </script>
+
+<template>
+  <div class="calendar-wrapper">
+    <AdminCalendarDialogsTaskListDetails :calendarTasksList="calendarTasksList" :showTaskListDialog="showTaskListDialog"
+      @close="showTaskListDialog = false" />
+
+              {{ appStore.userProfile }}
+
+    <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
+  </div>
+</template>
+
+
 
 
 <style scoped>

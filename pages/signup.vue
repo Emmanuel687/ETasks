@@ -142,7 +142,7 @@ const handleSignup = async () => {
 
     if (error) throw error
 
-    successMessage.value = 'Sign up successful! Please check your email for verification.'
+    successMessage.value = 'Sign up successful!'
     setTimeout(() => router.push('/login'), 5000)
 
     firstName.value = ''

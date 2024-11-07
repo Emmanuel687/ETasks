@@ -69,14 +69,16 @@
 
 <script setup>
 // Imports Start
+import { useCustomToast } from '~/composables/useToast'
+
 // Imports End
 
-// Receive Props Start
-// Receive Props End
+
 
 // Variables Start
-const supabase = useSupabaseClient()
-const router = useRouter()
+const supabase = useSupabaseClient();
+const router = useRouter();
+const toast = useCustomToast();
 // Variables Start
 
 // Reactive Variable Start
@@ -96,11 +98,14 @@ const handleLogin = async () => {
     })
     if (error) throw error
     // Handle successful login
-    console.log('Login successful')
+    toast.success("Login Successful")
+
     router.push('/admin') // Redirect to admin dashboard
   } catch (error) {
     // Handle error
     console.error('Error logging in:', error)
+    toast.error("Error Logging in")
+
     errorMessage.value = error.message || 'An error occurred during login'
   }
 }

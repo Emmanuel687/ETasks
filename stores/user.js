@@ -32,6 +32,8 @@ export const useUserStore = defineStore('user', () => {
 
   // Normal Variables Start
   const supabase = useSupabaseClient()
+  const userProfile = useSupabaseUser()
+
   // Normal Variables Start
 
 
@@ -193,7 +195,8 @@ export const useUserStore = defineStore('user', () => {
     inProgressTasks,
     upcomingTasks,
     dueTodayTasks,
-    pastTasks
+    pastTasks,
+    userProfile
 
 
   }
