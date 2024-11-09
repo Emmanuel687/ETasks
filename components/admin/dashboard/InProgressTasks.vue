@@ -29,7 +29,7 @@ const appStore = useUserStore()
       <!-- Empty DataTable Start -->
       <template #empty>
         <div>
-          <DatatableEmptyDatatable />
+          <DatatableEmptyDatatable :taskStatus="'Inprogress'" />
         </div>
       </template>
       <!-- Empty DataTable End -->

@@ -147,7 +147,7 @@ onMounted(() => {
     <AdminCalendarDialogsTaskListDetails :calendarTasksList="calendarTasksList" :showTaskListDialog="showTaskListDialog"
       @close="showTaskListDialog = false" />
 
-              {{ appStore.userProfile }}
+              <!-- {{ appStore.userProfile }} -->
 
     <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
   </div>

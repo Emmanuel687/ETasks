@@ -43,7 +43,7 @@ onMounted(() => {
       <!-- Empty DataTable Start -->
       <template #empty>
         <div>
-          <DatatableEmptyDatatable />
+          <DatatableEmptyDatatable :taskStatus="'Completed'" />
         </div>
       </template>
       <!-- Empty DataTable End -->
