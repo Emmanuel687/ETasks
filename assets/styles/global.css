@@ -511,11 +511,49 @@ h6 {
   box-shadow: unset !important;
 }
 
+
+.all-tasks .p-datatable-table tr th {
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  color: #78350f !important; /* Darker, better contrast with background */
+  text-wrap: nowrap;
+  background: linear-gradient(to top right, #fde68a, #f59e0b) !important; /* Softer, warm gradient */
+}
+
+.open-tasks .p-datatable-table tr th {
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  color: #ffffff !important;
+  text-wrap: nowrap;
+  background: linear-gradient(to top right, #4f46e5, #3b82f6) !important; /* Lighter indigo shades */
+}
+
+.completed-tasks .p-datatable-table tr th {
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  color: #064e3b !important; /* Slightly darker text color for contrast */
+  text-wrap: nowrap;
+  background: linear-gradient(to top right, #6ee7b7, #10b981) !important; /* Softened teal gradient */
+}
+
+.in-progress-tasks .p-datatable-table tr th {
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  color: #ffffff !important; /* Light text for better contrast */
+  text-wrap: nowrap;
+  background: linear-gradient(to top right, #c084fc, #9333ea) !important; /* Softer and more blended gradient */
+}
+
 .p-datatable-table tr th {
   border: none !important;
   font-weight: 500 !important;
   font-size: 0.9rem !important;
   color: white !important;
   text-wrap: nowrap;
-  background: linear-gradient(to top right, #6366F1, #4338CA) !important; /* Smoother and brighter gradient */
+  background: linear-gradient(to top right, #4f46e5, #4338ca) !important; /* Softer blue/purple gradient */
 }
+

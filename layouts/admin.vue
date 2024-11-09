@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user" class="flex h-screen bg-gray-100">
+  <div v-if="user" class="flex h-screen !w-full bg-gray-100">
     <!-- Sidebar -->
     <AdminSidebar class="flex-shrink-0" />
 

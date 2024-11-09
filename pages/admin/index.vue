@@ -52,6 +52,7 @@ const handleShowTask = (taskStatus) => {
   status.value = taskStatus
 }
 // HandleShowTask End
+
 // Get Task Styles Start
 const getTaskStyles = (status) => {
   return {
@@ -112,11 +113,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="dashboard rounded-md py-3 p-2 h-full bg-white border overflow-x-auto ">
+  <section class="dashboard rounded-md py-3 p-2 h-full w-full           bg-white border overflow-x-auto ">
 
     <!-- Task Category Card Desktop View Start -->
-    <section class="hidden md:grid col-span-4">
-      <div class="grid grid-cols-4 gap-6">
+    <section class="md:grid md:col-span-4">
+      <div class="grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
         <div v-for="(task, index) in taskItems" :key="index">
           <!-- Task Card Start -->
           <div
@@ -142,9 +143,6 @@ onMounted(() => {
                   {{ task.taskNumber }}
                 </p>
                 <!-- Task Number Start -->
-
-
-
               </div>
             </div>
           </div>
@@ -155,23 +153,7 @@ onMounted(() => {
     <!-- Task Category Card Desktop View End -->
 
 
-    <!-- Task Category Card Mobile View Start  -->
-    <section class="md:hidden">
-      <div class="flex gap-5">
-        <div v-for="(task, index) in taskItems" :key="index" @click="handleShowTask(task.taskStatus)" :class="{
-          'bg-yellow-100 border-yellow-300 text-yellow-700': task.taskStatus === 'All Tasks',
-          'bg-green-100 border-green-300 text-green-700': task.taskStatus === 'Completed Tasks',
-          'bg-indigo-100 border-indigo-300 text-indigo-700': task.taskStatus === 'Open Tasks'
-        }"
-          class="group inline-flex items-center rounded-lg px-4 py-2 cursor-pointer border transition-all duration-200 w-full">
-          <div class="flex space-x-3">
-            <h1 class="text-xs">{{ task.taskStatus }}</h1>
-            <p class="text-sm font-semibold">{{ task.taskNumber }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Task Category Card Mobile View End  -->
+
 
 
 

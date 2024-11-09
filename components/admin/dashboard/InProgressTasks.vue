@@ -14,7 +14,7 @@ const appStore = useUserStore()
 </script>
 
 <template>
-  <section class="border rounded-md p-3 h-[450px]">
+  <section class="border rounded-md p-3 h-[450px] in-progress-tasks">
     <!-- Task Hero Start -->
     <div class="d-card-header">
       <h1 class="d-card-title !text-indigo-700">
