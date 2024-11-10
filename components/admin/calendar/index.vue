@@ -1,5 +1,3 @@
-
-
 <script setup>
 // Imports Start
 import FullCalendar from '@fullcalendar/vue3'
@@ -35,7 +33,6 @@ const formatTasksForCalendar = computed(() => {
   if (!tasks.value?.length) return []
 
   return tasks?.value.map(task => {
-    // Check if task has multiple priorities
     const priorities = Array.isArray(task.priority) ? task.priority : [task.priority]
 
     return {
@@ -75,6 +72,8 @@ const calendarOptions = {
   selectMirror: true,
   dayMaxEvents: true,
   weekends: true,
+  height: 'auto',
+  eventDisplay: 'block',
 
   // Customize event rendering
   eventContent: (arg) => {
@@ -86,12 +85,12 @@ const calendarOptions = {
         <div class="task-event ${priority.toLowerCase()}-priority ${status.toLowerCase()}-status">
           <div class="task-title">
             ${arg.event.title}
-            ${priority === 'High' ? '⚡' : ''}
+            ${priority === 'High' ? '<span class="priority-icon">⚡</span>' : ''}
           </div>
           <div class="task-info">
             <span class="task-priority">${priority}</span>
+            <span class="task-status">${status}</span>
           </div>
-          <div class="task-status">${status}</div>
         </div>
       `
     }
@@ -143,123 +142,195 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="calendar-wrapper ">
-    <AdminCalendarDialogsTaskListDetails :calendarTasksList="calendarTasksList" :showTaskListDialog="showTaskListDialog"
-      @close="showTaskListDialog = false" />
-    <FullCalendar :options="calendarOptions" class="calendar" ref="calendarRef" />
+  <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <h2 class="text-2xl font-bold text-gray-800">Task Calendar</h2>
+        <div class="priority-legend">
+          <div class="legend-item">
+            <span class="legend-dot high"></span>
+            <span>High Priority</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot medium"></span>
+            <span>Medium Priority</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot low"></span>
+            <span>Low Priority</span>
+          </div>
+        </div>
+      </div>
+      
+      <AdminCalendarDialogsTaskListDetails
+        :calendarTasksList="calendarTasksList"
+        :showTaskListDialog="showTaskListDialog"
+        @close="showTaskListDialog = false"
+      />
+      
+      <FullCalendar 
+        :options="calendarOptions" 
+        ref="calendarRef" 
+        class="task-calendar"
+      />
   </div>
 </template>
 
 <style scoped>
 .calendar-wrapper {
- 
-  background: white;
-  border-radius: 12px; /* Smoother border radius */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+  @apply p-6 bg-gray-50 min-h-screen;
 }
 
-.calendar {
-  height: 800px;
-  width: 100%;
+.calendar-container {
+  @apply bg-white rounded-xl shadow-lg p-6 max-w-7xl mx-auto;
 }
 
-/* Calendar customization */
+.calendar-header {
+  @apply mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4;
+}
+
+.priority-legend {
+  @apply flex flex-wrap gap-4;
+}
+
+.legend-item {
+  @apply flex items-center gap-2 text-sm text-gray-600;
+}
+
+.legend-dot {
+  @apply w-3 h-3 rounded-full;
+}
+
+.legend-dot.high {
+  background-color: #ef5350;
+}
+
+.legend-dot.medium {
+  background-color: #fb8c00;
+}
+
+legend-dot.low {
+  background-color: #66bb6a;
+}
+
+/* Calendar Styles */
+:deep(.task-calendar) {
+  @apply font-sans;
+}
+
 :deep(.fc) {
-  --fc-border-color: #d1d5db; /* Neutral border color */
-  --fc-button-bg-color: #6366F1; /* Indigo-600 */
-  --fc-button-border-color: #6366F1;
-  --fc-button-hover-bg-color: #4338CA; /* Indigo-700 */
-  --fc-button-hover-border-color: #4338CA;
-  --fc-button-active-bg-color: #4338CA;
-  --fc-button-active-border-color: #4338CA;
-  --fc-today-bg-color: rgba(99, 102, 241, 0.1); /* Subtle highlight for today's date */
+  @apply max-w-full outline-none;
 }
 
-/* Task event styles */
+:deep(.fc-toolbar-title) {
+  @apply text-xl sm:text-2xl font-bold text-gray-800;
+}
+
+:deep(.fc-button) {
+  @apply px-3 py-2 rounded-lg text-sm font-medium transition-colors outline-none !important;
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 !important;
+}
+
+:deep(.fc-button-primary) {
+  @apply bg-indigo-700 hover:bg-indigo-800 text-white !important;
+}
+
+:deep(.fc-button-secondary) {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300 !important;
+}
+
+:deep(.fc-today-button) {
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 !important;
+}
+
+:deep(.fc-button-active) {
+  @apply bg-indigo-700 text-white !important;
+}
+
+:deep(.fc-button-disabled) {
+  @apply bg-gray-300 text-gray-500 cursor-not-allowed !important;
+}
+
+:deep(.fc *) {
+  @apply outline-none focus:outline-none !important;
+}
+
+/* Task Event Styles */
 :deep(.task-event) {
-  padding: 6px;
-  border-radius: 8px;
-  margin: 2px 0;
-  background: #f3f4f6; /* Light gray background for contrast */
-  transition: background-color 0.2s, transform 0.1s ease;
-}
-
-:deep(.task-event:hover) {
-  background-color: #e0e7ff; /* Hover effect to highlight task */
-  transform: scale(1.03); /* Slight pop on hover */
+  @apply p-2 rounded-lg shadow-sm;
 }
 
 :deep(.task-title) {
-  font-weight: 600;
-  font-size: 0.95em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @apply font-medium text-white mb-1 flex items-center gap-1;
+}
+
+:deep(.priority-icon) {
+  @apply text-yellow-300;
 }
 
 :deep(.task-info) {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85em;
-  margin-top: 4px;
+  @apply flex justify-between text-xs text-white/90;
 }
 
-/* Priority labels */
-:deep(.task-priority) {
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.8em;
-  background-color: rgba(255, 255, 255, 0.3);
+:deep(.task-priority), :deep(.task-status) {
+  @apply px-1.5 py-0.5 rounded-full bg-white/20 text-white;
 }
 
-:deep(.task-status) {
-  font-size: 0.75em;
-  margin-top: 3px;
-  opacity: 0.8;
-}
-
-:deep(.task-assignee) {
-  font-size: 0.85em;
-}
-
-/* Priority-based styling */
+/* Priority-specific styles */
 :deep(.high-priority) {
-  border-left: 4px solid #ef4444; /* Brighter red for high priority */
+  @apply bg-red-500;
 }
 
 :deep(.medium-priority) {
-  border-left: 4px solid #fb923c; /* Bright orange for medium priority */
+  @apply bg-orange-500;
 }
 
 :deep(.low-priority) {
-  border-left: 4px solid #34d399; /* Fresh green for low priority */
+  @apply bg-green-500;
 }
 
-/* Status-based styling */
-:deep(.closed-status) {
-  opacity: 0.6;
-  text-decoration: line-through;
+/* Status-specific styles */
+:deep(.todo-status) {
+  @apply border-l-4 border-gray-400;
 }
 
 :deep(.in-progress-status) {
-  border-style: dashed !important;
+  @apply border-l-4 border-blue-400;
 }
 
-/* Calendar responsiveness */
-@media (max-width: 768px) {
-  .calendar-wrapper {
-    margin: 10px;
-    padding: 12px;
-  }
+:deep(.completed-status) {
+  @apply border-l-4 border-green-400;
+}
 
-  .calendar {
-    height: 600px;
-  }
+/* Additional Calendar Customizations */
+:deep(.fc-day-today) {
+  @apply bg-blue-50 !important;
+}
 
+:deep(.fc-day-other) {
+  @apply bg-gray-50/50 !important;
+}
+
+:deep(.fc-scrollgrid) {
+  @apply border-gray-200 !important;
+}
+
+:deep(.fc-col-header-cell) {
+  @apply bg-gray-50 py-3 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
   :deep(.fc-toolbar) {
-    flex-direction: column;
-    gap: 8px;
+    @apply flex-col gap-4;
+  }
+  
+  :deep(.fc-toolbar-title) {
+    @apply text-center;
+  }
+  
+  :deep(.fc-button) {
+    @apply text-xs;
   }
 }
 </style>
+
