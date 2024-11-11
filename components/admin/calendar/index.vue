@@ -120,7 +120,7 @@ function getPriorityColor(priorities) {
   const colors = {
     'High': '#ef5350',
     'Medium': '#fb8c00',
-    'Low': '#66bb6a'
+    'ow': '#66bb6a'
   }
   return colors[priority] || '#9e9e9e'
 }
@@ -208,8 +208,8 @@ onMounted(() => {
   background-color: #fb8c00;
 }
 
-legend-dot.low {
-  background-color: #66bb6a;
+.legend-dot.low {
+  background-color: #66bb6a !important;
 }
 
 /* Calendar Styles */
