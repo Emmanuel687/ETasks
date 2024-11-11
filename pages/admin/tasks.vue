@@ -134,7 +134,7 @@ onMounted(async () => {
         My Tasks
       </h1>
 
-      <button class="btn-primary bg-indigo-700 border-indigo-700   hover:bg-indigo-600"
+      <button class="btn-primary !bg-indigo-700 border-indigo-700   hover:bg-indigo-600"
         @click="openCreateTaskDialog = true">
         <i class="pi pi-plus"></i>
         New Task

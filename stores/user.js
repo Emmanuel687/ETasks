@@ -14,6 +14,16 @@ export const useUserStore = defineStore('user', () => {
     { name: "Low" }
   ])
 
+  const userProfileDetails = reactive({
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'johndoe@example.com',
+  })
+
+  const currentPassword = ref('')
+  const newPassword = ref('')
+  const confirmPassword = ref('')
+
   const assignees = ref([{
     first_name: "Wes",
     second_name: "Kiprotich"
@@ -33,10 +43,28 @@ export const useUserStore = defineStore('user', () => {
   // Normal Variables Start
   const supabase = useSupabaseClient()
   const userProfile = useSupabaseUser()
-
   // Normal Variables Start
 
 
+  // FetchUserData Start
+  const fetchUserData = async () => {
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser()
+
+      if (error) {
+        console.error('Error fetching user data:', error)
+        return
+      }
+
+      userProfileDetails.firstName = user?.user_metadata?.firstName || ''
+      userProfileDetails.lastName = user?.user_metadata?.lastName || ''
+      userProfileDetails.email = user?.email || ''
+
+    } catch (err) {
+      console.error('Unexpected error:', err)
+    }
+  }
+  // FetchUserData End
 
   // IsLoggedIn Start
   const isLoggedIn = computed(() => !!user.value)
@@ -99,7 +127,7 @@ export const useUserStore = defineStore('user', () => {
   }
   // Fetch Tasks End
 
-  
+
 
 
   // Pending Tasks Start
@@ -109,7 +137,7 @@ export const useUserStore = defineStore('user', () => {
   // Pending Tasks End
 
   // Inprogress Tasks Start
-  const inProgressTasks = computed(() =>{
+  const inProgressTasks = computed(() => {
     return tasks.value.filter(task => task.status === 'In Progress')
 
   })
@@ -128,7 +156,7 @@ export const useUserStore = defineStore('user', () => {
   const upcomingTasks = computed(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     return tasks.value.filter(task => {
       const deadline = new Date(task.deadline);
       deadline.setHours(0, 0, 0, 0);
@@ -141,28 +169,28 @@ export const useUserStore = defineStore('user', () => {
   const pastTasks = computed(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     return tasks.value.filter(task => {
       const deadline = new Date(task.deadline);
       deadline.setHours(0, 0, 0, 0);
       return deadline < today;
     });
   });
-  
+
   // Past Tasks End
 
   // Due Today Tasks Start
   const dueTodayTasks = computed(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     return tasks.value.filter(task => {
       const deadline = new Date(task.deadline);
       deadline.setHours(0, 0, 0, 0);
       return deadline.getTime() === today.getTime();
     });
   });
-  
+
   // Due Today Tasks End
 
 
@@ -171,6 +199,7 @@ export const useUserStore = defineStore('user', () => {
   // OnMounted Start
   onMounted(() => {
     fetchTasks()
+    fetchUserData()
   })
   // OnMounted End
 
@@ -196,7 +225,8 @@ export const useUserStore = defineStore('user', () => {
     upcomingTasks,
     dueTodayTasks,
     pastTasks,
-    userProfile
+    userProfile,
+    userProfileDetails
 
 
   }

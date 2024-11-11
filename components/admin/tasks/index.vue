@@ -3,7 +3,7 @@
     class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 p-4 overflow-x-auto h-[calc(100vh-210px)]">
     <!-- Status Column -->
     <div v-for="status in statuses" :key="status"
-      class="flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[470px] h-[calc(100vh-250px)] sm:h-full">
+      class="flex-shrink-0 w-full sm:w-[300px] md:w-[350px] lg:w-[435px] h-[calc(100vh-250px)] sm:h-full">
       <!-- Column Header Start -->
       <section class="bg-white rounded-t-xl p-4 shadow-sm border border-gray-100">
         <div class="flex items-center justify-between">
@@ -24,7 +24,6 @@
 
       <!-- Tasks Container Start -->
       <section class="bg-gray-50 p-4 rounded-b-xl h-full">
-
         <client-only>
           <draggable :list="getTasksByStatus(status)" :group="{ name: 'tasks', pull: true, put: true }" item-key="_id"
             class="space-y-4 h-full overflow-y-auto custom-scrollbar" @change="(event) => onDragChange(event, status)">

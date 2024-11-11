@@ -174,6 +174,7 @@ declare global {
   const useTemplateRef: typeof import('../../node_modules/vue')['useTemplateRef']
   const useToast: typeof import('../../node_modules/primevue/usetoast/index')['useToast']
   const useTransitionState: typeof import('../../node_modules/vue')['useTransitionState']
+  const useUserProfile: typeof import('../../composables/useUserProfile')['useUserProfile']
   const useUserStore: typeof import('../../stores/user')['useUserStore']
   const watch: typeof import('../../node_modules/vue')['watch']
   const watchEffect: typeof import('../../node_modules/vue')['watchEffect']
@@ -369,6 +370,7 @@ declare module 'vue' {
     readonly useTemplateRef: UnwrapRef<typeof import('../../node_modules/vue')['useTemplateRef']>
     readonly useToast: UnwrapRef<typeof import('../../node_modules/primevue/usetoast/index')['useToast']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>
+    readonly useUserProfile: UnwrapRef<typeof import('../../composables/useUserProfile')['useUserProfile']>
     readonly useUserStore: UnwrapRef<typeof import('../../stores/user')['useUserStore']>
     readonly watch: UnwrapRef<typeof import('../../node_modules/vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('../../node_modules/vue')['watchEffect']>

@@ -1,11 +1,30 @@
+<script setup>
+// Imports Start
+import { useUserStore } from "@/stores/user"
+import { useUserProfile } from "@/composables/useUserProfile"  
+// Imports End
+
+// Variables Start
+const user = useSupabaseUser()
+const userProfile = useUserProfile()
+// Variables End
+
+
+// Utility function to get initials
+const getInitials = (email) => {
+  if (!email) return ''
+  return email.charAt(0).toUpperCase()
+}
+</script>
+
+
 <template>
   <!-- Topbar -->
   <header class="bg-white  shadow-sm flex items-center justify-between px-4 h-[55px]">
-    <!-- Display user email if logged in -->
     <div>
       <p v-if="user" class="text-sm font-medium text-gray-700">
         Welcome back,
-        <span class="text-indigo-600 font-bold">{{ appStore.userProfile.user_metadata.username }}</span>!
+        <span class="text-indigo-600 font-bold">{{ userProfile.userName }}</span>!
       </p>
       <p v-else class="text-sm font-medium text-gray-500 italic">
         No user logged in.
@@ -29,21 +48,3 @@
   </header>
 </template>
 
-<script setup>
-// Imports Start
-import { useUserStore } from "@/stores/user"
-// Imports End
-
-
-// In Nuxt 3, we use the built-in composables
-const user = useSupabaseUser()
-const appStore = useUserStore();
-const supabase = useSupabaseClient()
-
-
-// Utility function to get initials
-const getInitials = (email) => {
-  if (!email) return ''
-  return email.charAt(0).toUpperCase()
-}
-</script>

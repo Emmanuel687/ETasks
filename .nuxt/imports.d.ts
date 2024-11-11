@@ -29,6 +29,7 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { injectHead, useHead, useSeoMeta, useHeadSafe, useServerHead, useServerSeoMeta, useServerHeadSafe } from '@unhead/vue';
 export { useAuth } from '../composables/useAuth';
 export { useCustomToast } from '../composables/useToast';
+export { useUserProfile } from '../composables/useUserProfile';
 export { formatedAssignedToName } from '../utils/formatNamed';
 export { useSupabaseClient } from '../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient';
 export { useSupabaseSession } from '../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseSession';

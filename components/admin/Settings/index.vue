@@ -1,132 +1,154 @@
+<script setup>
+// Imports start
+import { useUserProfile } from "@/composables/useUserProfile"  
+// Import End
+
+// Composables Start
+const profile = useUserProfile();  
+// Composables End
+
+// Password Form State
+const currentPassword = ref('')
+const newPassword = ref('')
+const confirmPassword = ref('')
+const isEditing = ref(false)
+
+
+
+const handleEdit = () => {
+  isEditing.value = true
+}
+
+
+const handleSubmit = async () => {
+  const result = await profile.updateProfile()
+  if (result.success) {
+    isEditing.value = false 
+  }
+}
+
+
+// Update Password Handler
+const updatePassword = async () => {
+  try {
+    if (newPassword.value !== confirmPassword.value) {
+      throw new Error('Passwords do not match')
+    }
+
+    const { error } = await profile.updatePassword(newPassword.value)
+    if (error) throw error
+
+    currentPassword.value = ''
+    newPassword.value = ''
+    confirmPassword.value = ''
+
+    alert('Password updated successfully!')
+  } catch (error) {
+    console.error('Error updating password:', error)
+    alert(error.message)
+  }
+}
+
+// Delete Account Handler
+const handleDeleteAccount = async () => {
+  await profile.deleteAccount()
+  console.log("Delete Account successful!")
+}
+
+</script>
+
 <template>
-  <section class="dashboard rounded-md py-3 p-2 h-full bg-white border overflow-x-auto">
+  <section class="bg-white p-3 overflow-y-auto">
     <!-- Account Information Section -->
-    <section class="account-info bg-white p-6 rounded-lg shadow-lg">
-      <h2 class="text-3xl font-semibold text-gray-800 border-b pb-3">Account Information</h2>
+    <section class="bg-white p-6 rounded-lg shadow-lg">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h2 class="text-3xl font-semibold text-gray-800">Account Information</h2>
+        <button v-if="!isEditing" @click="handleEdit"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          Edit
+        </button>
+      </div>
+
       <div class="mt-6 space-y-4">
-        <form @submit.prevent="updateProfile" class="space-y-6">
+        <form @submit.prevent="handleSubmit" class="space-y-6">
+          <!-- Username -->
+          <div class="flex flex-col">
+            <label for="userName" class="text-sm font-medium text-gray-700">Username</label>
+            <input v-model="profile.userName.value" :disabled="!isEditing" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg 
+                   focus:ring-indigo-500 focus:border-indigo-500
+                   disabled:bg-gray-50 disabled:cursor-not-allowed" placeholder="Enter Username" />
+          </div>
+
+          <!-- First Name -->
           <div class="flex flex-col">
             <label for="firstName" class="text-sm font-medium text-gray-700">First Name</label>
-            <input v-model="firstName" id="firstName" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your first name" />
+            <input v-model="profile.firstName.value" :disabled="!isEditing" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg 
+                   focus:ring-indigo-500 focus:border-indigo-500
+                   disabled:bg-gray-50 disabled:cursor-not-allowed" placeholder="Enter your first name" />
           </div>
+
+          <!-- Last Name -->
           <div class="flex flex-col">
             <label for="lastName" class="text-sm font-medium text-gray-700">Last Name</label>
-            <input v-model="lastName" id="lastName" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your last name" />
+            <input v-model="profile.lastName.value" :disabled="!isEditing" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg 
+                   focus:ring-indigo-500 focus:border-indigo-500
+                   disabled:bg-gray-50 disabled:cursor-not-allowed" placeholder="Enter your last name" />
           </div>
+
+          <!-- Email -->
           <div class="flex flex-col">
             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
-            <input v-model="email" id="email" type="email" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-gray-100 cursor-not-allowed" disabled />
+            <input v-model="profile.email.value" type="email" disabled class="mt-1 px-4 py-2 border border-gray-300 rounded-lg 
+                   bg-gray-100 cursor-not-allowed" />
           </div>
-          <button type="submit" class="w-full py-3 mt-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">Save Changes</button>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-4" v-if="isEditing">
+            <button type="submit" :disabled="profile.loading.value" class="flex-1 py-3 bg-indigo-600 text-white font-semibold rounded-lg 
+                   hover:bg-indigo-700 transition disabled:opacity-50">
+              {{ profile.loading.value ? 'Saving...' : 'Save Changes' }}
+            </button>
+
+            <button type="button" @click="isEditing = false" class="flex-1 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg 
+                   hover:bg-gray-200 transition">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </section>
 
     <!-- Change Password Section -->
-    <section class="change-password mt-12 bg-white p-6 rounded-lg shadow-lg">
+    <section class="mt-12 bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-3xl font-semibold text-gray-800 border-b pb-3">Change Password</h2>
       <div class="mt-6 space-y-4">
         <form @submit.prevent="updatePassword" class="space-y-6">
+          <!-- Password fields remain the same -->
           <div class="flex flex-col">
             <label for="currentPassword" class="text-sm font-medium text-gray-700">Current Password</label>
-            <input v-model="currentPassword" id="currentPassword" type="password" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter current password" />
+            <input v-model="currentPassword" id="currentPassword" type="password"
+              class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter current password" />
           </div>
-          <div class="flex flex-col">
-            <label for="newPassword" class="text-sm font-medium text-gray-700">New Password</label>
-            <input v-model="newPassword" id="newPassword" type="password" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter new password" />
-          </div>
-          <div class="flex flex-col">
-            <label for="confirmPassword" class="text-sm font-medium text-gray-700">Confirm New Password</label>
-            <input v-model="confirmPassword" id="confirmPassword" type="password" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Confirm new password" />
-          </div>
-          <button type="submit" class="w-full py-3 mt-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">Update Password</button>
+
+          <!-- Similar corrections for other password fields -->
+
+          <button type="submit" :disabled="profile.loading"
+            class="w-full py-3 mt-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition disabled:opacity-50">
+            {{ profile.loading.value ? 'Updating...' : 'Update Password' }}
+          </button>
         </form>
       </div>
     </section>
 
     <!-- Delete Account Section -->
-    <section class="delete-account mt-12 bg-white p-6 rounded-lg shadow-lg">
+    <section class="mt-12 bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-3xl font-semibold text-red-600 border-b pb-3">Delete Account</h2>
       <p class="mt-4 text-gray-700">Once you delete your account, there is no going back. Please be certain.</p>
-      <button @click="deleteAccount" class="w-full py-3 mt-6 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition">Delete Account</button>
+      <button @click="handleDeleteAccount" :disabled="profile.loading.value"
+        class="w-full py-3 mt-6 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition disabled:opacity-50">
+        {{ profile.loading.value ? 'Deleting...' : 'Delete Account' }}
+      </button>
     </section>
   </section>
 </template>
-
-<script setup>
-// Imports
-import { ref } from 'vue'
-// import { useSupabaseClient } from '@supabase/supabase-js'
-
-// Supabase Client
-const supabase = useSupabaseClient()
-
-// Sample data (replace with fetched user data)
-const firstName = ref('John')
-const lastName = ref('Doe')
-const email = ref('johndoe@example.com')
-const currentPassword = ref('')
-const newPassword = ref('')
-const confirmPassword = ref('')
-
-// Fetch user profile on mount (replace 'John' and 'Doe' with actual fetched data)
-onMounted(async () => {
-  const { data: { user }, error } = await supabase.auth.getUser()
-
-  if (error) {
-    console.error('Error fetching user data:', error)
-    return
-  }
-
-  // Set user info based on fetched data
-  firstName.value = user?.user_metadata?.firstName || ''
-  lastName.value = user?.user_metadata?.lastName || ''
-  email.value = user?.email || ''
-})
-
-// Update profile information
-const updateProfile = async () => {
-  const { data, error } = await supabase.auth.updateUser({
-    data: {
-      firstName: firstName.value,
-      lastName: lastName.value,
-    }
-  })
-
-  if (error) {
-    console.error('Error updating profile:', error)
-  } else {
-    console.log('Profile updated successfully!')
-  }
-}
-
-// Update password
-const updatePassword = async () => {
-  if (newPassword.value !== confirmPassword.value) {
-    alert('New password and confirmation password do not match.')
-    return
-  }
-
-  const { error } = await supabase.auth.updateUser({
-    password: newPassword.value
-  })
-
-  if (error) {
-    console.error('Error updating password:', error)
-  } else {
-    console.log('Password updated successfully!')
-  }
-}
-
-// Delete account
-const deleteAccount = async () => {
-  const { error } = await supabase.auth.deleteUser()
-
-  if (error) {
-    console.error('Error deleting account:', error)
-  } else {
-    console.log('Account deleted successfully!')
-    // Optionally, redirect to homepage or login page after deletion
-  }
-}
-</script>
