@@ -118,7 +118,11 @@ const handleDeleteAccount = async () => {
       </div>
     </section>
 
-    <!-- Change Password Section -->
+    <div class="grid grid-cols-2">
+          <!-- Change Password Section -->
+
+
+    </div>
     <section class="mt-12 bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-3xl font-semibold text-gray-800 border-b pb-3">Change Password</h2>
       <div class="mt-6 space-y-4">

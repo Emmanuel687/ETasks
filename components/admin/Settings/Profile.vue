@@ -75,7 +75,7 @@ const formatDate = (dateString) => {
             {{ store.userProfile.user_metadata.email_verified ? 'Email Verified' : 'Email Unverified' }}
           </span>
 
-          <!-- Divider -->
+          <!-- Dividers -->
           <span class="text-gray-300">|</span>
 
           <!-- Phone Verification Status -->
@@ -86,7 +86,7 @@ const formatDate = (dateString) => {
       </div>
     </section>
 
-
+  
   </section>
 </template>
 
