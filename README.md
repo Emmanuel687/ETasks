@@ -6,10 +6,10 @@ This project is a comprehensive web application built with Nuxt 3 and Supabase, 
 ## Features
 
 ### Public Website
-- Responsive, dark-themed design
-- Home page with key information
-- About and Contact pages
-- User authentication (signup and login)
+- Responsive, dark-themed design.
+- Home page with key information.
+- About and Contact pages.
+- User authentication (signup and login).
 
 ### Admin Dashboard
 - Secure, authenticated access
