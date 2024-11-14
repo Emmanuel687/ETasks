@@ -1,1 +1,1 @@
-export { default } from "file:///Users/emmanuel/Desktop/TaskManager-Supabase/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///Users/emmanuel/Desktop/ETasks/ETasks/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
