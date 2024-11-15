@@ -50,30 +50,38 @@ const handleLogin = async () => {
     isLoading.value = true
     errorMessage.value = ''
 
-    const { error } = await supabase.auth.signInWithPassword({
+    // First check if the user exists
+    const { data: { user: existingUser }, error: userCheckError } = await supabase.auth.getUser()
+    
+    // Attempt to sign in
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     })
 
-    if (error) throw error
+    if (error) {
+      // Handle specific error messages from Supabase
+      if (error.message.includes('Invalid login credentials')) {
+        errorMessage.value = 'Incorrect password. Please try again.'
+      } else if (error.message.includes('Email not confirmed')) {
+        errorMessage.value = 'Please verify your email before logging in.'
+      } else if (error.message === 'Email not found') {
+        errorMessage.value = 'User is not registered. Please sign up first.'
+      } else {
+        errorMessage.value = 'An error occurred during login.'
+      }
+      
+      toast.error(errorMessage.value)
+      return
+    }
 
     // Handle successful login
-    toast.success("Login Successful")
-    router.push('/admin') // Redirect to admin dashboard
+    toast.success('Login Successful')
+    router.push('/admin')
   } catch (error) {
     console.error('Error logging in:', error)
-    
-    // More specific error messages
-    if (error.message.includes('Email not confirmed')) {
-      errorMessage.value = 'Please confirm your email before logging in. Check your inbox for the confirmation link.'
-      toast.error(errorMessage.value)
-    } else if (error.message.includes('Invalid login credentials')) {
-      errorMessage.value = 'Invalid email or password. Please try again.'
-      toast.error(errorMessage.value)
-    } else {
-      errorMessage.value = error.message || 'An error occurred during login'
-      toast.error("Error logging in")
-    }
+    errorMessage.value = 'An unexpected error occurred.'
+    toast.error(errorMessage.value)
   } finally {
     isLoading.value = false
   }
@@ -174,54 +182,7 @@ const handleLogin = async () => {
           </div>
         </form>
 
-        <!-- Social Login Section -->
-        <div class="mt-8">
-          <div class="relative">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">
-                Or continue with
-              </span>
-            </div>
-          </div>
-
-          <div class="mt-6 grid grid-cols-3 gap-3">
-            <!-- Google -->
-            <div>
-              <button type="button"
-                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" />
-                </svg>
-              </button>
-            </div>
-
-            <!-- GitHub -->
-            <div>
-              <button type="button"
-                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                </svg>
-              </button>
-            </div>
-
-            <!-- Twitter -->
-            <div>
-              <button type="button"
-                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+    
 
         <!-- Sign Up Link -->
         <div class="mt-6 text-center">

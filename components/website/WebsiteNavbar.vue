@@ -6,7 +6,7 @@ const navLinks = ref([
   { name: 'Overview', path: '/' },
   // { name: 'Pricing', path: '/pricing' },
   { name: 'FAQ', path: '/faq' },
-  { name: 'Contact Us', path: '/contact' },
+  // { name: 'Contact Us', path: '/contact' },
 ]);
 const isOpen = ref(false)
 
