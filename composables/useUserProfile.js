@@ -55,7 +55,7 @@ export const useUserProfile = () => {
       if (updateError) throw updateError
 
       await fetchUserData()
-      toast.success('Account deleted successfully')
+      toast.success('Account Details Updated successfully')
 
       return { success: true }
     } catch (err) {

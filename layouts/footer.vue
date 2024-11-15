@@ -10,7 +10,7 @@ import LinkedIn from "public/assets/svgs/Icons/linkedin.svg";
 const pages = ref([
   { pageName: "Overview", route: "/" },
   { pageName: "Faq", route: "/faq" },
-  { pageName: "Contact Us", route: "/contact" },
+  // { pageName: "Contact Us", route: "/contact" },
 ])
 const contactDetails = ref([
   "Phone Number",
