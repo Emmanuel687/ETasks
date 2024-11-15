@@ -48,5 +48,5 @@ https://e-tasks10.vercel.app/
 ### Setup
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/etasks.git
-cd etasks
+git https://github.com/Emmanuel687/ETasks.git
+cd ETasks
