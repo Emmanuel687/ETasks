@@ -1,7 +1,7 @@
 <script setup>
 // Imports Start
 import { useUserStore } from "@/stores/user"
-import { useUserProfile } from "@/composables/useUserProfile"  
+import { useUserProfile } from "@/composables/useUserProfile"
 // Imports End
 
 // Variables Start
@@ -9,6 +9,9 @@ const user = useSupabaseUser()
 const userProfile = useUserProfile()
 // Variables End
 
+// Store Start
+const store = useUserStore();
+// Store End
 
 // Utility function to get initials
 const getInitials = (email) => {
@@ -24,7 +27,9 @@ const getInitials = (email) => {
     <div>
       <p v-if="user" class="text-sm font-medium text-gray-700">
         Welcome back,
-        <span class="text-indigo-600 font-bold">{{ userProfile.userName }}</span>!
+        <span class="text-indigo-600 font-bold"> {{ store.userProfile.user_metadata.firstName }} {{
+          store.userProfile.user_metadata.lastName }}
+        </span>!
       </p>
       <p v-else class="text-sm font-medium text-gray-500 italic">
         No user logged in.
@@ -47,4 +52,3 @@ const getInitials = (email) => {
     </div>
   </header>
 </template>
-

@@ -1,6 +1,6 @@
 <script setup>
 // Imports Start
-import {useUserStore} from "@/stores/user"
+import { useUserStore } from "@/stores/user"
 // Imports End
 
 // Store Start
@@ -35,24 +35,27 @@ const formatDate = (dateString) => {
         </div>
 
         <!-- Verified Badge -->
-        <div v-if="store.userProfile.user_metadata.email_verified" 
-             class="absolute -right-2 -bottom-2 bg-green-500 rounded-full p-1 shadow-lg">
+        <div v-if="store.userProfile.user_metadata.email_verified"
+          class="absolute -right-2 -bottom-2 bg-green-500 rounded-full p-1 shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            <path fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd" />
           </svg>
         </div>
       </div>
 
-      <!-- User Info -->
       <div class="space-y-3">
-        <!-- Name -->
+        <!-- User Full Name Start -->
         <div>
           <h2 class="text-2xl font-bold text-gray-900">
             {{ store.userProfile.user_metadata.firstName }} {{ store.userProfile.user_metadata.lastName }}
           </h2>
         </div>
+        <!-- User Full Name End -->
 
-        <!-- Email -->
+
+        <!-- Email Start -->
         <p class="text-sm text-gray-600 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -60,17 +63,22 @@ const formatDate = (dateString) => {
           </svg>
           {{ store.userProfile.email }}
         </p>
+        <!-- Email Start -->
 
-        <!-- Account Info -->
+
+        <!-- Account Info Start-->
         <div class="text-sm text-gray-600">
           <p>Member since: <span class="font-medium">{{ formatDate(store.userProfile.created_at) }}</span></p>
           <p>Last login: <span class="font-medium">{{ formatDate(store.userProfile.last_sign_in_at) }}</span></p>
         </div>
+        <!-- Account Info End-->
+
 
         <!-- Verification Status -->
         <div class="flex items-center justify-center gap-4 text-sm mt-4">
           <!-- Email Verification Status -->
-          <span :class="store.userProfile.user_metadata.email_verified ? 'text-green-600 font-medium' : 'text-yellow-600'">
+          <span
+            :class="store.userProfile.user_metadata.email_verified ? 'text-green-600 font-medium' : 'text-yellow-600'">
             {{ store.userProfile.user_metadata.email_verified ? 'Email Verified' : 'Email Unverified' }}
           </span>
 
@@ -78,14 +86,15 @@ const formatDate = (dateString) => {
           <span class="text-gray-300">|</span>
 
           <!-- Phone Verification Status -->
-          <span :class="store.userProfile.user_metadata.phone_verified ? 'text-green-600 font-medium' : 'text-yellow-600'">
+          <span
+            :class="store.userProfile.user_metadata.phone_verified ? 'text-green-600 font-medium' : 'text-yellow-600'">
             {{ store.userProfile.user_metadata.phone_verified ? 'Phone Verified' : 'Phone Unverified' }}
           </span>
         </div>
       </div>
     </section>
 
-  
+
   </section>
 </template>
 

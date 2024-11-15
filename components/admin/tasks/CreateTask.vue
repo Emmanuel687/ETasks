@@ -45,13 +45,20 @@ const closeDialog = () => {
 
 // HandleCreateTask Start
 const handleCreateTask = async () => {
+  if (
+    task_name.value === "" || 
+    task_description.value === "" || 
+    task_end_date.value === "" || 
+    selectedPriority.value === ""
+  ) {
+    toast.error("Please fill in all required fields")
+    return
+  }
+
   const isSubmitting = ref(false)
   isSubmitting.value = true
 
   const formattedDeadline = task_end_date.value ? new Date(task_end_date.value).toISOString() : null;
-  // const assignedTo = typeof selectedAssignee.value === 'string'
-  //   ? JSON.parse(selectedAssignee.value)
-  //   : selectedAssignee.value;
 
   try {
     const { data, error } = await supabase
@@ -60,7 +67,6 @@ const handleCreateTask = async () => {
         taskName: task_name.value,
         description: task_description.value,
         deadline: formattedDeadline,
-        // assignedTo: assignedTo,
         priority: selectedPriority.value,
         status: 'open',
         user_id: user.id
@@ -72,12 +78,12 @@ const handleCreateTask = async () => {
       throw error;
     }
 
-    toast.success("Form submitted successfully!")
+    toast.success("Task created successfully!")
 
+    // Reset form
     task_name.value = '';
     task_description.value = '';
     task_end_date.value = '';
-    // selectedAssignee.value = '';
     selectedPriority.value = '';
 
     emits('fetchTasks')
@@ -85,6 +91,7 @@ const handleCreateTask = async () => {
 
   } catch (error) {
     console.error('Error creating task:', error);
+    toast.error('Failed to create task')
   } finally {
     isSubmitting.value = false;
   }
