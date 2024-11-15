@@ -18,7 +18,6 @@ const appStore = useUserStore()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 const toast = useCustomToast()
-
 // Variables Start
 
 

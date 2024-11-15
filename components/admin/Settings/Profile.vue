@@ -23,7 +23,7 @@ const formatDate = (dateString) => {
 </script>
 
 <template>
-  <section class="h-full bg-gray-50 rounded-lg shadow-lg p-6">
+  <section class="h-[800px] bg-gray-50 rounded-lg shadow-lg p-6">
     <!-- Profile Section -->
     <section class="flex flex-col items-center text-center py-6 space-y-6">
       <!-- Profile Initial Icon -->
@@ -50,7 +50,6 @@ const formatDate = (dateString) => {
           <h2 class="text-2xl font-bold text-gray-900">
             {{ store.userProfile.user_metadata.firstName }} {{ store.userProfile.user_metadata.lastName }}
           </h2>
-          <p class="text-sm text-gray-500">@{{ store.userProfile.user_metadata.userName }}</p>
         </div>
 
         <!-- Email -->

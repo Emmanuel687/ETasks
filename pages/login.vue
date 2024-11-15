@@ -19,6 +19,7 @@ const password = ref('')
 const errorMessage = ref('')
 const isLoading = ref(false)
 const showPassword = ref(false)
+const showConfirmPassword = ref(false)
 // Reactive Variables End
 
 // Handle auto-login if coming from signup
@@ -29,17 +30,11 @@ onMounted(() => {
       const { email: storedEmail, password: storedPassword } = JSON.parse(credentials)
       email.value = storedEmail
       password.value = storedPassword
-      
-      // Clean up
       sessionStorage.removeItem('tempLoginCredentials')
-      
-      // Auto login after a short delay
       setTimeout(() => {
         handleLogin()
-      }, 1000) // 1-second delay to let user see what's happening
+      }, 1000) 
     }
-    
-    // Clean up URL
     router.replace({ path: route.path })
   }
 })
@@ -52,7 +47,7 @@ const handleLogin = async () => {
 
     // First check if the user exists
     const { data: { user: existingUser }, error: userCheckError } = await supabase.auth.getUser()
-    
+
     // Attempt to sign in
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email.value,
@@ -60,7 +55,6 @@ const handleLogin = async () => {
     })
 
     if (error) {
-      // Handle specific error messages from Supabase
       if (error.message.includes('Invalid login credentials')) {
         errorMessage.value = 'Incorrect password. Please try again.'
       } else if (error.message.includes('Email not confirmed')) {
@@ -70,7 +64,7 @@ const handleLogin = async () => {
       } else {
         errorMessage.value = 'An error occurred during login.'
       }
-      
+
       toast.error(errorMessage.value)
       return
     }
@@ -107,7 +101,8 @@ const handleLogin = async () => {
         <div v-if="errorMessage" class="mt-4 rounded-md bg-red-50 p-4">
           <div class="flex">
             <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
                 <path fill-rule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                   clip-rule="evenodd" />
@@ -133,17 +128,16 @@ const handleLogin = async () => {
           </div>
 
           <!-- Password Field -->
+          <!-- Confirm Password Field -->
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
             <div class="mt-1 relative">
-              <input id="password" name="password" :type="showPassword ? 'text' : 'password'"
-                autocomplete="current-password" required v-model="password"
+              <input id="confirmPassword" name="confirmPassword" :type="showConfirmPassword ? 'text' : 'password'"
+                required v-model="confirmPassword"
                 class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out" />
-              <button type="button" @click="showPassword = !showPassword"
+              <button type="button" @click="showConfirmPassword = !showConfirmPassword"
                 class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none">
-                <svg v-if="showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                <svg v-if="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2">
                   <path
                     d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
@@ -155,34 +149,30 @@ const handleLogin = async () => {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
                 <span class="sr-only">
-                  {{ showPassword ? 'Hide password' : 'Show password' }}
+                  {{ showConfirmPassword ? 'Hide password' : 'Show password' }}
                 </span>
               </button>
             </div>
-          </div>
+            </div>
 
-          <!-- Submit Button -->
-          <button type="submit" :disabled="isLoading"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out disabled:opacity-50">
-            <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-              </path>
-            </svg>
-            {{ isLoading ? 'Logging in...' : 'Log in' }}
-          </button>
 
-          <!-- Forgot Password Link -->
-          <div class="text-sm text-center">
-            <NuxtLink to="/forgot-password" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Forgot your password?
-            </NuxtLink>
-          </div>
+            <!-- Submit Button -->
+            <button type="submit" :disabled="isLoading"
+              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out disabled:opacity-50">
+              <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+              </svg>
+              {{ isLoading ? 'Logging in...' : 'Log in' }}
+            </button>
+
+
         </form>
 
-    
+
 
         <!-- Sign Up Link -->
         <div class="mt-6 text-center">

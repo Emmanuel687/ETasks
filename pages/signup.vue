@@ -8,7 +8,6 @@ import { useCustomToast } from '~/composables/useToast'
 // Reactive Variables Start
 const firstName = ref('')
 const lastName = ref('')
-const username = ref('') // Add username here
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
@@ -36,15 +35,10 @@ const validatePassword = (password) => {
   return password.length >= 6
 }
 
-const validateUsername = (username) => {
-  return username.length >= 3
-}
+
 
 const validateForm = () => {
-  if (!username.value || !validateUsername(username.value)) {
-    errorMessage.value = 'Username must be at least 3 characters long.'
-    return false
-  }
+
 
   if (!firstName.value || !lastName.value) {
     errorMessage.value = 'Please enter your full name.'
@@ -87,13 +81,11 @@ const handleSignup = async () => {
     errorMessage.value = ''
     successMessage.value = ''
 
-    // Use the provided username
     const { data, error } = await supabase.auth.signUp({
       email: email.value,
       password: password.value,
       options: {
         data: {
-          username: username.value, // Include the username here
           firstName: firstName.value,
           lastName: lastName.value,
         },
@@ -111,15 +103,13 @@ const handleSignup = async () => {
 
     // Success message
     successMessage.value = `
-      A confirmation email has been sent to ${email.value}. 
-      Please check your email and click the confirmation link to activate your account.
+    User Created successfully
     `
-    toast.success('Please check your email for confirmation link')
+    toast.success('User Created Successfully')
 
     // Clear form
     firstName.value = ''
     lastName.value = ''
-    username.value = '' // Clear username
     email.value = ''
     password.value = ''
     confirmPassword.value = ''
@@ -159,14 +149,7 @@ const handleSignup = async () => {
         </div>
 
         <form class="space-y-6 mt-8" @submit.prevent="handleSignup">
-          <!-- Username Field -->
-          <div>
-            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-            <div class="mt-1">
-              <input id="username" name="username" type="text" required v-model="username"
-                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-          </div>
+
 
           <!-- First Name Field -->
           <div>
@@ -199,19 +182,25 @@ const handleSignup = async () => {
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
             <div class="mt-1 relative">
-              <input id="password" name="password" :type="showPassword ? 'text' : 'password'" autocomplete="new-password"
-                required v-model="password"
+              <input id="password" name="password" :type="showPassword ? 'text' : 'password'"
+                autocomplete="new-password" required v-model="password"
                 class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out" />
               <button type="button" @click="showPassword = !showPassword"
                 class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none">
                 <svg v-if="showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.45 18.45 0 0 1-5.06 5.94" />
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
                 </svg>
-                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 9v6l6 3V6L3 9zm9 9h3a4.5 4.5 0 0 0 4.5-4.5V9h-3v5.5a1.5 1.5 0 0 1-1.5 1.5H12a4.5 4.5 0 0 0-4.5 4.5v3h3v-2a1.5 1.5 0 0 1 1.5-1.5h3z" />
+                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
                 </svg>
+                <span class="sr-only">
+                  {{ showPassword ? 'Hide password' : 'Show password' }}
+                </span>
               </button>
             </div>
           </div>
@@ -219,9 +208,27 @@ const handleSignup = async () => {
           <!-- Confirm Password Field -->
           <div>
             <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-            <div class="mt-1">
-              <input id="confirmPassword" name="confirmPassword" type="password" required v-model="confirmPassword"
-                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            <div class="mt-1 relative">
+              <input id="confirmPassword" name="confirmPassword" :type="showConfirmPassword ? 'text' : 'password'"
+                required v-model="confirmPassword"
+                class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out" />
+              <button type="button" @click="showConfirmPassword = !showConfirmPassword"
+                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none">
+                <svg v-if="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <span class="sr-only">
+                  {{ showConfirmPassword ? 'Hide password' : 'Show password' }}
+                </span>
+              </button>
             </div>
           </div>
 
@@ -230,7 +237,8 @@ const handleSignup = async () => {
             <input id="agreeToTerms" name="agreeToTerms" type="checkbox" v-model="agreeToTerms"
               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
             <label for="agreeToTerms" class="ml-2 block text-sm text-gray-900">
-              I agree to the <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Terms and Conditions</a>
+              I agree to the <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Terms and
+                Conditions</a>
             </label>
           </div>
 
@@ -246,7 +254,8 @@ const handleSignup = async () => {
 
           <!-- Submit Button -->
           <div>
-            <button type="submit" :disabled="isLoading" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed">
+            <button type="submit" :disabled="isLoading"
+              class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed">
               <span v-if="isLoading">Processing...</span>
               <span v-else>Sign Up</span>
             </button>

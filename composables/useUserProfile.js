@@ -1,5 +1,3 @@
-import { ref, reactive } from 'vue'
-
 export const useUserProfile = () => {
   // Reactive Variables Start
   const firstName = ref('')
@@ -24,7 +22,7 @@ export const useUserProfile = () => {
 
       firstName.value = user?.user_metadata?.firstName || ''
       lastName.value = user?.user_metadata?.lastName || ''
-      userName.value = user?.user_metadata?.userName || ''
+      userName.value = user?.user_metadata.userName || ''
       userDetails.value = user?.user_metadata || {}
       email.value = user?.email || ''
 
@@ -47,7 +45,7 @@ export const useUserProfile = () => {
         data: {
           firstName: firstName.value,
           lastName: lastName.value,
-          userName: userName.value
+          username: userName.value
         }
       })
 
