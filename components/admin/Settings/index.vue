@@ -52,7 +52,7 @@ const deleteAccount = async () => {
     await supabase.auth.signOut()
 
     toast.success('Account deleted successfully')
-    router.push('/login')
+    router.push('/')
     return { success: true }
   } catch (err) {
     error.value = err.message

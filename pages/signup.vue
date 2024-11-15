@@ -118,7 +118,7 @@ const handleSignup = async () => {
     // Redirect after delay
     setTimeout(() => {
       router.push('/login?autoLogin=true')
-    }, 5000)
+    }, 1000)
 
   } catch (error) {
     console.error('Signup error:', error)
