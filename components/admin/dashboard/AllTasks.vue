@@ -43,15 +43,6 @@ onMounted(() => {
       </template>
       <!-- Empty DataTable End -->
 
-
-      <!-- AssignedTo Start -->
-      <Column field="assignedTo" header="Assigned To">
-        <template #body="slotProps">
-          <span> {{ formatedAssignedToName(slotProps.data.assignedTo) }}</span>
-        </template>
-      </Column>
-      <!-- AssignedTo End -->
-
       <!-- TaskName Start -->
       <Column field="taskName" header="Task Name"></Column>
       <!-- TaskName End -->

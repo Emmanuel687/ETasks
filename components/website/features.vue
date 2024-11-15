@@ -1,4 +1,3 @@
-
 <script setup>
 // Imports Start
 import ChartSVG from "/public/assets/svgs/Icons/chart.svg"
@@ -37,11 +36,12 @@ const featuresList = ref([
   <!-- Features Section Start -->
   <div class="mx-auto max-w-[80%] text-left mt-24 flex flex-col  space-y-8">
     <!-- Features Text Start -->
-    <h1 class="text-[32px]">Streamline Your Workflow, Your Productivity
+    <h1 class="text-[30px]">Streamline Your Workflow, Your Productivity
 
     </h1>
-    <p class="!text-[18px] text-[#595759]">
-      We consider all the drivers of change gives you the blocks & components <br /> you need to change to create a truly
+    <p class="!text-[16px] text-[#595759]">
+      We consider all the drivers of change gives you the blocks & components <br /> you need to change to create a
+      truly
       professional website.
     </p>
     <!-- Features End  -->
@@ -50,23 +50,26 @@ const featuresList = ref([
     <div class="container mx-auto px-4 py-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div v-for="(feature, index) in featuresList" :key="index"
-          class="flex flex-col text-left p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <!-- SVG Section Start  -->
+          class="flex flex-col text-left p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+
+          <!-- SVG Section Start -->
           <div class="flex justify-center items-center h-24 mb-4">
             <img :src="feature.img" :alt="`${feature.title} illustration`" class="w-16 h-16 object-contain">
           </div>
-          <!-- SVG Section End  -->
+          <!-- SVG Section End -->
 
           <!-- Feature Title Start -->
-          <h2 class="text-xl font-semibold mb-2 leading-7">{{ feature.title }}</h2>
+          <h2 class="text-xl font-bold mb-2 text-gray-800 leading-tight tracking-tight">{{ feature.title }}</h2>
           <!-- Feature Title End -->
 
           <!-- Feature Description Start -->
-          <p class="!text-[16px] !text-[#495460]">{{ feature.description }}</p>
+          <p class="text-base text-gray-600 leading-relaxed">{{ feature.description }}</p>
           <!-- Feature Description End -->
+
         </div>
       </div>
     </div>
+
     <!-- Features List End -->
 
   </div>

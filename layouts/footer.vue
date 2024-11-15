@@ -9,7 +9,7 @@ import LinkedIn from "public/assets/svgs/Icons/linkedin.svg";
 // Reactive Variables Start
 const pages = ref([
   { pageName: "Overview", route: "/" },
-  { pageName: "Faq", route: "/faq" },
+  { pageName: "FAQ", route: "/faq" },
   // { pageName: "Contact Us", route: "/contact" },
 ])
 const contactDetails = ref([

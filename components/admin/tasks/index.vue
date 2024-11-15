@@ -10,7 +10,7 @@
           <div class="flex items-center space-x-2">
             <div class="w-2 h-2 rounded-full" :class="{
               'bg-green-400': status === 'closed',
-              'bg-yellow-400': status === 'in-progress',
+              'bg-yellow-400': status === 'In Progress',
               'bg-blue-400': status === 'open'
             }"></div>
             <h2 class="text-lg font-semibold text-gray-700">{{ formatStatus(status) }}</h2>
@@ -118,7 +118,7 @@
 
 
   <section v-else>
-    <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" :tasks="props.tasks" />
+    <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus"  />
   </section>
 
   <!-- Edit Task Dialog Start -->
