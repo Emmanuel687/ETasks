@@ -9,6 +9,14 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@pinia/nuxt',
   ],
+  head: {
+    link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=DM+Sans&display=swap', 
+      }
+    ]
+  },
   primevue: {
     options: {
       ripple: true,
@@ -55,7 +63,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/**'], // This will exclude all routes from automatic redirection
+      exclude: ['/**'], 
     },
   },
   routeRules: {

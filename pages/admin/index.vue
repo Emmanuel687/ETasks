@@ -152,12 +152,6 @@ onMounted(() => {
     </section>
     <!-- Task Category Card Desktop View End -->
 
-
-
-
-
-
-
     <section class="mt-[10px]">
       <!-- All Task Table Start -->
       <AdminDashboardAllTasks v-if="status === statuses.allTasks" />
@@ -177,11 +171,6 @@ onMounted(() => {
     </section>
 
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  lg:grid-cols-12 gap-2">
-
-
-
-
-
       <!-- Task Info Card  Start -->
       <section class="lg:col-span-8 mt-[10px]">
         <!-- Past Tasks Section  Start -->

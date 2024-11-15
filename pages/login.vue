@@ -1,4 +1,3 @@
-<!-- pages/login.vue -->
 <script setup>
 // Imports Start
 import { ref, onMounted } from 'vue'
@@ -19,7 +18,6 @@ const password = ref('')
 const errorMessage = ref('')
 const isLoading = ref(false)
 const showPassword = ref(false)
-const showConfirmPassword = ref(false)
 // Reactive Variables End
 
 // Handle auto-login if coming from signup
@@ -33,7 +31,7 @@ onMounted(() => {
       sessionStorage.removeItem('tempLoginCredentials')
       setTimeout(() => {
         handleLogin()
-      }, 1000) 
+      }, 1000)
     }
     router.replace({ path: route.path })
   }
@@ -45,40 +43,49 @@ const handleLogin = async () => {
     isLoading.value = true
     errorMessage.value = ''
 
-    // First check if the user exists
-    const { data: { user: existingUser }, error: userCheckError } = await supabase.auth.getUser()
-
-    // Attempt to sign in
+    // Attempt to sign in with email and password
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     })
 
     if (error) {
-      if (error.message.includes('Invalid login credentials')) {
-        errorMessage.value = 'Incorrect password. Please try again.'
-      } else if (error.message.includes('Email not confirmed')) {
-        errorMessage.value = 'Please verify your email before logging in.'
-      } else if (error.message === 'Email not found') {
-        errorMessage.value = 'User is not registered. Please sign up first.'
-      } else {
-        errorMessage.value = 'An error occurred during login.'
-      }
-
-      toast.error(errorMessage.value)
+      handleLoginError(error)
       return
     }
 
     // Handle successful login
     toast.success('Login Successful')
+
+    // Log the data to ensure the user is logged in correctly
+    console.log('Login successful', data)
+
+    // Redirect to /admin after successful login
     router.push('/admin')
   } catch (error) {
-    console.error('Error logging in:', error)
+    console.error('Unexpected Error during login:', error)
     errorMessage.value = 'An unexpected error occurred.'
     toast.error(errorMessage.value)
   } finally {
     isLoading.value = false
   }
+}
+
+// Error Handling for Login
+const handleLoginError = (error) => {
+  if (error.message.includes('Invalid login credentials')) {
+    errorMessage.value = 'Incorrect email or password. Please try again.'
+  } else if (error.message.includes('Email not confirmed')) {
+    errorMessage.value = 'Please verify your email before logging in.'
+  } else if (error.message === 'Email not found') {
+    errorMessage.value = 'No account found with this email. Please sign up first.'
+  } else if (error.message.includes('Too many requests')) {
+    errorMessage.value = 'Too many login attempts. Please try again later.'
+  } else {
+    errorMessage.value = 'An error occurred during login.'
+  }
+
+  toast.error(errorMessage.value)
 }
 // Handle Login End
 </script>
@@ -128,16 +135,15 @@ const handleLogin = async () => {
           </div>
 
           <!-- Password Field -->
-          <!-- Confirm Password Field -->
           <div>
-            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
             <div class="mt-1 relative">
-              <input id="confirmPassword" name="confirmPassword" :type="showConfirmPassword ? 'text' : 'password'"
-                required v-model="confirmPassword"
+              <input id="password" name="password" :type="showPassword ? 'text' : 'password'" required
+                v-model="password"
                 class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out" />
-              <button type="button" @click="showConfirmPassword = !showConfirmPassword"
+              <button type="button" @click="showPassword = !showPassword"
                 class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none">
-                <svg v-if="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                <svg v-if="showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2">
                   <path
                     d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
@@ -149,30 +155,25 @@ const handleLogin = async () => {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
                 <span class="sr-only">
-                  {{ showConfirmPassword ? 'Hide password' : 'Show password' }}
+                  {{ showPassword ? 'Hide password' : 'Show password' }}
                 </span>
               </button>
             </div>
-            </div>
+          </div>
 
-
-            <!-- Submit Button -->
-            <button type="submit" :disabled="isLoading"
-              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out disabled:opacity-50">
-              <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                </path>
-              </svg>
-              {{ isLoading ? 'Logging in...' : 'Log in' }}
-            </button>
-
-
+          <!-- Submit Button -->
+          <button type="submit" :disabled="isLoading"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out disabled:opacity-50">
+            <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+              </path>
+            </svg>
+            {{ isLoading ? 'Logging in...' : 'Log in' }}
+          </button>
         </form>
-
-
 
         <!-- Sign Up Link -->
         <div class="mt-6 text-center">

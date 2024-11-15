@@ -118,7 +118,7 @@
 
 
   <section v-else>
-    <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" />
+    <AdminTasksEmptyTask :selectedTaskStatus="selectedTaskStatus" :tasks="props.tasks" />
   </section>
 
   <!-- Edit Task Dialog Start -->

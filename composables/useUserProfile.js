@@ -9,11 +9,15 @@ export const useUserProfile = () => {
   const error = ref(null)
   // Reactive Variables End
 
-
+  // Variables Declarations Start
   const supabase = useSupabaseClient()
+  const toast = useCustomToast()
+  // Variables Declarations End
 
-  // Fetch user data Start
-   const fetchUserData = async () => {
+
+
+  // Fetch userData Start
+  const fetchUserData = async () => {
     try {
       loading.value = true
       const { data: { user }, error: fetchError } = await supabase.auth.getUser()
@@ -33,8 +37,7 @@ export const useUserProfile = () => {
       loading.value = false
     }
   }
-
-  // Fetch user  End
+  // Fetch userData End
 
 
   // Update User Profile Start
@@ -51,7 +54,9 @@ export const useUserProfile = () => {
 
       if (updateError) throw updateError
 
-      await fetchUserData() // Refresh data after update
+      await fetchUserData()
+      toast.success('Account deleted successfully')
+
       return { success: true }
     } catch (err) {
       error.value = err.message
@@ -104,7 +109,7 @@ export const useUserProfile = () => {
   onMounted(() => {
     fetchUserData()
 
-  }  )
+  })
 
   return {
     // State

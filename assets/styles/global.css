@@ -557,3 +557,10 @@ h6 {
   background: linear-gradient(to top right, #4f46e5, #4338ca) !important; /* Softer blue/purple gradient */
 }
 
+/* Apply Inter font globally */
+h1, h2, h3, h4, p, span {
+  font-family: 'DM Sans', 'DM Sans Fallback', sans-serif;
+}
+
+
+

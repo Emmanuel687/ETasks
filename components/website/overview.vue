@@ -24,9 +24,10 @@
     </div>
     <!-- Get STarted BTN End -->
 
-    <div>
-      <img src="/assets/heroImg.jpg" class="hero-img" />
-    </div>
+    <div class="hero-container">
+  <img src="/assets/HeroImg.png" alt="Hero Image" class="hero-img" />
+</div>
+
   </div>
 
 
@@ -36,8 +37,31 @@
 
 
 <style>
-.hero-img {
-  height: 440px;
-  width: 1140px;
+.hero-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
 }
+
+.hero-img {
+  object-fit: contain;      
+  width: 100%;                
+  max-width: 1000px;           
+  max-height: 400px;        
+  height: auto;         
+  display: block;             
+  margin: 0 auto;             
+}
+
+@media (max-width: 768px) {
+  .hero-img {
+    max-width: 100%;          
+    max-height: 300px;         
+  }
+}
+
+
 </style>

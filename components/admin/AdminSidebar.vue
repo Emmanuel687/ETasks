@@ -1,3 +1,43 @@
+
+<script setup>
+// Imports start
+import { useRoute, useRouter } from 'vue-router';
+import { useCustomToast } from '~/composables/useToast';
+// Imports End
+
+// Reactive Variables Start
+const isOpen = ref(false);
+// Reactive Variables End
+
+// Variables Start
+const route = useRoute();
+const router = useRouter();
+const supabase = useSupabaseClient();  // Supabase Client
+const toast = useCustomToast();
+// Variables End
+
+const isAdminRoute = computed(() => route.path.startsWith('/admin'));
+
+const handleLogout = async () => {
+  try {
+    const { error } = await supabase.auth.signOut(); // Sign out user from Supabase
+    if (error) throw error; // If there's an error, throw it
+    
+    // Redirect to home page after logout
+    await router.push('/'); 
+    toast.success('Logged out successfully');
+  } catch (error) {
+    console.error('Error during logout:', error);
+    toast.error('Failed to log out. Please try again.');
+  }
+}
+
+watch(() => route.path, () => {
+  isOpen.value = false; 
+});
+</script>
+
+
 <template>
   <div>
     <!-- Mobile menu button -->
@@ -96,37 +136,3 @@
     <div v-if="isOpen" @click="isOpen = false" class="fixed inset-0 bg-black bg-opacity-50 z-0 lg:hidden"></div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-
-const route = useRoute()
-const router = useRouter()
-const supabase = useSupabaseClient()
-
-const isOpen = ref(false)
-const isAdminRoute = computed(() => route.path.startsWith('/admin'))
-
-const handleLogout = async () => {
-  try {
-    const { error } = await supabase.auth.signOut()
-    if (error) throw error
-
-
-    await router.push('/')
-
-    // Optionally, show a success message
-    // toast.success('Logged out successfully')
-  } catch (error) {
-    console.error('Error during logout:', error)
-    // Show error to user
-    // toast.error('Failed to log out. Please try again.')
-  }
-}
-
-// Close sidebar when route changes (for mobile)
-watch(() => route.path, () => {
-  isOpen.value = false
-})
-</script>

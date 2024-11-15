@@ -10,44 +10,47 @@ import { useRouter } from "vue-router";
 const profile = useUserProfile();
 // Composables End
 
-// Password Form State
-const currentPassword = ref('')
-const newPassword = ref('')
-const confirmPassword = ref('')
+// Reactive Variables Start
 const isEditing = ref(false)
 const loading = ref(false)
 const error = ref(null)
+const visible = ref(false)
+// Reactive Variables End
 
-
-
+// Variables Declarations Start
 const supabase = useSupabaseClient()
 const toast = useCustomToast()
 const router = useRouter()
+// Variables Declarations End
 
-
+// Handle Edit Start
 const handleEdit = () => {
   isEditing.value = true
 }
+// Handle Edit End
 
 
+// Handle Submit Start
 const handleSubmit = async () => {
   const result = await profile.updateProfile()
   if (result.success) {
     isEditing.value = false
   }
 }
+// Handle Submit End
 
 
+// Delete Account Start
 const deleteAccount = async () => {
   try {
     loading.value = true
 
     const { error: deleteError } = await supabase.rpc('delete_user')
-    
+
     if (deleteError) throw deleteError
 
     await supabase.auth.signOut()
-    
+
     toast.success('Account deleted successfully')
     router.push('/login')
     return { success: true }
@@ -59,6 +62,8 @@ const deleteAccount = async () => {
     loading.value = false
   }
 }
+// Delete Account End
+
 
 </script>
 
@@ -121,10 +126,27 @@ const deleteAccount = async () => {
     <section class="mt-12 bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-3xl font-semibold text-red-600 border-b pb-3">Delete Account</h2>
       <p class="mt-4 text-gray-700">Once you delete your account, there is no going back. Please be certain.</p>
-      <button @click="deleteAccount" :disabled="loading"
+      <button @click=" visible = true" :disabled="loading"
         class="w-full py-3 mt-6 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition disabled:opacity-50">
         {{ loading ? 'Deleting...' : 'Delete Account' }}
       </button>
+
+
+
+      <Dialog v-model:visible="visible" modal header="Delete Account" :style="{ width: '25rem' }">
+        <span class="text-surface-500 dark:text-surface-400 block mb-8">Are you sure you want to delete this
+          account.</span>
+        <div class="flex justify-end gap-2">
+          <button
+            class="px-3 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition disabled:opacity-50"
+            @click="visible = false">
+            Cancel
+          </button>
+
+          <Button type="button" label="Delete" severity="danger" @click="deleteAccount"></Button>
+
+        </div>
+      </Dialog>
     </section>
   </section>
 </template>
