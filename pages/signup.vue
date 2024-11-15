@@ -1,6 +1,6 @@
 <script setup>
 // Imports Start
-// import { ref } from 'vue'
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useCustomToast } from '~/composables/useToast'
 // Imports End
@@ -140,12 +140,13 @@ const handleSignup = async () => {
   <section class="min-h-screen bg-white flex justify-center items-center py-12 sm:px-6 lg:px-8">
     <section class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-7xl">
       <!-- Sign Up Image Section Start -->
-      <section class=" flex justify-center items-center ">
+      <section class="hidden lg:flex justify-center items-center">
         <div class="hero-container">
           <img src="/assets/SignUpBG.png" alt="Hero Image" class="hero-img" />
         </div>
       </section>
-      <!-- Sign Up Image Section  -->
+      <!-- Sign Up Image Section End -->
+
 
       <!-- Sign Up Form Section Start -->
       <section class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -297,5 +298,3 @@ const handleSignup = async () => {
 
   </section>
 </template>
-
-

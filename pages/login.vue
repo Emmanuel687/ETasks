@@ -90,12 +90,13 @@ const handleLoginError = (error) => {
   <section class="min-h-screen bg-white flex justify-center items-center py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-7xl">
       <!-- Sign Up Image Section Start -->
-      <section class="flex justify-center items-center">
+      <section class="hidden lg:flex justify-center items-center">
         <div class="hero-container">
           <img src="/assets/LoginBG.png" alt="Hero Image" class="hero-img" />
         </div>
       </section>
       <!-- Sign Up Image Section End -->
+
 
 
       <!--  Login Form Start -->
