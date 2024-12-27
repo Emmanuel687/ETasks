@@ -11,29 +11,27 @@ const appStore = useUserStore()
 // Store End
 
 // Reactive Variables Start
-const taskItems = ref([
+const taskItems = computed(() => [
   {
     taskStatus: "All Tasks",
-    taskNumber: appStore.tasks.length,
+    taskNumber: appStore.allTasksLength,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
     taskStatus: "Open Tasks",
-    taskNumber: appStore.pendingTasks.length,
+    taskNumber: appStore.pendingTasksLength,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
     taskStatus: "Completed Tasks",
-    taskNumber: appStore.completedTasks.length,
+    taskNumber: appStore.completedTasksLength,
     img: '/assets/svgs/completedtasks.svg',
   },
   {
     taskStatus: "Inprogress Tasks",
-    taskNumber: appStore.inProgressTasks.length,
+    taskNumber: appStore.inProgressTasksLength, 
     img: '/assets/svgs/completedtasks.svg',
   },
-
-
 ])
 const statuses = ref({
   allTasks: "All Tasks",
@@ -113,7 +111,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="dashboard rounded-md py-3 p-2 h-full w-full           bg-white border overflow-x-auto ">
+  <section class="dashboard rounded-md py-3 p-2 h-full w-full bg-white border overflow-x-auto ">
 
     <!-- Task Category Card Desktop View Start -->
     <section class="md:grid md:col-span-4">
@@ -187,13 +185,5 @@ onMounted(() => {
       </section>
       <!-- Charts Section End -->
     </section>
-
-
-
-
-
-
-
-
   </section>
 </template>

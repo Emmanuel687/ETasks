@@ -125,6 +125,8 @@ export const useUserStore = defineStore('user', () => {
       loading.value = false
     }
   }
+
+  const allTasksLength = computed(()=>tasks.value.length)
   // Fetch Tasks End
 
 
@@ -134,6 +136,7 @@ export const useUserStore = defineStore('user', () => {
   const pendingTasks = computed(() => {
     return tasks.value.filter(task => task.status === 'open')
   })
+  const pendingTasksLength = computed(() => pendingTasks.value.length)
   // Pending Tasks End
 
   // Inprogress Tasks Start
@@ -141,6 +144,8 @@ export const useUserStore = defineStore('user', () => {
     return tasks.value.filter(task => task.status === 'In Progress')
 
   })
+  const inProgressTasksLength = computed(() => inProgressTasks.value.length)
+
   // Inprogress Tasks End
 
 
@@ -148,6 +153,7 @@ export const useUserStore = defineStore('user', () => {
   const completedTasks = computed(() => {
     return tasks.value.filter(task => task.status === 'closed')
   })
+  const completedTasksLength = computed(() => completedTasks.value.length)
   // Completed Tasks End
 
 
@@ -226,7 +232,11 @@ export const useUserStore = defineStore('user', () => {
     dueTodayTasks,
     pastTasks,
     userProfile,
-    userProfileDetails
+    userProfileDetails,
+    pendingTasksLength,
+    inProgressTasksLength,
+    completedTasksLength,
+    allTasksLength
 
 
   }
