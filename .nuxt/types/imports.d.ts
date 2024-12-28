@@ -171,6 +171,7 @@ declare global {
   const useSupabaseClient: typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient')['useSupabaseClient']
   const useSupabaseSession: typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseSession')['useSupabaseSession']
   const useSupabaseUser: typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser')['useSupabaseUser']
+  const useTaskStore: typeof import('../../stores/tasks')['useTaskStore']
   const useTemplateRef: typeof import('../../node_modules/vue')['useTemplateRef']
   const useToast: typeof import('../../node_modules/primevue/usetoast/index')['useToast']
   const useTransitionState: typeof import('../../node_modules/vue')['useTransitionState']
@@ -367,6 +368,7 @@ declare module 'vue' {
     readonly useSupabaseClient: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient')['useSupabaseClient']>
     readonly useSupabaseSession: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseSession')['useSupabaseSession']>
     readonly useSupabaseUser: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser')['useSupabaseUser']>
+    readonly useTaskStore: UnwrapRef<typeof import('../../stores/tasks')['useTaskStore']>
     readonly useTemplateRef: UnwrapRef<typeof import('../../node_modules/vue')['useTemplateRef']>
     readonly useToast: UnwrapRef<typeof import('../../node_modules/primevue/usetoast/index')['useToast']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>
