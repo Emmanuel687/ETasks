@@ -1,4 +1,4 @@
-# ETasks - Task Manager Application.
+# ETasks - Task Manager Application
 
 
 ## Overview
