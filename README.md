@@ -1,4 +1,5 @@
 # ETasks - Task Manager Application
+.
 
 
 ## Overview
