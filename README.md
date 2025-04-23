@@ -1,4 +1,4 @@
-# ETasks - Task Manager Application.
+# ETasks - Task Manager Application
 
 ## Overview
 **ETasks** is a powerful task management application built with Vue.js and Supabase. It helps users organize, track, and complete tasks efficiently with features like task prioritization, deadlines, and status tracking..
